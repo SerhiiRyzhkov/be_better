@@ -69,3 +69,23 @@ LOCK TABLES `authorities` WRITE;
 INSERT INTO `authorities` VALUES ('admin@ukr.net',1),('admin@ukr.net',2);
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 UNLOCK TABLES;
+
+DROP TABLE IF EXISTS `task`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `my_db`.`task` (
+                                `id` INT NOT NULL AUTO_INCREMENT,
+                                `title` VARCHAR(245) NULL,
+                                `description` VARCHAR(245) NULL,
+                                `score` INT NULL,
+                                `total` INT NULL,
+                                `status` VARCHAR(45) NULL,
+                                `type` VARCHAR(45) NULL,
+                                `deadline` VARCHAR(45) NULL,
+                                PRIMARY KEY (`id`))
+    ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `task`
+--
