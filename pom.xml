@@ -218,7 +218,7 @@
         </configuration>
       </plugin>
 
-      <plugin>
+    <!--  <plugin>
         <groupId>org.codehaus.cargo</groupId>
         <artifactId>cargo-maven2-plugin</artifactId>
         <version>1.7.6</version>
@@ -246,7 +246,7 @@
         </configuration>
 
 
-      </plugin>
+      </plugin>-->
 
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
