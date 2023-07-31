@@ -39,6 +39,31 @@ public class AuthenticationRegistrationController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public ModelAndView registration() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("newUserAtt", new User());
+        modelAndView.setViewName("auth_and_reg-views" + separator + "registration-view");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public ModelAndView registration(@ModelAttribute("newUserAtt") User user
+            , @ModelAttribute("pass1Att") String pas1
+            , @ModelAttribute("pass2Att") String pas2) {
+        ModelAndView modelAndView = new ModelAndView();
+            if (!pas1.equals(pas2)) {
+                modelAndView.setViewName("auth_and_reg-views" + separator + "registration-view");
+                modelAndView.addObject("messageAtt", "Passwords do not match!");
+            } else {
+                modelAndView.setViewName("auth_and_reg-views" + separator + "succes-registation-view");
+                user.setPassword(bCryptPasswordEncoder.encode(pas1));
+                user.setEnabled(true);
+                userService.save(user);
+        }
+        return modelAndView;
+    }
+
 
 
 }

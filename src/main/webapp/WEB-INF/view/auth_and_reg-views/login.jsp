@@ -15,7 +15,7 @@
     <br>
     <br>
     <button name="Submit" value="Login" type="Submit" th:text="Login"></button>
-    <a href="/recover-password">Forgot password?</a>
+    <a href="/registration">registration</a>
 </form>
 </body>
 </html>

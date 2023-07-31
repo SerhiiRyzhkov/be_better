@@ -27,5 +27,10 @@ public abstract class AbstractRepository<T extends Serializable> implements Enti
         return (T)getSession().get(entityClass,id);
     }
 
+    @Override
+    public void save(T entity){
+        getSession().save(entity);
+    }
+
 
 }
