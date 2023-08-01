@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: serhii.ryzhkov
@@ -12,5 +14,21 @@
 </head>
 <body>
 My home view
+<br>
+<br>
+<c:url var="daysButton" value="/days">
+    <c:param name="delta" value="5"/>
+</c:url>
+
+<br>
+<br>
+
+<button onclick="window.location.href='${daysButton}'">
+    Days
+</button>
+
+
+
+
 </body>
 </html>

@@ -1,5 +1,8 @@
 package com.had0uken.be_cool.model;
 
+import com.had0uken.be_cool.enums.Status;
+import com.had0uken.be_cool.enums.Type;
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
@@ -30,11 +33,11 @@ public class Task implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private String status;
+    private Status status;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
-    private String type;
+    private Type type;
 
     @Column(name = "deadline")
     private String deadline;
@@ -42,7 +45,7 @@ public class Task implements Serializable {
     public Task() {
     }
 
-    public Task(long id, String title, String description, int score, int total, String status, String type, String deadline) {
+    public Task(long id, String title, String description, int score, int total, Status status, Type type, String deadline) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -93,19 +96,19 @@ public class Task implements Serializable {
         this.total = total;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

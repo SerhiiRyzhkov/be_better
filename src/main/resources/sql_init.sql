@@ -1,3 +1,5 @@
+USE my_db;
+
 DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -70,10 +72,10 @@ INSERT INTO `authorities` VALUES ('admin@ukr.net',1),('admin@ukr.net',2);
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 UNLOCK TABLES;
 
-DROP TABLE IF EXISTS `task`;
+DROP TABLE IF EXISTS `tasks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `my_db`.`task` (
+CREATE TABLE `my_db`.`tasks` (
                                 `id` INT NOT NULL AUTO_INCREMENT,
                                 `title` VARCHAR(245) NULL,
                                 `description` VARCHAR(245) NULL,
@@ -87,5 +89,5 @@ CREATE TABLE `my_db`.`task` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `task`
+-- Dumping data for table `tasks`
 --
