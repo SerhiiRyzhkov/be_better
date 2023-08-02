@@ -1,67 +1,54 @@
 package com.had0uken.be_cool.model;
 
-import com.had0uken.be_cool.enums.Status;
-import com.had0uken.be_cool.enums.Type;
-
 import javax.persistence.*;
-import java.io.Serial;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Table(name = "tasks")
 public class Task implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 2401665185463273847L;
-
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     @Column(name = "id")
-    private long id;
-
+    private int id;
+    @Basic
+    @Column(name = "user_email")
+    private String userEmail;
+    @Basic
     @Column(name = "title")
     private String title;
-
+    @Basic
     @Column(name = "description")
     private String description;
-
+    @Basic
     @Column(name = "score")
-    private int score;
-
+    private Integer score;
+    @Basic
     @Column(name = "total")
-    private int total;
-
-    @Enumerated(EnumType.STRING)
+    private Integer total;
+    @Basic
     @Column(name = "status")
-    private Status status;
-
-    @Enumerated(EnumType.STRING)
+    private String status;
+    @Basic
     @Column(name = "type")
-    private Type type;
-
+    private String type;
+    @Basic
     @Column(name = "deadline")
     private String deadline;
 
-    public Task() {
-    }
-
-    public Task(long id, String title, String description, int score, int total, Status status, Type type, String deadline) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.score = score;
-        this.total = total;
-        this.status = status;
-        this.type = type;
-        this.deadline = deadline;
-    }
-
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getTitle() {
@@ -80,35 +67,35 @@ public class Task implements Serializable {
         this.description = description;
     }
 
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 
-    public int getTotal() {
+    public Integer getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(Integer total) {
         this.total = total;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public Type getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -124,26 +111,34 @@ public class Task implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Task task = (Task) o;
-        return id == task.id && score == task.score && total == task.total && Objects.equals(title, task.title) && Objects.equals(description, task.description) && Objects.equals(status, task.status) && Objects.equals(type, task.type) && Objects.equals(deadline, task.deadline);
+
+        if (id != task.id) return false;
+        if (userEmail != null ? !userEmail.equals(task.userEmail) : task.userEmail != null) return false;
+        if (title != null ? !title.equals(task.title) : task.title != null) return false;
+        if (description != null ? !description.equals(task.description) : task.description != null) return false;
+        if (score != null ? !score.equals(task.score) : task.score != null) return false;
+        if (total != null ? !total.equals(task.total) : task.total != null) return false;
+        if (status != null ? !status.equals(task.status) : task.status != null) return false;
+        if (type != null ? !type.equals(task.type) : task.type != null) return false;
+        if (deadline != null ? !deadline.equals(task.deadline) : task.deadline != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, score, total, status, type, deadline);
-    }
-
-    @Override
-    public String toString() {
-        return "Task{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", score=" + score +
-                ", total=" + total +
-                ", status='" + status + '\'' +
-                ", type='" + type + '\'' +
-                ", deadline='" + deadline + '\'' +
-                '}';
+        int result = id;
+        result = 31 * result + (userEmail != null ? userEmail.hashCode() : 0);
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (score != null ? score.hashCode() : 0);
+        result = 31 * result + (total != null ? total.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (deadline != null ? deadline.hashCode() : 0);
+        return result;
     }
 }
+

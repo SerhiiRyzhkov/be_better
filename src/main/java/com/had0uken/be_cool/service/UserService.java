@@ -4,4 +4,5 @@ import com.had0uken.be_cool.model.User;
 
 public interface UserService {
     public void save(User user);
+    public User get(String email);
 }

@@ -40,4 +40,9 @@ public class UserServiceImpl implements UserService,UserDetailsService {
     public void save(User user) {
         userRepository.save(user);
     }
+
+    @Override
+    public User get(String email) {
+        return userRepository.findById(email);
+    }
 }

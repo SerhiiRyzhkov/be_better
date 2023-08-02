@@ -1,6 +1,7 @@
 package com.had0uken.be_cool.repository.implementation;
 
 import com.had0uken.be_cool.model.Task;
+import com.had0uken.be_cool.model.User;
 import com.had0uken.be_cool.repository.AbstractRepository;
 import com.had0uken.be_cool.repository.TaskRepository;
 import org.hibernate.Session;
@@ -25,5 +26,13 @@ public class TaskRepositoryImpl extends AbstractRepository<Task> implements Task
     public List<Task> getTasksByDate(String date) {
         return getSession().createQuery("from Task where deadline=:deadlineParam").
                 setParameter("deadlineParam",date).getResultList();
+    }
+
+    @Override
+    public List<Task> getTasksByUser(User user) {
+        System.out.println("here111");
+        System.out.println(user.getEmail());
+        return getSession().createQuery("from Task where user_email=:emailParam").
+                setParameter("emailParam",user.getEmail()).getResultList();
     }
 }

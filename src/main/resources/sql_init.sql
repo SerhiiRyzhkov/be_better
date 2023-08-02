@@ -76,16 +76,20 @@ DROP TABLE IF EXISTS `tasks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `my_db`.`tasks` (
-                                `id` INT NOT NULL AUTO_INCREMENT,
-                                `title` VARCHAR(245) NULL,
-                                `description` VARCHAR(245) NULL,
-                                `score` INT NULL,
-                                `total` INT NULL,
-                                `status` VARCHAR(45) NULL,
-                                `type` VARCHAR(45) NULL,
-                                `deadline` VARCHAR(45) NULL,
-                                PRIMARY KEY (`id`))
-    ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+                                 `id` INT NOT NULL AUTO_INCREMENT,
+                                 `user_email` VARCHAR(100) NOT NULL,
+                                 `title` VARCHAR(245) NULL,
+                                 `description` VARCHAR(245) NULL,
+                                 `score` INT NULL,
+                                 `total` INT NULL,
+                                 `status` VARCHAR(45) NULL,
+                                 `type` VARCHAR(45) NULL,
+                                 `deadline` VARCHAR(45) NULL,
+                                 PRIMARY KEY (`id`),
+                                 CONSTRAINT `fk_user_email`
+                                     FOREIGN KEY (`user_email`)
+                                         REFERENCES `my_db`.`users` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

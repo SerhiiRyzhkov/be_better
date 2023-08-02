@@ -1,7 +1,9 @@
 package com.had0uken.be_cool.controller;
 
 import com.had0uken.be_cool.model.Task;
+import com.had0uken.be_cool.model.User;
 import com.had0uken.be_cool.service.TaskService;
+import com.had0uken.be_cool.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,8 @@ public class HomeController {
 
     @Autowired
     private TaskService taskService;
+    @Autowired
+    private UserService userService;
 
     private final String separator;
 
@@ -53,7 +57,12 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
 
         shift(delta);
-        List<Task> dayTasks = taskService.getTasksByDate(day.toString());
+        System.out.println("here19!");
+
+        System.out.println(userService.get(authentication.getName()));
+
+        List<Task> dayTasks = taskService.getTasksByUser(userService.get(authentication.getName()));
+
 
 
         modelAndView.addObject("dayTasksAtt",dayTasks);
