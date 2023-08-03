@@ -13,20 +13,21 @@
     <title>Title</title>
 </head>
 <body>
-List of favourits:
+List of regular tasks:
 <br>
-<c:forEach var="t" items="${favouriteAtt}" varStatus="loop">
+<c:forEach var="t" items="${regularAtt}" varStatus="loop">
 
             ${t.title}
 
 
     <br>
     ${t.description}
+    <br>
 </c:forEach>
 
 <br>
 <br>
-<form:form action="saveFavTask" modelAttribute="taskAtt">
+<form:form action="saveRegTask" modelAttribute="taskAtt">
 
     Title<form:input path="title"/>
     <br><br>
@@ -39,6 +40,6 @@ List of favourits:
 </form:form>
 
 <br>
-<button onclick="window.location.href='/'">Home</button>
+<button onclick="window.location.href='../../..'">Home</button>
 </body>
 </html>

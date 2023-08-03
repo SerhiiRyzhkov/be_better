@@ -27,8 +27,8 @@ My home view
     Days
 </button>
 <br>
-<button onclick="window.location.href='/favourite'">
-    Configure favourite tasks
+<button onclick="window.location.href='/regular'">
+    Configure regular tasks
 </button>
 
 

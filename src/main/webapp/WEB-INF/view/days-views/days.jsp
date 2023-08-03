@@ -16,7 +16,7 @@
 days
 <br>
 <br>
-<button onclick="window.location.href='/'">Home</button>
+<button onclick="window.location.href='../../..'">Home</button>
 <br>
 <br>
 <c:forEach var="d" items="${daysListAtt}" varStatus="loop">
@@ -37,8 +37,15 @@ days
 
 
 </c:forEach>
+
 <button onclick="window.location.href='setToday'"> Set Today
 </button>
+<br>
+<c:forEach var="d" items="${weekDaysAtt}">
+    ${d}
+</c:forEach>
+<br>
+
 <br>
 List of tasks:
 <br>
@@ -65,14 +72,14 @@ List of tasks:
 <br>
 
 
-Favourite tasks:
+Regular tasks:
 <br>
-<c:forEach var="t" items="${favouriteAtt}" varStatus="loop">
-    <c:url var="addFavButton" value="/addFavouriteToday">
+<c:forEach var="t" items="${regularAtt}" varStatus="loop">
+    <c:url var="addRegButton" value="/addRegularToday">
         <c:param name="index" value="${loop.index}"/>
     </c:url>
 
-    <button onclick="window.location.href='${addFavButton}'" value="${loop.index}">
+    <button onclick="window.location.href='${addRegButton}'" value="${loop.index}">
             ${t.title}
     </button>
 
