@@ -43,13 +43,14 @@ public class HomeController {
 
     private List<Task> dayTasks;
 
-
+    private List<Task>favourite;
 
 
     public HomeController() {
         this.separator= File.separator;
         dates = new ArrayList<>();
         day=LocalDate.now();
+        favourite=new ArrayList<>();
     }
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public ModelAndView home(Authentication authentication) {
@@ -65,8 +66,9 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         shift(delta);
         dayTasks = taskService.getTasksByUserAndDate(userService.get(authentication.getName()),day.toString());
+        favourite = taskService.getTasksByUserAndType(userService.get(authentication.getName()),Type.FAVOURITE);
 
-
+        modelAndView.addObject("favouriteAtt",favourite);
         modelAndView.addObject("actualDateAtt",LocalDate.now());
         modelAndView.addObject("dayTasksAtt",dayTasks);
         modelAndView.addObject("daysListAtt",dates);
@@ -116,12 +118,54 @@ public class HomeController {
         task.setUserEmail(authentication.getName());
         task.setScore(0);
         task.setTotal(1);
-        task.setStatus(Status.IN_PROCESS);
-        task.setType(Type.DAILY);
+        task.setStatus(Status.IN_PLAN);
+        task.setType(Type.SINGULAR);
         taskService.save(task);
         modelAndView.setViewName("redirect: days?delta="+RANGE);
         return modelAndView;
     }
+
+    @RequestMapping("/addFavouriteToday")
+    public ModelAndView addFavouriteToday(@RequestParam("index") Integer index, Authentication authentication){
+        ModelAndView modelAndView = new ModelAndView();
+        Task task = new Task();
+        task.setUserEmail(authentication.getName());
+        task.setTitle(favourite.get(index).getTitle());
+        task.setDescription(favourite.get(index).getDescription());
+        task.setScore(0);
+        task.setTotal(1);
+        task.setStatus(Status.IN_PLAN);
+        task.setDeadline(day.toString());
+        taskService.save(task);
+        favourite = taskService.getTasksByUserAndType(userService.get(authentication.getName()),Type.FAVOURITE);
+
+        modelAndView.addObject("favouriteAtt",favourite);
+        modelAndView.setViewName("redirect: days?delta="+RANGE);
+        return modelAndView;
+    }
+
+    @RequestMapping("/favourite")
+    public ModelAndView favourite(Authentication authentication){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("taskAtt", new Task());
+        modelAndView.setViewName("home-views" + separator + "addFavView");
+        return modelAndView;
+    }
+
+    @RequestMapping("/saveFavTask")
+    public ModelAndView saveFavTask(@ModelAttribute("taskAtt") Task task,Authentication authentication){
+        ModelAndView modelAndView = new ModelAndView();
+        task.setDeadline(day.toString());
+        task.setUserEmail(authentication.getName());
+        task.setScore(0);
+        task.setTotal(1);
+        task.setStatus(Status.IN_PLAN);
+        task.setType(Type.FAVOURITE);
+        taskService.save(task);
+        modelAndView.setViewName("redirect: favourite");
+        return modelAndView;
+    }
+
 
     private void shift(int delta){
         dates.clear();

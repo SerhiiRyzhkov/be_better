@@ -1,5 +1,6 @@
 package com.had0uken.be_cool.repository.implementation;
 
+import com.had0uken.be_cool.enums.Type;
 import com.had0uken.be_cool.model.Task;
 import com.had0uken.be_cool.model.User;
 import com.had0uken.be_cool.repository.AbstractRepository;
@@ -38,6 +39,12 @@ public class TaskRepositoryImpl extends AbstractRepository<Task> implements Task
     public List<Task> getTasksByUserAndDate(User user, String date) {
         return getSession().createQuery("from Task where user_email=:emailParam and deadline=:dateParam").
                 setParameter("emailParam",user.getEmail()).setParameter("dateParam",date).getResultList();
+    }
+
+    @Override
+    public List<Task> getTasksByUserAndType(User user, Type type) {
+        return getSession().createQuery("from Task where user_email=:emailParam and type=:typeParam").
+                setParameter("emailParam",user.getEmail()).setParameter("typeParam",type).getResultList();
     }
 
 }

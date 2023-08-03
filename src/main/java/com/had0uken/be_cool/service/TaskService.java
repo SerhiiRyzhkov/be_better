@@ -1,5 +1,6 @@
 package com.had0uken.be_cool.service;
 
+import com.had0uken.be_cool.enums.Type;
 import com.had0uken.be_cool.model.Task;
 import com.had0uken.be_cool.model.User;
 
@@ -10,4 +11,5 @@ public interface TaskService {
     public List<Task> getTasksByUser(User user);
     public List<Task> getTasksByUserAndDate(User user, String date);
     public void save(Task task);
+    public List<Task> getTasksByUserAndType(User user, Type type);
 }

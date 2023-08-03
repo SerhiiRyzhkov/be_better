@@ -26,7 +26,10 @@ My home view
 <button onclick="window.location.href='${daysButton}'">
     Days
 </button>
-
+<br>
+<button onclick="window.location.href='/favourite'">
+    Configure favourite tasks
+</button>
 
 
 

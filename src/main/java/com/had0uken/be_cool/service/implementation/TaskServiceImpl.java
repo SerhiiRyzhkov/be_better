@@ -1,5 +1,6 @@
 package com.had0uken.be_cool.service.implementation;
 
+import com.had0uken.be_cool.enums.Type;
 import com.had0uken.be_cool.model.Task;
 import com.had0uken.be_cool.model.User;
 import com.had0uken.be_cool.repository.TaskRepository;
@@ -33,5 +34,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void save(Task task) {
         taskRepository.save(task);
+    }
+
+    @Override
+    public List<Task> getTasksByUserAndType(User user, Type type) {
+        return taskRepository.getTasksByUserAndType(user,type);
     }
 }

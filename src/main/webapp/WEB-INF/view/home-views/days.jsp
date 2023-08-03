@@ -15,6 +15,10 @@
 
 days
 <br>
+<br>
+<button onclick="window.location.href='/'">Home</button>
+<br>
+<br>
 <c:forEach var="d" items="${daysListAtt}" varStatus="loop">
     <c:choose>
         <c:when test="${actualDateAtt==d}">
@@ -59,5 +63,20 @@ List of tasks:
 <input type="button" value="Add new task" onclick="window.location.href='addingNewTask'">
 <br>
 <br>
+
+
+Favourite tasks:
+<br>
+<c:forEach var="t" items="${favouriteAtt}" varStatus="loop">
+    <c:url var="addFavButton" value="/addFavouriteToday">
+        <c:param name="index" value="${loop.index}"/>
+    </c:url>
+
+    <button onclick="window.location.href='${addFavButton}'" value="${loop.index}">
+            ${t.title}
+    </button>
+
+    <br>
+</c:forEach>
 </body>
 </html>
