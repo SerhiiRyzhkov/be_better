@@ -24,4 +24,14 @@ public class TaskServiceImpl implements TaskService {
     public List<Task> getTasksByUser(User user) {
         return taskRepository.getTasksByUser(user);
     }
+
+    @Override
+    public List<Task> getTasksByUserAndDate(User user, String date) {
+        return taskRepository.getTasksByUserAndDate(user,date);
+    }
+
+    @Override
+    public void save(Task task) {
+        taskRepository.save(task);
+    }
 }

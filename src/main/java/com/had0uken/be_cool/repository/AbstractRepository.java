@@ -29,7 +29,7 @@ public abstract class AbstractRepository<T extends Serializable> implements Enti
 
     @Override
     public void save(T entity){
-        getSession().save(entity);
+        getSession().saveOrUpdate(entity);
     }
 
 

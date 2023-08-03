@@ -30,9 +30,14 @@ public class TaskRepositoryImpl extends AbstractRepository<Task> implements Task
 
     @Override
     public List<Task> getTasksByUser(User user) {
-        System.out.println("here111");
-        System.out.println(user.getEmail());
         return getSession().createQuery("from Task where user_email=:emailParam").
                 setParameter("emailParam",user.getEmail()).getResultList();
     }
+
+    @Override
+    public List<Task> getTasksByUserAndDate(User user, String date) {
+        return getSession().createQuery("from Task where user_email=:emailParam and deadline=:dateParam").
+                setParameter("emailParam",user.getEmail()).setParameter("dateParam",date).getResultList();
+    }
+
 }
