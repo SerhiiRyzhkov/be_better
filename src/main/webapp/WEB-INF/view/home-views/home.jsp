@@ -19,12 +19,18 @@ My home view
 <c:url var="daysButton" value="/days">
     <c:param name="delta" value="${rangeAtt}"/>
 </c:url>
-
+<c:url var="monthButton" value="/month">
+    <c:param name="delta" value="${rangeAtt}"/>
+</c:url>
 <br>
 <br>
 
 <button onclick="window.location.href='${daysButton}'">
     Days
+</button>
+<br>
+<button onclick="window.location.href='${monthButton}'">
+    Month
 </button>
 <br>
 <button onclick="window.location.href='/regular'">

@@ -13,24 +13,25 @@
 </head>
 <body>
 
-days
+months
 <br>
 <br>
 <button onclick="window.location.href='../../..'">Home</button>
 <br>
 <br>
 <c:forEach var="d" items="${daysListAtt}" varStatus="loop">
+
     <c:choose>
-        <c:when test="${actualDateAtt==d}">
+        <c:when test="${actualDateAtt==d.key}">
             <c:if test="${loop.index == 5}">!!</c:if>
             <button onclick="window.location.href='days?delta=${loop.index}'">
-                <p class="red-text" style="color: red">${d}</p>
+                <p class="red-text" style="color: red">${d.key}</p>
             </button>
             <c:if test="${loop.index == 5}">!!</c:if>
         </c:when>
         <c:otherwise>
             <c:if test="${loop.index == 5}">!!</c:if>
-            <button onclick="window.location.href='days?delta=${loop.index}'">${d}</button>
+            <button onclick="window.location.href='days?delta=${loop.index}'">${d.key}</button>
             <c:if test="${loop.index == 5}">!!</c:if>
         </c:otherwise>
     </c:choose>
@@ -41,8 +42,8 @@ days
 <button onclick="window.location.href='setToday'"> Set Today
 </button>
 <br>
-<c:forEach var="d" items="${weekDaysAtt}">
-    ${d}
+<c:forEach var="d" items="${daysListAtt}">
+    ${d.value}
 </c:forEach>
 <br>
 
@@ -59,7 +60,7 @@ List of tasks:
     ${t.description}
     |||
     <button onclick="window.location.href='${completeButton}'" value="${loop.index}">
-        ${t.status}
+            ${t.status}
     </button>
     <br>
 </c:forEach>

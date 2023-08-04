@@ -1,5 +1,6 @@
 package com.had0uken.be_cool.controller;
 
+import com.had0uken.be_cool.enums.Frequency;
 import com.had0uken.be_cool.utilities.DataClass;
 import com.had0uken.be_cool.enums.Status;
 import com.had0uken.be_cool.enums.Type;
@@ -35,7 +36,8 @@ public class RegularsController {
     @RequestMapping("/regular")
     public ModelAndView regular(Authentication authentication){
         ModelAndView modelAndView = new ModelAndView();
-        regular = taskService.getTasksByUserAndType(userService.get(authentication.getName()), Type.REGULAR);
+        regular = taskService.getTasksByUserAndFrequency(userService.get(authentication.getName()), Frequency.FREQUENT);
+        System.out.println(regular);
         modelAndView.addObject("regularAtt",regular);
         modelAndView.addObject("taskAtt", new Task());
         modelAndView.setViewName("regular-views" + DataClass.getSeparator() + "addRegView");
@@ -45,12 +47,12 @@ public class RegularsController {
     @RequestMapping("/saveRegTask")
     public ModelAndView saveRegTask(@ModelAttribute("taskAtt") Task task, Authentication authentication){
         ModelAndView modelAndView = new ModelAndView();
-        task.setDeadline(DataClass.getDay().toString());
+        task.setDeadline("2999-01-01");
         task.setUserEmail(authentication.getName());
         task.setScore(0);
         task.setTotal(1);
         task.setStatus(Status.IN_PLAN);
-        task.setType(Type.REGULAR);
+        task.setFrequency(Frequency.FREQUENT);
         taskService.save(task);
         modelAndView.setViewName("redirect: regular");
         return modelAndView;

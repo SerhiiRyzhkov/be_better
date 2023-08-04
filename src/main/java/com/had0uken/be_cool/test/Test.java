@@ -10,13 +10,6 @@ public class Test {
     public static void main(String[] args) {
         LocalDate date = LocalDate.now();
 
-        LocalDate end = date.plusDays(5);
-        LocalDate start = date.minusDays(5);
-
-
-        while (start.isBefore(end)){
-            System.out.println(start);
-            start=start.plusDays(1);
-        }
+        System.out.println(date.getMonth().toString());
     }
 }

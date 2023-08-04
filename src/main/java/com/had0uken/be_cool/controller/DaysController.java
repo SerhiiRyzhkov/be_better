@@ -1,5 +1,6 @@
 package com.had0uken.be_cool.controller;
 
+import com.had0uken.be_cool.enums.Frequency;
 import com.had0uken.be_cool.utilities.DataClass;
 import com.had0uken.be_cool.enums.Status;
 import com.had0uken.be_cool.enums.Type;
@@ -18,7 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -32,9 +35,7 @@ public class DaysController {
     @Autowired
     private UserService userService;
 
-    private final List<LocalDate> dates;
-
-
+    private final Map<LocalDate,String> dates;
 
 
     private List<Task> dayTasks;
@@ -43,8 +44,8 @@ public class DaysController {
 
 
     public DaysController() {
-        dates = new ArrayList<>();
         regular=new ArrayList<>();
+        dates=new LinkedHashMap<>();
     }
 
     @RequestMapping(value = {"/days"}, method = RequestMethod.GET)
@@ -52,18 +53,16 @@ public class DaysController {
         ModelAndView modelAndView = new ModelAndView();
         shift(delta);
         dayTasks = taskService.getTasksByUserAndDate(userService.get(authentication.getName()),DataClass.getDay().toString());
-        List<String>weekdays = dates.stream().map(el-> el.getDayOfWeek().toString()).collect(Collectors.toList());
-        regular = taskService.getTasksByUserAndType(userService.get(authentication.getName()),Type.REGULAR);
+        regular = taskService.getTasksByUserAndTypeAndFrequency(userService.get(authentication.getName()), Type.DAILY,Frequency.FREQUENT);
 
 
 
-        modelAndView.addObject("weekDaysAtt",weekdays);
         modelAndView.addObject("regularAtt",regular);
         modelAndView.addObject("actualDateAtt",LocalDate.now());
         modelAndView.addObject("dayTasksAtt",dayTasks);
         modelAndView.addObject("daysListAtt",dates);
         modelAndView.addObject("rangeAtt", DataClass.getRANGE());
-        modelAndView.setViewName("days-views" + DataClass.getSeparator() + "days");
+        modelAndView.setViewName("DAILY-views" + DataClass.getSeparator() + "tasks-view");
         return modelAndView;
     }
 
@@ -87,7 +86,7 @@ public class DaysController {
             case FAILED -> task.setStatus(Status.IN_PROCESS);
         }
         taskService.save(task);
-        modelAndView.setViewName("redirect: days?delta="+DataClass.getRANGE());
+        modelAndView.setViewName("redirect: tasks-view?delta="+DataClass.getRANGE());
         return modelAndView;
     }
 
@@ -97,7 +96,7 @@ public class DaysController {
     public ModelAndView addingNewTask(Authentication authentication){
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.addObject("taskAtt", new Task());
-    modelAndView.setViewName("days-views" + DataClass.getSeparator() + "addingNewTaskView");
+    modelAndView.setViewName("DAILY-views" + DataClass.getSeparator() + "addingNewTaskView");
     return modelAndView;
     }
 
@@ -109,7 +108,7 @@ public class DaysController {
         task.setScore(0);
         task.setTotal(1);
         task.setStatus(Status.IN_PLAN);
-        task.setType(Type.SINGULAR);
+        task.setFrequency(Frequency.INFREQUENT);
         taskService.save(task);
         modelAndView.setViewName("redirect: days?delta="+DataClass.getRANGE());
         return modelAndView;
@@ -127,7 +126,7 @@ public class DaysController {
         task.setStatus(Status.IN_PLAN);
         task.setDeadline(DataClass.getDay().toString());
         taskService.save(task);
-        regular = taskService.getTasksByUserAndType(userService.get(authentication.getName()),Type.REGULAR);
+        regular = taskService.getTasksByUserAndFrequency(userService.get(authentication.getName()),Frequency.FREQUENT);
 
         modelAndView.addObject("regularAtt",regular);
         modelAndView.setViewName("redirect: days?delta="+DataClass.getRANGE());
@@ -146,7 +145,7 @@ public class DaysController {
         LocalDate end = DataClass.getDay().plusDays(6);
         while (!start.equals(end))
         {
-            dates.add(start);
+            dates.put(start,start+" "+ start.getDayOfWeek().toString());
             start=start.plusDays(1);
         }
     }

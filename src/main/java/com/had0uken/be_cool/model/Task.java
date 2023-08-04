@@ -1,5 +1,6 @@
 package com.had0uken.be_cool.model;
 
+import com.had0uken.be_cool.enums.Frequency;
 import com.had0uken.be_cool.enums.Status;
 import com.had0uken.be_cool.enums.Type;
 
@@ -40,6 +41,35 @@ public class Task implements Serializable {
     @Basic
     @Column(name = "deadline")
     private String deadline;
+    @Basic
+    @Column(name = "frequency")
+    @Enumerated(EnumType.STRING)
+    private Frequency frequency;
+
+    public Task() {
+    }
+
+    public Task(int id, String userEmail, String title, String description, Integer score, Integer total, Status status, Type type, String deadline, Frequency frequency) {
+        this.id = id;
+        this.userEmail = userEmail;
+        this.title = title;
+        this.description = description;
+        this.score = score;
+        this.total = total;
+        this.status = status;
+        this.type = type;
+        this.deadline = deadline;
+        this.frequency = frequency;
+    }
+
+    public Frequency getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(Frequency frequency) {
+        this.frequency = frequency;
+    }
+
 
     public int getId() {
         return id;

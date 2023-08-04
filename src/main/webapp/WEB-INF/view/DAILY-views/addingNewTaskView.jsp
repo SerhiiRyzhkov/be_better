@@ -21,6 +21,7 @@ Write new task:
     <br><br>
     Description<form:input path="description"/>
     <br><br>
+
     <br><br>
     <input type="submit" value="OK">
 

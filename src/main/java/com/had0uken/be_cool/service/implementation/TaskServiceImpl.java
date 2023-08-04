@@ -1,5 +1,6 @@
 package com.had0uken.be_cool.service.implementation;
 
+import com.had0uken.be_cool.enums.Frequency;
 import com.had0uken.be_cool.enums.Type;
 import com.had0uken.be_cool.model.Task;
 import com.had0uken.be_cool.model.User;
@@ -39,5 +40,25 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> getTasksByUserAndType(User user, Type type) {
         return taskRepository.getTasksByUserAndType(user,type);
+    }
+
+    @Override
+    public List<Task> getTasksByUserAndDateAndType(User user, String date, Type type) {
+        return taskRepository.getTasksByUserAndDateAndType(user,date,type);
+    }
+
+    @Override
+    public List<Task> getTasksByUserAndDateAndFrequency(User user, String date, Frequency frequency) {
+        return taskRepository.getTasksByUserAndDateAndFrequency(user,date,frequency);
+    }
+
+    @Override
+    public List<Task> getTasksByUserAndFrequency(User user, Frequency frequency) {
+        return taskRepository.getTasksByUserAndFrequency(user,frequency);
+    }
+
+    @Override
+    public List<Task> getTasksByUserAndTypeAndFrequency(User user, Type type, Frequency frequency) {
+        return taskRepository.getTasksByUserAndTypeAndFrequency(user,type,frequency);
     }
 }

@@ -33,6 +33,12 @@ List of regular tasks:
     <br><br>
     Description<form:input path="description"/>
     <br><br>
+    Type<form:select path="type">
+    <form:option value="DAILY" label="DAILY"/>
+    <form:option value="WEEKLY" label="WEEKLY"/>
+    <form:option value="MONTHLY" label="MONTHLY"/>
+    <form:option value="YEARLY" label="YEARLY"/>
+</form:select>
     <br><br>
     <input type="submit" value="OK">
 
