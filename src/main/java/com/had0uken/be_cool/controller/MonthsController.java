@@ -30,7 +30,7 @@ public class MonthsController {
     private TaskService taskService;
     @Autowired
     private UserService userService;
-    private Map<LocalDate,Integer> dates;
+    private Map<LocalDate,String> dates;
 
     private List<Task>regular;
 
@@ -68,7 +68,7 @@ public class MonthsController {
         LocalDate start = DataClass.getDay().minusMonths(5);
         LocalDate end = DataClass.getDay().plusMonths(6);
         while (start.isBefore(end)){
-            dates.put(start,start.getYear());
+            dates.put(start,start.getMonth().toString() + " " + start.getYear());
             start=start.plusMonths(1);
         }
     }

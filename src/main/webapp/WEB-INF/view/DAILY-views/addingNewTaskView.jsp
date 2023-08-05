@@ -16,12 +16,11 @@ Write new task:
 <br>
 <br>
 
-<form:form action="saveTask" modelAttribute="taskAtt">
+<form:form action="saveTask_D" modelAttribute="taskAtt">
     Title<form:input path="title"/>
     <br><br>
     Description<form:input path="description"/>
     <br><br>
-
     <br><br>
     <input type="submit" value="OK">
 
