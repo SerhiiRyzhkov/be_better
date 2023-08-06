@@ -56,10 +56,23 @@ List of tasks:
     <br>
     ${t.title}
     ${t.description}
+
+    <form action="/postRange${prefixAtt}" method="post">
+        <div class="slidecontainer">
+            <input type="range" min="0" max="${t.total}" value="${t.score}" class="slider" id="myRange" name="sliderValue">
+        </div>
+        <input type="hidden" name="task_index" value="${loop.index}">
+        <button type="submit">Set progress</button>
+    </form>
+
     |||
     <button onclick="window.location.href='${completeButton}'" value="${loop.index}">
             ${t.status}
     </button>
+    <br>
+
+
+
     <br>
 </c:forEach>
 

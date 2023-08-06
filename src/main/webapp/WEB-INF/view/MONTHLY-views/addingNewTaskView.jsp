@@ -21,6 +21,8 @@ Month
     <br><br>
     Description<form:input path="description"/>
     <br><br>
+    Total<form:input path="total"/>
+    <br>
     <br><br>
     <input type="submit" value="OK">
 

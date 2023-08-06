@@ -13,7 +13,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.Map;
 @Component
@@ -32,9 +34,17 @@ public class ModelViewFormatter {
     public List<Task> getToDo() {
         return toDo;
     }
+
+    public ModelAndView postRange(Authentication authentication,Integer task_index, Integer sliderValue, Type type){
+        ModelAndView modelAndView = new ModelAndView();
+        taskService.updateTaskScore(toDo.get(task_index),sliderValue);
+        modelAndView.setViewName("redirect: "+getUrl(type)+ "?delta=5");
+        return modelAndView;
+    }
+
     public ModelAndView showTypeView(Authentication authentication, Map<LocalDate,String> dates, Type type){
         ModelAndView modelAndView = new ModelAndView();
-        toDo = taskService.getTasksByUserAndDate(userService.get(authentication.getName()), DataClass.getDay().toString());
+        toDo = taskService.getTasksByUserAndDateAndType(userService.get(authentication.getName()), getDeadLine(type),type);
         frequently= taskService.getTasksByUserAndTypeAndFrequency(userService.get(authentication.getName()), type, Frequency.FREQUENT);
         modelAndView.addObject("urlAtt", getUrl(type));
         modelAndView.addObject("prefixAtt",getPrefix(type));
@@ -89,6 +99,24 @@ public class ModelViewFormatter {
         }
         return null;
     }
+
+    private String getDeadLine(Type type){
+        switch (type){
+            case DAILY -> {
+                return DataClass.getDay().toString();
+            }
+            case WEEKLY -> {
+                return DataClass.getDay().with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)).toString();
+            }
+            case MONTHLY -> {
+                return DataClass.getDay().with(TemporalAdjusters.lastDayOfMonth()).toString();
+            }
+            case YEARLY -> {
+                return DataClass.getDay().with(TemporalAdjusters.lastDayOfYear()).toString();
+            }
+        }
+        return null;
+    }
     public ModelAndView complete(Task task, Type type){
         ModelAndView modelAndView = new ModelAndView();
         switch (task.getStatus()){
@@ -114,11 +142,12 @@ public class ModelViewFormatter {
 
     public ModelAndView saveTask(Task task, Authentication authentication, Type type){
         ModelAndView modelAndView = new ModelAndView();
-        task.setDeadline(DataClass.getDay().toString());
+        task.setDeadline(getDeadLine(type));
         task.setUserEmail(authentication.getName());
         task.setScore(0);
-        task.setTotal(1);
+        if(task.getTotal()==null)task.setTotal(1);
         task.setStatus(Status.IN_PLAN);
+        task.setType(type);
         task.setFrequency(Frequency.INFREQUENT);
         taskService.save(task);
         modelAndView.setViewName("redirect: "+getUrl(type)+"?delta="+DataClass.getRANGE());

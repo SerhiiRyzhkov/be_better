@@ -57,10 +57,16 @@ public class MonthsController extends AbstractTimeScalesController implements Ti
         return super.addFreqToday(index, authentication);
     }
 
+    @RequestMapping("/postRange_M")
+    @Override
+    public ModelAndView postRange(Integer task_index, Integer sliderValue, Authentication authentication) {
+        return super.postRange(task_index, sliderValue, authentication);
+    }
+
     protected void shift(int delta){
         super.getDates().clear();
         if(delta>5)DataClass.setDay(DataClass.getDay().plusMonths(delta-5));
-        else if(delta<5)DataClass.setDay(DataClass.getDay().minusDays(5-delta));
+        else if(delta<5)DataClass.setDay(DataClass.getDay().minusMonths(5-delta));
 
         LocalDate start = DataClass.getDay().minusMonths(5);
         LocalDate end = DataClass.getDay().plusMonths(6);

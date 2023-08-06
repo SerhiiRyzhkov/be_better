@@ -17,4 +17,5 @@ public interface TaskService {
     List<Task> getTasksByUserAndDateAndFrequency(User user, String date, Frequency frequency);
     List<Task> getTasksByUserAndFrequency(User user, Frequency frequency);
     List<Task> getTasksByUserAndTypeAndFrequency(User user, Type type, Frequency frequency);
+    public void updateTaskScore(Task task, int score);
 }

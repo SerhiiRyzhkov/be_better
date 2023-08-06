@@ -64,7 +64,12 @@ public abstract class AbstractTimeScalesController implements TimeScales{
     public ModelAndView addFreqToday(@RequestParam("index") Integer index, Authentication authentication){
         return modelViewFormatter.addFreqToday(index,authentication,type);
     }
-
+    @Override
+    public ModelAndView postRange(@RequestParam("task_index") Integer task_index,
+                                    @RequestParam("sliderValue") Integer sliderValue,
+                                  Authentication authentication){
+        return modelViewFormatter.postRange(authentication, task_index,sliderValue,type);
+    }
     abstract protected void shift(int delta);
 
 }

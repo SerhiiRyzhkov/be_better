@@ -16,4 +16,5 @@ public interface TaskRepository extends EntityRepository<Task> {
     List<Task> getTasksByUserAndFrequency(User user, Frequency frequency);
     List<Task> getTasksByUserAndDateAndFrequency(User user, String date, Frequency frequency);
     List<Task> getTasksByUserAndTypeAndFrequency(User user, Type type, Frequency frequency);
+    void updateTaskScore(Task task, int score);
 }

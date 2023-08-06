@@ -17,5 +17,9 @@ public interface TimeScales {
     ModelAndView saveTask(@ModelAttribute("taskAtt") Task task, Authentication authentication);
     ModelAndView addFreqToday(@RequestParam("index") Integer index, Authentication authentication);
     Map<LocalDate, String> getDates();
+    ModelAndView postRange(@RequestParam("task_index") Integer task_index,
+                                  @RequestParam("sliderValue") Integer sliderValue,
+                           Authentication authentication);
+
 
 }

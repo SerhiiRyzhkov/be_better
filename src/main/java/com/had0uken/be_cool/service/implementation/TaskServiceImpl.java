@@ -61,4 +61,9 @@ public class TaskServiceImpl implements TaskService {
     public List<Task> getTasksByUserAndTypeAndFrequency(User user, Type type, Frequency frequency) {
         return taskRepository.getTasksByUserAndTypeAndFrequency(user,type,frequency);
     }
+
+    @Override
+    public void updateTaskScore(Task task, int score) {
+        taskRepository.updateTaskScore(task,score);
+    }
 }

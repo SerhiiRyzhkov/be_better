@@ -1,6 +1,7 @@
 package com.had0uken.be_cool.repository.implementation;
 
 import com.had0uken.be_cool.enums.Frequency;
+import com.had0uken.be_cool.enums.Status;
 import com.had0uken.be_cool.enums.Type;
 import com.had0uken.be_cool.model.Task;
 import com.had0uken.be_cool.model.User;
@@ -67,4 +68,11 @@ public class TaskRepositoryImpl extends AbstractRepository<Task> implements Task
                 setParameter("emailParam",user.getEmail()).setParameter("frequencyParam",frequency).setParameter("typeParam",type).getResultList();
     }
 
+    @Override
+    public void updateTaskScore(Task task, int score) {
+        if (score == task.getTotal()) task.setStatus(Status.FINISHED);
+        task.setScore(score);
+        getSession().update(task);
+
+    }
 }
