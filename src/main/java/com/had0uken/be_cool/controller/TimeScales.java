@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+import java.util.Map;
+
 public interface TimeScales {
     ModelAndView showTypeView(@RequestParam("delta") Integer delta, Authentication authentication);
     ModelAndView setToday();
@@ -13,5 +16,6 @@ public interface TimeScales {
     ModelAndView completeTask(@RequestParam("index") Integer index, Authentication authentication);
     ModelAndView saveTask(@ModelAttribute("taskAtt") Task task, Authentication authentication);
     ModelAndView addFreqToday(@RequestParam("index") Integer index, Authentication authentication);
+    Map<LocalDate, String> getDates();
 
 }

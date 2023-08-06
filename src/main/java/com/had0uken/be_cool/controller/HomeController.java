@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+
 @EnableTransactionManagement
 @Controller
 public class HomeController {
@@ -17,6 +19,7 @@ public class HomeController {
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public ModelAndView home(Authentication authentication) {
         ModelAndView modelAndView = new ModelAndView();
+        DataClass.setDay(LocalDate.now());
         modelAndView.addObject("rangeAtt", DataClass.getRANGE());
         modelAndView.setViewName("home-views" + DataClass.getSeparator() + "home");
         return modelAndView;
