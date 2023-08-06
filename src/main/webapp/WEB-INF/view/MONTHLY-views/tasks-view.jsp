@@ -19,19 +19,19 @@ months
 <button onclick="window.location.href='../../..'">Home</button>
 <br>
 <br>
-<c:forEach var="d" items="${daysListAtt}" varStatus="loop">
+<c:forEach var="d" items="${datesListAtt}" varStatus="loop">
 
     <c:choose>
         <c:when test="${actualDateAtt==d.key}">
             <c:if test="${loop.index == 5}">!!</c:if>
-            <button onclick="window.location.href='days?delta=${loop.index}'">
-                <p class="red-text" style="color: red">${d.key}</p>
+            <button onclick="window.location.href='${urlAtt}?delta=${loop.index}'">
+                <p class="red-text" style="color: red">${d.value}</p>
             </button>
             <c:if test="${loop.index == 5}">!!</c:if>
         </c:when>
         <c:otherwise>
             <c:if test="${loop.index == 5}">!!</c:if>
-            <button onclick="window.location.href='days?delta=${loop.index}'">${d.key}</button>
+            <button onclick="window.location.href='${urlAtt}?delta=${loop.index}'">${d.value}</button>
             <c:if test="${loop.index == 5}">!!</c:if>
         </c:otherwise>
     </c:choose>
@@ -39,19 +39,17 @@ months
 
 </c:forEach>
 
-<button onclick="window.location.href='setToday'"> Set Today
+<button onclick="window.location.href='setToday${prefixAtt}'"> Set Today
 </button>
 <br>
-<c:forEach var="d" items="${daysListAtt}">
-    ${d.value}
-</c:forEach>
+
 <br>
 
 <br>
 List of tasks:
 <br>
-<c:forEach var="t" items="${dayTasksAtt}" varStatus="loop">
-    <c:url var="completeButton" value="/complete">
+<c:forEach var="t" items="${toDoAtt}" varStatus="loop">
+    <c:url var="completeButton" value="/complete${prefixAtt}">
         <c:param name="index" value="${loop.index}"/>
     </c:url>
     <br>
@@ -68,19 +66,19 @@ List of tasks:
 <br>
 <br>
 <br>
-<input type="button" value="Add new task" onclick="window.location.href='addingNewTask'">
+<input type="button" value="Add new task" onclick="window.location.href='addingNewTask${prefixAtt}'">
 <br>
 <br>
 
 
-Regular tasks:
+Frequently tasks:
 <br>
-<c:forEach var="t" items="${regularAtt}" varStatus="loop">
-    <c:url var="addRegButton" value="/addRegularToday">
+<c:forEach var="t" items="${frequentlyAtt}" varStatus="loop">
+    <c:url var="addFreqButton" value="/addFrequentlyToday${prefixAtt}">
         <c:param name="index" value="${loop.index}"/>
     </c:url>
 
-    <button onclick="window.location.href='${addRegButton}'" value="${loop.index}">
+    <button onclick="window.location.href='${addFreqButton}'" value="${loop.index}">
             ${t.title}
     </button>
 

@@ -27,14 +27,14 @@ public class DaysController implements TimeScales{
     private ModelViewFormatter modelViewFormatter;
     private final Type type = Type.DAILY;
     private final Map<LocalDate,String> dates = new LinkedHashMap<>();
-    private List<Task> dayTasks=new ArrayList<>();
+    private List<Task> dateTasks=new ArrayList<>();
 
     @Override
     @RequestMapping(value = {"/days"}, method = RequestMethod.GET)
     public ModelAndView showTypeView(@RequestParam("delta") Integer delta, Authentication authentication) {
         shift(delta);
         ModelAndView modelAndView = modelViewFormatter.showTypeView(authentication,dates,type);
-        dayTasks= modelViewFormatter.getToDo();
+        dateTasks= modelViewFormatter.getToDo();
         return modelAndView;
     }
     @Override
@@ -45,7 +45,7 @@ public class DaysController implements TimeScales{
     @Override
     @RequestMapping(value = {"/complete_D"}, method = RequestMethod.GET)
     public ModelAndView completeTask(@RequestParam("index") Integer index, Authentication authentication) {
-        return modelViewFormatter.complete(dayTasks.get(index), type);
+        return modelViewFormatter.complete(dateTasks.get(index), type);
     }
 
     @Override

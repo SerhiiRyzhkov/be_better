@@ -36,10 +36,12 @@ public class ModelViewFormatter {
         ModelAndView modelAndView = new ModelAndView();
         toDo = taskService.getTasksByUserAndDate(userService.get(authentication.getName()), DataClass.getDay().toString());
         frequently= taskService.getTasksByUserAndTypeAndFrequency(userService.get(authentication.getName()), type, Frequency.FREQUENT);
+        modelAndView.addObject("urlAtt", getUrl(type));
+        modelAndView.addObject("prefixAtt",getPrefix(type));
         modelAndView.addObject("frequentlyAtt", frequently);
         modelAndView.addObject("actualDateAtt", LocalDate.now());
         modelAndView.addObject("toDoAtt", toDo);
-        modelAndView.addObject("daysListAtt",dates);
+        modelAndView.addObject("datesListAtt",dates);
         modelAndView.addObject("rangeAtt", DataClass.getRANGE());
         modelAndView.setViewName(type+"-views" + DataClass.getSeparator() + "tasks-view");
         return modelAndView;
@@ -69,6 +71,24 @@ public class ModelViewFormatter {
         }
         return null;
     }
+
+    private String getPrefix(Type type){
+        switch (type){
+            case DAILY -> {
+                return "_D";
+            }
+            case WEEKLY -> {
+                return "_W";
+            }
+            case MONTHLY -> {
+                return "_M";
+            }
+            case YEARLY -> {
+                return "_Y";
+            }
+        }
+        return null;
+    }
     public ModelAndView complete(Task task, Type type){
         ModelAndView modelAndView = new ModelAndView();
         switch (task.getStatus()){
@@ -87,6 +107,7 @@ public class ModelViewFormatter {
     public ModelAndView addingNewTask(Authentication authentication, Type type){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("taskAtt", new Task());
+        modelAndView.addObject("prefixAtt",getPrefix(type));
         modelAndView.setViewName(type+"-views"+ DataClass.getSeparator() + "addingNewTaskView");
         return modelAndView;
     }
