@@ -8,6 +8,8 @@ import java.time.LocalDate;
 public class DataClass {
     private final static String separator= File.separator;
     private final static int RANGE = 5;
+
+    private final static String TERM="2999-12-01";
     private static LocalDate day;
     public DataClass() {
         day=LocalDate.now();
@@ -27,6 +29,10 @@ public class DataClass {
 
     public static int getRANGE() {
         return RANGE;
+    }
+
+    public static String getTERM() {
+        return TERM;
     }
 
 }

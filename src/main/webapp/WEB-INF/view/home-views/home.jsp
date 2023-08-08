@@ -33,10 +33,13 @@ My home view
     Month
 </button>
 <br>
-<button onclick="window.location.href='/regular'">
-    Configure regular tasks
+<button onclick="window.location.href='/frequent?type=DAILY'">
+    Configure frequently tasks
 </button>
-
+<br>
+<button onclick="window.location.href='/routine?type=DAILY'">
+    Configure routine tasks
+</button>
 
 
 </body>

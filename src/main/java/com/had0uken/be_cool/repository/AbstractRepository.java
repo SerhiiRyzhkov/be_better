@@ -32,5 +32,18 @@ public abstract class AbstractRepository<T extends Serializable> implements Enti
         getSession().saveOrUpdate(entity);
     }
 
+    @Override
+    public void delete(T entity) {
+        getSession().delete(entity);
+    }
 
+    @Override
+    public void update(T entity) {
+        getSession().update(entity);
+    }
+
+    @Override
+    public void saveOrUpdate(T entity) {
+        getSession().saveOrUpdate(entity);
+    }
 }

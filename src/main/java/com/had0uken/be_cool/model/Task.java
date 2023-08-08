@@ -14,7 +14,7 @@ public class Task implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
-    private int id;
+    private long id;
     @Basic
     @Column(name = "user_email")
     private String userEmail;
@@ -49,7 +49,7 @@ public class Task implements Serializable {
     public Task() {
     }
 
-    public Task(int id, String userEmail, String title, String description, Integer score, Integer total, Status status, Type type, String deadline, Frequency frequency) {
+    public Task(long id, String userEmail, String title, String description, Integer score, Integer total, Status status, Type type, String deadline, Frequency frequency) {
         this.id = id;
         this.userEmail = userEmail;
         this.title = title;
@@ -71,11 +71,11 @@ public class Task implements Serializable {
     }
 
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

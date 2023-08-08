@@ -66,4 +66,24 @@ public class TaskServiceImpl implements TaskService {
     public void updateTaskScore(Task task, int score) {
         taskRepository.updateTaskScore(task,score);
     }
+
+    @Override
+    public void delete(Task task) {
+        taskRepository.delete(task);
+    }
+
+    @Override
+    public void update(Task task) {
+        taskRepository.update(task);
+    }
+
+    @Override
+    public void saveOrUpdate(Task task) {
+        taskRepository.saveOrUpdate(task);
+    }
+
+    @Override
+    public Task getById(long id) {
+        return taskRepository.findById(id);
+    }
 }
