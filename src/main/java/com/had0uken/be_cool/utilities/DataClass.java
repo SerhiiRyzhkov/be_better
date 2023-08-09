@@ -1,6 +1,8 @@
 package com.had0uken.be_cool.utilities;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -33,6 +35,13 @@ public class DataClass {
 
     public static String getTERM() {
         return TERM;
+    }
+
+    public static ModelAndView getModelAndView(Authentication authentication) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("rangeAtt", DataClass.getRANGE());
+        modelAndView.addObject("emailAtt", authentication.getName());
+        return modelAndView;
     }
 
 }

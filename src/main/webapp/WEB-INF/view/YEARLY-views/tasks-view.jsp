@@ -13,7 +13,7 @@
 </head>
 <body>
 
-days
+years
 <br>
 <br>
 <button onclick="window.location.href='/frequent?type=DAILY'">
@@ -58,9 +58,7 @@ days
     Years
 </button>
 <br>
-
 <br>
-
 <c:forEach var="d" items="${datesListAtt}" varStatus="loop">
 
     <c:choose>
@@ -94,18 +92,28 @@ List of tasks:
     <c:url var="completeButton" value="/complete${prefixAtt}">
         <c:param name="index" value="${loop.index}"/>
     </c:url>
-    <c:url var="deleteButton" value="/delete${prefixAtt}">
-        <c:param name="index" value="${loop.index}"/>
-    </c:url>
     <br>
     <br>
     ${t.title}
     ${t.description}
+
+    <form action="/postRange${prefixAtt}" method="post">
+        <div class="slidecontainer">
+            <input type="range" min="0" max="${t.total}" value="${t.score}" class="slider" id="myRange" name="sliderValue">
+        </div>
+        <input type="hidden" name="task_index" value="${loop.index}">
+        <button type="submit">Set progress</button>
+    </form>
+
     |||
     <button onclick="window.location.href='${completeButton}'" value="${loop.index}">
-        ${t.status}
+            ${t.status}
     </button>
-    <button onclick="window.location.href='${deleteButton}'" value="${loop.index}">DELETE</button>
+    <br>
+
+
+
+    <br>
 </c:forEach>
 
 <br>

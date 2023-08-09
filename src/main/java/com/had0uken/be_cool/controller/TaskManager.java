@@ -49,7 +49,7 @@ public abstract class TaskManager {
         protected ModelAndView showLists(Authentication authentication, Type type, Frequency frequency){
             setType(type);
             setFrequency(frequency);
-            ModelAndView modelAndView = new ModelAndView();
+            ModelAndView modelAndView = DataClass.getModelAndView(authentication);
             modelAndView.addObject("typesAtt",Type.values());
             modelAndView.addObject("listAtt", getList(authentication,getType()));
             modelAndView.addObject("typeAtt",type);
@@ -59,14 +59,14 @@ public abstract class TaskManager {
         }
 
         protected ModelAndView deleteTask(Authentication authentication, long id){
-            ModelAndView modelAndView = new ModelAndView();
+            ModelAndView modelAndView = DataClass.getModelAndView(authentication);
             taskService.delete(taskService.getById(id));
             modelAndView.setViewName("redirect: /"+frequency.toString().toLowerCase()+"?type="+type);
             return modelAndView;
         }
 
         protected ModelAndView updateTask(Authentication authentication, int id){
-            ModelAndView modelAndView = new ModelAndView();
+            ModelAndView modelAndView = DataClass.getModelAndView(authentication);
             Task task = taskService.getById(id);
             modelAndView.addObject("idAtt",task.getId());
             modelAndView.addObject("taskAtt",task);
@@ -75,7 +75,7 @@ public abstract class TaskManager {
         }
 
         protected ModelAndView saveOrUpdateTask(Authentication authentication, Task task, long id){
-            ModelAndView modelAndView = new ModelAndView();
+            ModelAndView modelAndView = DataClass.getModelAndView(authentication);
             task.setType(type);
             task.setStatus(Status.IN_PLAN);
             task.setUserEmail(authentication.getName());
@@ -89,7 +89,7 @@ public abstract class TaskManager {
         }
 
         protected ModelAndView addNewTask(Authentication authentication){
-            ModelAndView modelAndView = new ModelAndView();
+            ModelAndView modelAndView = DataClass.getModelAndView(authentication);
             modelAndView.addObject("period",!type.equals(Type.DAILY));
             modelAndView.addObject("taskAtt",new Task());
             modelAndView.addObject("idAtt",0);

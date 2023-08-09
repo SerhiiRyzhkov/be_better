@@ -18,9 +18,8 @@ public class HomeController {
 
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public ModelAndView home(Authentication authentication) {
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         DataClass.setDay(LocalDate.now());
-        modelAndView.addObject("rangeAtt", DataClass.getRANGE());
         modelAndView.setViewName("home-views" + DataClass.getSeparator() + "home");
         return modelAndView;
     }

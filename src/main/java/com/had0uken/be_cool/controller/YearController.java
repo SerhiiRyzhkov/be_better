@@ -1,5 +1,6 @@
 package com.had0uken.be_cool.controller;
 
+
 import com.had0uken.be_cool.enums.Type;
 import com.had0uken.be_cool.model.Task;
 import com.had0uken.be_cool.utilities.DataClass;
@@ -10,11 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
+
 @EnableTransactionManagement
 @Controller
-public class MonthsController extends AbstractTimeScalesController implements TimeScales{
-    private final Type type = Type.MONTHLY;
+public class YearController extends AbstractTimeScalesController implements TimeScales{
+    private final Type type = Type.YEARLY;
 
 
     @Override
@@ -22,54 +26,54 @@ public class MonthsController extends AbstractTimeScalesController implements Ti
         super.setType(this.type);
     }
 
-    @RequestMapping(value = {"/months"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/years"}, method = RequestMethod.GET)
     @Override
     public ModelAndView showTypeView(Integer delta, Authentication authentication) {
         setType(this.type);
         return super.showTypeView(delta, authentication);
     }
 
-    @RequestMapping(value = "setToday_M")
+    @RequestMapping(value = "setToday_Y")
     @Override
     public ModelAndView setToday(Authentication authentication) {
         return super.setToday(authentication);
     }
 
-    @RequestMapping(value = {"/complete_M"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/complete_Y"}, method = RequestMethod.GET)
     @Override
     public ModelAndView completeTask(Integer index, Authentication authentication) {
         return super.completeTask(index, authentication);
     }
 
-    @RequestMapping(value = {"/delete_M"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/delete_Y"}, method = RequestMethod.GET)
     @Override
     public ModelAndView deleteTask(Integer index, Authentication authentication) {
         return super.deleteTask(index, authentication);
     }
-    @RequestMapping("/addingNewTask_M")
+    @RequestMapping("/addingNewTask_Y")
     @Override
     public ModelAndView addingNewTask(Authentication authentication) {
         return super.addingNewTask(authentication);
     }
-    @RequestMapping("/setRoutine_M")
+    @RequestMapping("/setRoutine_Y")
     @Override
     public ModelAndView setRoutine(Authentication authentication)
     {
         return super.setRoutine(authentication);
     }
 
-    @RequestMapping("/saveTask_M")
+    @RequestMapping("/saveTask_Y")
     @Override
     public ModelAndView saveTask(Task task, Authentication authentication) {
         return super.saveTask(task, authentication);
     }
-    @RequestMapping("/addFrequentlyToday_M")
+    @RequestMapping("/addFrequentlyToday_Y")
     @Override
     public ModelAndView addFreqToday(Integer index, Authentication authentication) {
         return super.addFreqToday(index, authentication);
     }
 
-    @RequestMapping("/postRange_M")
+    @RequestMapping("/postRange_Y")
     @Override
     public ModelAndView postRange(Integer task_index, Integer sliderValue, Authentication authentication) {
         return super.postRange(task_index, sliderValue, authentication);
@@ -77,15 +81,14 @@ public class MonthsController extends AbstractTimeScalesController implements Ti
 
     protected void shift(int delta){
         super.getDates().clear();
-        if(delta>5)DataClass.setDay(DataClass.getDay().plusMonths(delta-5));
-        else if(delta<5)DataClass.setDay(DataClass.getDay().minusMonths(5-delta));
+        if(delta>5) DataClass.setDay(DataClass.getDay().plusYears(delta-5));
+        else if(delta<5)DataClass.setDay(DataClass.getDay().minusYears(5-delta));
 
-        LocalDate start = DataClass.getDay().minusMonths(5);
-        LocalDate end = DataClass.getDay().plusMonths(6);
+        LocalDate start = DataClass.getDay().minusYears(5);
+        LocalDate end = DataClass.getDay().plusYears(6);
         while (start.isBefore(end)){
-            super.getDates().put(start,start.getMonth().toString() + " " + start.getYear());
-            start=start.plusMonths(1);
+            super.getDates().put(start, String.valueOf(start.getYear()));
+            start=start.plusYears(1);
         }
     }
 }
-

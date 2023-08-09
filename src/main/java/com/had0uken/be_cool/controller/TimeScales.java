@@ -11,7 +11,7 @@ import java.util.Map;
 
 public interface TimeScales {
     ModelAndView showTypeView(@RequestParam("delta") Integer delta, Authentication authentication);
-    ModelAndView setToday();
+    ModelAndView setToday(Authentication authentication);
 
     ModelAndView deleteTask(Integer index, Authentication authentication);
 

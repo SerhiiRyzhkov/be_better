@@ -19,7 +19,13 @@ My home view
 <c:url var="daysButton" value="/days">
     <c:param name="delta" value="${rangeAtt}"/>
 </c:url>
-<c:url var="monthButton" value="/month">
+<c:url var="monthButton" value="/months">
+    <c:param name="delta" value="${rangeAtt}"/>
+</c:url>
+<c:url var="weekButton" value="/weeks">
+    <c:param name="delta" value="${rangeAtt}"/>
+</c:url>
+<c:url var="yearsButton" value="/years">
     <c:param name="delta" value="${rangeAtt}"/>
 </c:url>
 <br>
@@ -29,10 +35,19 @@ My home view
     Days
 </button>
 <br>
+<button onclick="window.location.href='${weekButton}'">
+    Week
+</button>
+<br>
 <button onclick="window.location.href='${monthButton}'">
     Month
 </button>
 <br>
+<button onclick="window.location.href='${yearsButton}'">
+    Years
+</button>
+<br>
+
 <button onclick="window.location.href='/frequent?type=DAILY'">
     Configure frequently tasks
 </button>
@@ -40,7 +55,8 @@ My home view
 <button onclick="window.location.href='/routine?type=DAILY'">
     Configure routine tasks
 </button>
-
+<button onclick="window.location.href='../../..'">Home</button>
+<br>
 
 </body>
 </html>

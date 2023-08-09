@@ -43,17 +43,17 @@ public abstract class AbstractTimeScalesController implements TimeScales{
         return modelAndView;
     }
     @Override
-    public ModelAndView setToday(){
-        return modelViewFormatter.setTodayMethod(type);
+    public ModelAndView setToday(Authentication authentication){
+        return modelViewFormatter.setTodayMethod(authentication,type);
     }
 
     @Override
     public ModelAndView completeTask(@RequestParam("index") Integer index, Authentication authentication) {
-        return modelViewFormatter.complete(dateTasks.get(index), type);
+        return modelViewFormatter.complete(dateTasks.get(index), type,authentication);
     }
     @Override
     public ModelAndView deleteTask(Integer index, Authentication authentication) {
-        return modelViewFormatter.delete(dateTasks.get(index),type);
+        return modelViewFormatter.delete(dateTasks.get(index),type,authentication);
     }
 
     @Override

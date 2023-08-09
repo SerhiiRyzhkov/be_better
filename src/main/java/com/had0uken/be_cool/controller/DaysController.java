@@ -33,8 +33,8 @@ public class DaysController extends AbstractTimeScalesController implements Time
 
     @RequestMapping(value = "setToday_D")
     @Override
-    public ModelAndView setToday() {
-        return super.setToday();
+    public ModelAndView setToday(Authentication authentication) {
+        return super.setToday(authentication);
     }
 
     @RequestMapping(value = {"/complete_D"}, method = RequestMethod.GET)

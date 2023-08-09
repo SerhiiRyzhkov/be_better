@@ -36,14 +36,14 @@ public class ModelViewFormatter {
     }
 
     public ModelAndView postRange(Authentication authentication,Integer task_index, Integer sliderValue, Type type){
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         taskService.updateTaskScore(toDo.get(task_index),sliderValue);
         modelAndView.setViewName("redirect: "+getUrl(type)+ "?delta=5");
         return modelAndView;
     }
 
     public ModelAndView showTypeView(Authentication authentication, Map<LocalDate,String> dates, Type type){
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         toDo = taskService.getTasksByUserAndDateAndType(userService.get(authentication.getName()), getDeadLine(type),type);
         frequently= taskService.getTasksByUserAndTypeAndFrequency(userService.get(authentication.getName()), type, Frequency.FREQUENT);
         modelAndView.addObject("urlAtt", getUrl(type));
@@ -52,13 +52,12 @@ public class ModelViewFormatter {
         modelAndView.addObject("actualDateAtt", LocalDate.now());
         modelAndView.addObject("toDoAtt", toDo);
         modelAndView.addObject("datesListAtt",dates);
-        modelAndView.addObject("rangeAtt", DataClass.getRANGE());
         modelAndView.setViewName(type+"-views" + DataClass.getSeparator() + "tasks-view");
         return modelAndView;
     }
 
-    public ModelAndView setTodayMethod(Type type){
-        ModelAndView modelAndView = new ModelAndView();
+    public ModelAndView setTodayMethod(Authentication authentication, Type type){
+        ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         DataClass.setDay(LocalDate.now());
         modelAndView.setViewName("redirect: "+getUrl(type)+ "?delta=5");
         return modelAndView;
@@ -73,7 +72,7 @@ public class ModelViewFormatter {
                 return "weeks";
             }
             case MONTHLY -> {
-                return "month";
+                return "months";
             }
             case YEARLY -> {
                 return "years";
@@ -117,8 +116,8 @@ public class ModelViewFormatter {
         }
         return null;
     }
-    public ModelAndView complete(Task task, Type type){
-        ModelAndView modelAndView = new ModelAndView();
+    public ModelAndView complete(Task task, Type type, Authentication authentication){
+        ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         switch (task.getStatus()){
             case IN_PROCESS -> task.setStatus(Status.FINISHED);
             case FINISHED -> task.setStatus(Status.IN_PLAN);
@@ -131,8 +130,8 @@ public class ModelViewFormatter {
         return modelAndView;
     }
 
-    public ModelAndView delete(Task task, Type type){
-        ModelAndView modelAndView = new ModelAndView();
+    public ModelAndView delete(Task task, Type type, Authentication authentication){
+        ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         taskService.delete(task);
         modelAndView.setViewName("redirect: "+getUrl(type)+"?delta="+DataClass.getRANGE());
 
@@ -141,7 +140,7 @@ public class ModelViewFormatter {
 
 
     public ModelAndView addingNewTask(Authentication authentication, Type type){
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         modelAndView.addObject("taskAtt", new Task());
         modelAndView.addObject("prefixAtt",getPrefix(type));
         modelAndView.setViewName(type+"-views"+ DataClass.getSeparator() + "addingNewTaskView");
@@ -149,7 +148,7 @@ public class ModelViewFormatter {
     }
 
     public ModelAndView setRoutine(Authentication authentication, Type type) {
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         modelAndView.addObject("prefixAtt", getPrefix(type));
         List<Task> routine = taskService.getTasksByUserAndTypeAndFrequency(userService.get(authentication.getName()), type, Frequency.ROUTINE);
         routine.stream()
@@ -179,7 +178,7 @@ public class ModelViewFormatter {
     }
 
     public ModelAndView saveTask(Task task, Authentication authentication, Type type){
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         task.setDeadline(getDeadLine(type));
         task.setUserEmail(authentication.getName());
         task.setScore(0);
@@ -193,7 +192,7 @@ public class ModelViewFormatter {
     }
 
     public ModelAndView addFreqToday(@RequestParam("index") Integer index, Authentication authentication, Type type){
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         Task task = new Task();
         task.setUserEmail(authentication.getName());
         task.setTitle(frequently.get(index).getTitle());

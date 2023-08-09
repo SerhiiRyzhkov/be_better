@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
+
 @EnableTransactionManagement
 @Controller
-public class MonthsController extends AbstractTimeScalesController implements TimeScales{
-    private final Type type = Type.MONTHLY;
+public class WeekController extends AbstractTimeScalesController implements TimeScales{
+    private final Type type = Type.WEEKLY;
 
 
     @Override
@@ -22,54 +25,54 @@ public class MonthsController extends AbstractTimeScalesController implements Ti
         super.setType(this.type);
     }
 
-    @RequestMapping(value = {"/months"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/weeks"}, method = RequestMethod.GET)
     @Override
     public ModelAndView showTypeView(Integer delta, Authentication authentication) {
         setType(this.type);
         return super.showTypeView(delta, authentication);
     }
 
-    @RequestMapping(value = "setToday_M")
+    @RequestMapping(value = "setToday_W")
     @Override
     public ModelAndView setToday(Authentication authentication) {
         return super.setToday(authentication);
     }
 
-    @RequestMapping(value = {"/complete_M"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/complete_W"}, method = RequestMethod.GET)
     @Override
     public ModelAndView completeTask(Integer index, Authentication authentication) {
         return super.completeTask(index, authentication);
     }
 
-    @RequestMapping(value = {"/delete_M"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/delete_W"}, method = RequestMethod.GET)
     @Override
     public ModelAndView deleteTask(Integer index, Authentication authentication) {
         return super.deleteTask(index, authentication);
     }
-    @RequestMapping("/addingNewTask_M")
+    @RequestMapping("/addingNewTask_W")
     @Override
     public ModelAndView addingNewTask(Authentication authentication) {
         return super.addingNewTask(authentication);
     }
-    @RequestMapping("/setRoutine_M")
+    @RequestMapping("/setRoutine_W")
     @Override
     public ModelAndView setRoutine(Authentication authentication)
     {
         return super.setRoutine(authentication);
     }
 
-    @RequestMapping("/saveTask_M")
+    @RequestMapping("/saveTask_W")
     @Override
     public ModelAndView saveTask(Task task, Authentication authentication) {
         return super.saveTask(task, authentication);
     }
-    @RequestMapping("/addFrequentlyToday_M")
+    @RequestMapping("/addFrequentlyToday_W")
     @Override
     public ModelAndView addFreqToday(Integer index, Authentication authentication) {
         return super.addFreqToday(index, authentication);
     }
 
-    @RequestMapping("/postRange_M")
+    @RequestMapping("/postRange_W")
     @Override
     public ModelAndView postRange(Integer task_index, Integer sliderValue, Authentication authentication) {
         return super.postRange(task_index, sliderValue, authentication);
@@ -77,15 +80,15 @@ public class MonthsController extends AbstractTimeScalesController implements Ti
 
     protected void shift(int delta){
         super.getDates().clear();
-        if(delta>5)DataClass.setDay(DataClass.getDay().plusMonths(delta-5));
-        else if(delta<5)DataClass.setDay(DataClass.getDay().minusMonths(5-delta));
+        if(delta>5) DataClass.setDay(DataClass.getDay().plusWeeks(delta-5));
+        else if(delta<5)DataClass.setDay(DataClass.getDay().minusWeeks(5-delta));
 
-        LocalDate start = DataClass.getDay().minusMonths(5);
-        LocalDate end = DataClass.getDay().plusMonths(6);
+        LocalDate start = DataClass.getDay().minusWeeks(5);
+        LocalDate end = DataClass.getDay().plusWeeks(6);
         while (start.isBefore(end)){
-            super.getDates().put(start,start.getMonth().toString() + " " + start.getYear());
-            start=start.plusMonths(1);
+            super.getDates().put(start,start.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY)).toString().substring(8)+
+                    "-"+start.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)).toString().substring(8)+" " +start.getMonth());
+            start=start.plusWeeks(1);
         }
     }
 }
-
