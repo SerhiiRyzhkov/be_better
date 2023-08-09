@@ -131,6 +131,14 @@ public class ModelViewFormatter {
         return modelAndView;
     }
 
+    public ModelAndView delete(Task task, Type type){
+        ModelAndView modelAndView = new ModelAndView();
+        taskService.delete(task);
+        modelAndView.setViewName("redirect: "+getUrl(type)+"?delta="+DataClass.getRANGE());
+
+        return modelAndView;
+    }
+
 
     public ModelAndView addingNewTask(Authentication authentication, Type type){
         ModelAndView modelAndView = new ModelAndView();
@@ -138,6 +146,36 @@ public class ModelViewFormatter {
         modelAndView.addObject("prefixAtt",getPrefix(type));
         modelAndView.setViewName(type+"-views"+ DataClass.getSeparator() + "addingNewTaskView");
         return modelAndView;
+    }
+
+    public ModelAndView setRoutine(Authentication authentication, Type type) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("prefixAtt", getPrefix(type));
+        List<Task> routine = taskService.getTasksByUserAndTypeAndFrequency(userService.get(authentication.getName()), type, Frequency.ROUTINE);
+        routine.stream()
+                .map(r -> {
+                    Task task = getCopy(r);
+                    task.setFrequency(Frequency.INFREQUENT);
+                    task.setType(type);
+                    task.setDeadline(getDeadLine(type));
+                    return task;
+                })
+                .forEach(taskService::save);
+        modelAndView.setViewName("redirect: " + getUrl(type) + "?delta=" + DataClass.getRANGE());
+        return modelAndView;
+    }
+    private Task getCopy(Task original){
+        Task copy = new Task();
+        copy.setUserEmail(original.getUserEmail());
+        copy.setTitle(original.getTitle());
+        copy.setDescription(original.getDescription());
+        copy.setStatus(original.getStatus());
+        copy.setScore(original.getScore());
+        copy.setTotal(original.getTotal());
+        copy.setType(original.getType());
+        copy.setDeadline(original.getDeadline());
+        copy.setFrequency(original.getFrequency());
+        return copy;
     }
 
     public ModelAndView saveTask(Task task, Authentication authentication, Type type){
@@ -163,6 +201,8 @@ public class ModelViewFormatter {
         task.setScore(0);
         task.setTotal(1);
         task.setStatus(Status.IN_PLAN);
+        task.setType(type);
+        task.setFrequency(Frequency.INFREQUENT);
         task.setDeadline(DataClass.getDay().toString());
         taskService.save(task);
         frequently = taskService.getTasksByUserAndFrequency(userService.get(authentication.getName()),Frequency.FREQUENT);

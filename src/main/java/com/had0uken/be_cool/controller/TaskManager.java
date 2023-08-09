@@ -46,7 +46,7 @@ public abstract class TaskManager {
     }
 
 
-        public ModelAndView showLists(Authentication authentication, Type type, Frequency frequency){
+        protected ModelAndView showLists(Authentication authentication, Type type, Frequency frequency){
             setType(type);
             setFrequency(frequency);
             ModelAndView modelAndView = new ModelAndView();
@@ -58,14 +58,14 @@ public abstract class TaskManager {
              return modelAndView;
         }
 
-        public ModelAndView deleteTask(Authentication authentication, long id){
+        protected ModelAndView deleteTask(Authentication authentication, long id){
             ModelAndView modelAndView = new ModelAndView();
             taskService.delete(taskService.getById(id));
             modelAndView.setViewName("redirect: /"+frequency.toString().toLowerCase()+"?type="+type);
             return modelAndView;
         }
 
-        public ModelAndView updateTask(Authentication authentication, int id){
+        protected ModelAndView updateTask(Authentication authentication, int id){
             ModelAndView modelAndView = new ModelAndView();
             Task task = taskService.getById(id);
             modelAndView.addObject("idAtt",task.getId());
@@ -74,7 +74,7 @@ public abstract class TaskManager {
             return modelAndView;
         }
 
-        public ModelAndView saveOrUpdateTask(Authentication authentication, Task task, long id){
+        protected ModelAndView saveOrUpdateTask(Authentication authentication, Task task, long id){
             ModelAndView modelAndView = new ModelAndView();
             task.setType(type);
             task.setStatus(Status.IN_PLAN);
@@ -82,12 +82,13 @@ public abstract class TaskManager {
             task.setDeadline(DataClass.getTERM());
             task.setFrequency(frequency);
             task.setScore(0);
+            if(task.getTotal()==null)task.setTotal(1);
             taskService.saveOrUpdate(task);
             modelAndView.setViewName("redirect: /"+frequency.toString().toLowerCase()+"?type="+type);
             return modelAndView;
         }
 
-        public ModelAndView addNewTask(Authentication authentication){
+        protected ModelAndView addNewTask(Authentication authentication){
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.addObject("period",!type.equals(Type.DAILY));
             modelAndView.addObject("taskAtt",new Task());

@@ -51,11 +51,21 @@ public abstract class AbstractTimeScalesController implements TimeScales{
     public ModelAndView completeTask(@RequestParam("index") Integer index, Authentication authentication) {
         return modelViewFormatter.complete(dateTasks.get(index), type);
     }
+    @Override
+    public ModelAndView deleteTask(Integer index, Authentication authentication) {
+        return modelViewFormatter.delete(dateTasks.get(index),type);
+    }
 
     @Override
     public ModelAndView addingNewTask(Authentication authentication){
         return modelViewFormatter.addingNewTask(authentication,type);
     }
+
+    @Override
+    public ModelAndView setRoutine(Authentication authentication) {
+        return modelViewFormatter.setRoutine(authentication,type);
+    }
+
     @Override
     public ModelAndView saveTask(@ModelAttribute("taskAtt") Task task,Authentication authentication){
         return modelViewFormatter.saveTask(task,authentication,type);
@@ -71,5 +81,6 @@ public abstract class AbstractTimeScalesController implements TimeScales{
         return modelViewFormatter.postRange(authentication, task_index,sliderValue,type);
     }
     abstract protected void shift(int delta);
+
 
 }

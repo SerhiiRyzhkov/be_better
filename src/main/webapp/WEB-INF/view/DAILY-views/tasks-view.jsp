@@ -52,6 +52,9 @@ List of tasks:
     <c:url var="completeButton" value="/complete${prefixAtt}">
         <c:param name="index" value="${loop.index}"/>
     </c:url>
+    <c:url var="deleteButton" value="/delete${prefixAtt}">
+        <c:param name="index" value="${loop.index}"/>
+    </c:url>
     <br>
     <br>
     ${t.title}
@@ -60,7 +63,7 @@ List of tasks:
     <button onclick="window.location.href='${completeButton}'" value="${loop.index}">
         ${t.status}
     </button>
-    <br>
+    <button onclick="window.location.href='${deleteButton}'" value="${loop.index}">DELETE</button>
 </c:forEach>
 
 <br>
@@ -68,6 +71,7 @@ List of tasks:
 <br>
 <input type="button" value="Add new task" onclick="window.location.href='addingNewTask${prefixAtt}'">
 <br>
+<input type="button" value="SetRoutine" onclick="window.location.href='setRoutine${prefixAtt}'">
 <br>
 
 
