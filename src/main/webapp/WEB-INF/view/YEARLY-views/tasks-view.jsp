@@ -110,6 +110,7 @@ List of tasks:
             ${t.status}
     </button>
     <br>
+    <c:if test="${t.status == 'FAILED'}"><button onclick="window.location.href='${transferButton}'" value="${loop.index}">Transfer to next ${typeAtt}</button></c:if>
 
 
 
@@ -131,7 +132,9 @@ Frequently tasks:
     <c:url var="addFreqButton" value="/addFrequentlyToday${prefixAtt}">
         <c:param name="index" value="${loop.index}"/>
     </c:url>
-
+    <c:url var="transferButton" value="/transfer${prefixAtt}">
+        <c:param name="index" value="${loop.index}"/>
+    </c:url>
     <button onclick="window.location.href='${addFreqButton}'" value="${loop.index}">
             ${t.title}
     </button>
@@ -139,6 +142,9 @@ Frequently tasks:
     <br>
 </c:forEach>
 
+
+Your score this ${typeAtt}
+${pointsAtt}
 
 
 </body>

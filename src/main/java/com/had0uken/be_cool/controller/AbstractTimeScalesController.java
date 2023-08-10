@@ -2,11 +2,14 @@ package com.had0uken.be_cool.controller;
 
 import com.had0uken.be_cool.enums.Type;
 import com.had0uken.be_cool.model.Task;
+import com.had0uken.be_cool.utilities.PointCounter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,6 +28,7 @@ public abstract class AbstractTimeScalesController implements TimeScales{
     private Type type;
     private Map<LocalDate,String> dates = new LinkedHashMap<>();
     private List<Task> dateTasks=new ArrayList<>();
+
 
     protected void setType(Type type) {
         this.type = type;
@@ -51,6 +55,11 @@ public abstract class AbstractTimeScalesController implements TimeScales{
     public ModelAndView completeTask(@RequestParam("index") Integer index, Authentication authentication) {
         return modelViewFormatter.complete(dateTasks.get(index), type,authentication);
     }
+    @Override
+    public  ModelAndView transferTask(Integer index, Authentication authentication){
+        return modelViewFormatter.transfer(dateTasks.get(index), type,authentication);
+    }
+
     @Override
     public ModelAndView deleteTask(Integer index, Authentication authentication) {
         return modelViewFormatter.delete(dateTasks.get(index),type,authentication);

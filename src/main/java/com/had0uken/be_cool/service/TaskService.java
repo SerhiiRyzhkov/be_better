@@ -22,4 +22,5 @@ public interface TaskService {
     void update(Task task);
     void saveOrUpdate(Task task);
     Task getById(long id);
+    Task getCopy(Task task);
 }

@@ -25,5 +25,5 @@ public interface TimeScales {
                            Authentication authentication);
     ModelAndView setRoutine(Authentication authentication) ;
 
-
+    ModelAndView transferTask(Integer index, Authentication authentication);
 }

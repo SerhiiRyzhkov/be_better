@@ -42,6 +42,11 @@ public class DaysController extends AbstractTimeScalesController implements Time
     public ModelAndView completeTask(Integer index, Authentication authentication) {
         return super.completeTask(index, authentication);
     }
+    @RequestMapping(value = {"/transfer_D"}, method = RequestMethod.GET)
+    @Override
+    public ModelAndView transferTask(Integer index, Authentication authentication) {
+        return super.transferTask(index, authentication);
+    }
 
     @RequestMapping(value = {"/delete_D"}, method = RequestMethod.GET)
     @Override

@@ -86,4 +86,9 @@ public class TaskServiceImpl implements TaskService {
     public Task getById(long id) {
         return taskRepository.findById(id);
     }
+
+    @Override
+    public Task getCopy(Task task) {
+        return taskRepository.getCopy(task);
+    }
 }

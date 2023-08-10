@@ -44,6 +44,14 @@ public class WeekController extends AbstractTimeScalesController implements Time
         return super.completeTask(index, authentication);
     }
 
+    @RequestMapping(value = {"/transfer_W"}, method = RequestMethod.GET)
+    @Override
+    public ModelAndView transferTask(Integer index, Authentication authentication) {
+        return super.transferTask(index, authentication);
+    }
+
+
+
     @RequestMapping(value = {"/delete_W"}, method = RequestMethod.GET)
     @Override
     public ModelAndView deleteTask(Integer index, Authentication authentication) {

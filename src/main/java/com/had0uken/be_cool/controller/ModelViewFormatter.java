@@ -7,6 +7,7 @@ import com.had0uken.be_cool.model.Task;
 import com.had0uken.be_cool.service.TaskService;
 import com.had0uken.be_cool.service.UserService;
 import com.had0uken.be_cool.utilities.DataClass;
+import com.had0uken.be_cool.utilities.PointCounter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Year;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.Map;
@@ -26,10 +28,10 @@ public class ModelViewFormatter {
     private TaskService taskService;
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private final PointCounter pointCounter=new PointCounter();
     private List<Task> toDo;
     private List<Task> frequently;
-
 
     public List<Task> getToDo() {
         return toDo;
@@ -38,20 +40,22 @@ public class ModelViewFormatter {
     public ModelAndView postRange(Authentication authentication,Integer task_index, Integer sliderValue, Type type){
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         taskService.updateTaskScore(toDo.get(task_index),sliderValue);
-        modelAndView.setViewName("redirect: "+getUrl(type)+ "?delta=5");
+        modelAndView.setViewName("redirect: "+  DataClass.getUrl(type)+ "?delta=5");
         return modelAndView;
     }
 
     public ModelAndView showTypeView(Authentication authentication, Map<LocalDate,String> dates, Type type){
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
-        toDo = taskService.getTasksByUserAndDateAndType(userService.get(authentication.getName()), getDeadLine(type),type);
+        toDo = taskService.getTasksByUserAndDateAndType(userService.get(authentication.getName()), DataClass.getDeadLine(type),type);
         frequently= taskService.getTasksByUserAndTypeAndFrequency(userService.get(authentication.getName()), type, Frequency.FREQUENT);
-        modelAndView.addObject("urlAtt", getUrl(type));
-        modelAndView.addObject("prefixAtt",getPrefix(type));
+        modelAndView.addObject("urlAtt", DataClass.getUrl(type));
+        modelAndView.addObject("prefixAtt",DataClass.getPrefix(type));
         modelAndView.addObject("frequentlyAtt", frequently);
         modelAndView.addObject("actualDateAtt", LocalDate.now());
         modelAndView.addObject("toDoAtt", toDo);
         modelAndView.addObject("datesListAtt",dates);
+        modelAndView.addObject("typeAtt",DataClass.getScale(type));
+        modelAndView.addObject("pointsAtt",pointCounter.getCount(userService.get(authentication.getName()),DataClass.getDay(),type));
         modelAndView.setViewName(type+"-views" + DataClass.getSeparator() + "tasks-view");
         return modelAndView;
     }
@@ -59,63 +63,12 @@ public class ModelViewFormatter {
     public ModelAndView setTodayMethod(Authentication authentication, Type type){
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         DataClass.setDay(LocalDate.now());
-        modelAndView.setViewName("redirect: "+getUrl(type)+ "?delta=5");
+        modelAndView.setViewName("redirect: "+DataClass.getUrl(type)+ "?delta=5");
         return modelAndView;
     }
 
-    private String getUrl(Type type){
-        switch (type){
-            case DAILY -> {
-                return "days";
-            }
-            case WEEKLY -> {
-                return "weeks";
-            }
-            case MONTHLY -> {
-                return "months";
-            }
-            case YEARLY -> {
-                return "years";
-            }
-        }
-        return null;
-    }
 
-    private String getPrefix(Type type){
-        switch (type){
-            case DAILY -> {
-                return "_D";
-            }
-            case WEEKLY -> {
-                return "_W";
-            }
-            case MONTHLY -> {
-                return "_M";
-            }
-            case YEARLY -> {
-                return "_Y";
-            }
-        }
-        return null;
-    }
 
-    private String getDeadLine(Type type){
-        switch (type){
-            case DAILY -> {
-                return DataClass.getDay().toString();
-            }
-            case WEEKLY -> {
-                return DataClass.getDay().with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)).toString();
-            }
-            case MONTHLY -> {
-                return DataClass.getDay().with(TemporalAdjusters.lastDayOfMonth()).toString();
-            }
-            case YEARLY -> {
-                return DataClass.getDay().with(TemporalAdjusters.lastDayOfYear()).toString();
-            }
-        }
-        return null;
-    }
     public ModelAndView complete(Task task, Type type, Authentication authentication){
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         switch (task.getStatus()){
@@ -125,15 +78,25 @@ public class ModelViewFormatter {
             case FAILED -> task.setStatus(Status.IN_PROCESS);
         }
         taskService.save(task);
-        modelAndView.setViewName("redirect: "+getUrl(type)+"?delta="+DataClass.getRANGE());
+        modelAndView.setViewName("redirect: "+DataClass.getUrl(type)+"?delta="+DataClass.getRANGE());
 
+        return modelAndView;
+    }
+
+    public ModelAndView transfer(Task task, Type type, Authentication authentication) {
+        ModelAndView modelAndView = DataClass.getModelAndView(authentication);
+        Task copy = taskService.getCopy(task);
+        copy.setDeadline(DataClass.getLocalDate(task.getDeadline()).plusDays(1).toString());
+        copy.setStatus(Status.IN_PLAN);
+        taskService.save(copy);
+        modelAndView.setViewName("redirect: "+DataClass.getUrl(type)+"?delta="+DataClass.getRANGE());
         return modelAndView;
     }
 
     public ModelAndView delete(Task task, Type type, Authentication authentication){
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         taskService.delete(task);
-        modelAndView.setViewName("redirect: "+getUrl(type)+"?delta="+DataClass.getRANGE());
+        modelAndView.setViewName("redirect: "+DataClass.getUrl(type)+"?delta="+DataClass.getRANGE());
 
         return modelAndView;
     }
@@ -142,44 +105,31 @@ public class ModelViewFormatter {
     public ModelAndView addingNewTask(Authentication authentication, Type type){
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         modelAndView.addObject("taskAtt", new Task());
-        modelAndView.addObject("prefixAtt",getPrefix(type));
+        modelAndView.addObject("prefixAtt",DataClass.getPrefix(type));
         modelAndView.setViewName(type+"-views"+ DataClass.getSeparator() + "addingNewTaskView");
         return modelAndView;
     }
 
     public ModelAndView setRoutine(Authentication authentication, Type type) {
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
-        modelAndView.addObject("prefixAtt", getPrefix(type));
+        modelAndView.addObject("prefixAtt", DataClass.getPrefix(type));
         List<Task> routine = taskService.getTasksByUserAndTypeAndFrequency(userService.get(authentication.getName()), type, Frequency.ROUTINE);
         routine.stream()
                 .map(r -> {
-                    Task task = getCopy(r);
+                    Task task =taskService.getCopy(r);
                     task.setFrequency(Frequency.INFREQUENT);
                     task.setType(type);
-                    task.setDeadline(getDeadLine(type));
+                    task.setDeadline(DataClass.getDeadLine(type));
                     return task;
                 })
                 .forEach(taskService::save);
-        modelAndView.setViewName("redirect: " + getUrl(type) + "?delta=" + DataClass.getRANGE());
+        modelAndView.setViewName("redirect: " + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
         return modelAndView;
-    }
-    private Task getCopy(Task original){
-        Task copy = new Task();
-        copy.setUserEmail(original.getUserEmail());
-        copy.setTitle(original.getTitle());
-        copy.setDescription(original.getDescription());
-        copy.setStatus(original.getStatus());
-        copy.setScore(original.getScore());
-        copy.setTotal(original.getTotal());
-        copy.setType(original.getType());
-        copy.setDeadline(original.getDeadline());
-        copy.setFrequency(original.getFrequency());
-        return copy;
     }
 
     public ModelAndView saveTask(Task task, Authentication authentication, Type type){
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
-        task.setDeadline(getDeadLine(type));
+        task.setDeadline(DataClass.getDeadLine(type));
         task.setUserEmail(authentication.getName());
         task.setScore(0);
         if(task.getTotal()==null)task.setTotal(1);
@@ -187,7 +137,7 @@ public class ModelViewFormatter {
         task.setType(type);
         task.setFrequency(Frequency.INFREQUENT);
         taskService.save(task);
-        modelAndView.setViewName("redirect: "+getUrl(type)+"?delta="+DataClass.getRANGE());
+        modelAndView.setViewName("redirect: "+DataClass.getUrl(type)+"?delta="+DataClass.getRANGE());
         return modelAndView;
     }
 
@@ -206,8 +156,9 @@ public class ModelViewFormatter {
         taskService.save(task);
         frequently = taskService.getTasksByUserAndFrequency(userService.get(authentication.getName()),Frequency.FREQUENT);
         modelAndView.addObject("frequentlyAtt",frequently);
-        modelAndView.setViewName("redirect: "+getUrl(type)+"?delta="+DataClass.getRANGE());
+        modelAndView.setViewName("redirect: "+DataClass.getUrl(type)+"?delta="+DataClass.getRANGE());
         return modelAndView;
     }
+
 
 }

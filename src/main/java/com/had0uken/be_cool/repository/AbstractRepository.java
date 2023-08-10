@@ -46,4 +46,5 @@ public abstract class AbstractRepository<T extends Serializable> implements Enti
     public void saveOrUpdate(T entity) {
         getSession().saveOrUpdate(entity);
     }
+
 }

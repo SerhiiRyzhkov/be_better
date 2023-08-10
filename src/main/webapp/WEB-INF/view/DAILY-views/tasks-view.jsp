@@ -97,6 +97,9 @@ List of tasks:
     <c:url var="deleteButton" value="/delete${prefixAtt}">
         <c:param name="index" value="${loop.index}"/>
     </c:url>
+    <c:url var="transferButton" value="/transfer${prefixAtt}">
+        <c:param name="index" value="${loop.index}"/>
+    </c:url>
     <br>
     <br>
     ${t.title}
@@ -106,6 +109,11 @@ List of tasks:
         ${t.status}
     </button>
     <button onclick="window.location.href='${deleteButton}'" value="${loop.index}">DELETE</button>
+
+
+    <c:if test="${t.status == 'FAILED'}"><button onclick="window.location.href='${transferButton}'" value="${loop.index}">Transfer to next ${typeAtt}</button></c:if>
+
+
 </c:forEach>
 
 <br>
@@ -131,6 +139,9 @@ Frequently tasks:
     <br>
 </c:forEach>
 
+
+Your score this ${typeAtt}
+${pointsAtt}
 
 
 </body>

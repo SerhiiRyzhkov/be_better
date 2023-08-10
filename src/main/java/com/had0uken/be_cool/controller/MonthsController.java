@@ -40,7 +40,11 @@ public class MonthsController extends AbstractTimeScalesController implements Ti
     public ModelAndView completeTask(Integer index, Authentication authentication) {
         return super.completeTask(index, authentication);
     }
-
+    @RequestMapping(value = {"/transfer_M"}, method = RequestMethod.GET)
+    @Override
+    public ModelAndView transferTask(Integer index, Authentication authentication) {
+        return super.transferTask(index, authentication);
+    }
     @RequestMapping(value = {"/delete_M"}, method = RequestMethod.GET)
     @Override
     public ModelAndView deleteTask(Integer index, Authentication authentication) {

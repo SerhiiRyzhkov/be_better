@@ -10,6 +10,7 @@ import com.had0uken.be_cool.repository.TaskRepository;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -74,5 +75,20 @@ public class TaskRepositoryImpl extends AbstractRepository<Task> implements Task
         task.setScore(score);
         getSession().update(task);
 
+    }
+
+    @Override
+    public Task getCopy(Task task) {
+        Task copy = new Task();
+        copy.setUserEmail(task.getUserEmail());
+        copy.setTitle(task.getTitle());
+        copy.setDescription(task.getDescription());
+        copy.setStatus(task.getStatus());
+        copy.setScore(task.getScore());
+        copy.setTotal(task.getTotal());
+        copy.setType(task.getType());
+        copy.setDeadline(task.getDeadline());
+        copy.setFrequency(task.getFrequency());
+        return copy;
     }
 }
