@@ -2,6 +2,7 @@ package com.had0uken.be_cool.repository;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -46,5 +47,4 @@ public abstract class AbstractRepository<T extends Serializable> implements Enti
     public void saveOrUpdate(T entity) {
         getSession().saveOrUpdate(entity);
     }
-
 }

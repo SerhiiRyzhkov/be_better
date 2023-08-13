@@ -1,11 +1,9 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
-  User: serhii.ryzhkov
-  Date: 08.08.2023
-  Time: 10:53
+  User: User
+  Date: 13.08.2023
+  Time: 16:39
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,26 +12,21 @@
     <title>Title</title>
 </head>
 <body>
-<br>
 <button onclick="window.location.href='/statistic'">
     Statistic
 </button>
-<br>
 <br>
 <button onclick="window.location.href='/frequent?type=DAILY'">
     Configure frequently tasks
 </button>
 <br>
+
 <button onclick="window.location.href='/routine?type=DAILY'">
     Configure routine tasks
 </button>
 <br>
 <button onclick="window.location.href='../../..'">Home</button>
 <br>
-<security:authorize access="hasRole('ADMIN')">
-    <button onclick="window.location.href='/admin'">admin menu</button>
-    <br>
-</security:authorize>
 
 <c:url var="daysButton" value="/days">
     <c:param name="delta" value="${rangeAtt}"/>
@@ -66,28 +59,15 @@
     Years
 </button>
 <br>
-<br>
-Fill the Task:
-<br>
-<br>
-<form:form action="saveTask?id=${idAtt}" modelAttribute="taskAtt">
-    Title <form:input path="title"/>
-    <br><br>
-    Description <form:input path="description"/>
-    <br><br>
-
-    <c:if test="${period}">
-        Times per period <form:input path="total"/>
-        <br><br>
-    </c:if>
+<security:authorize access="hasRole('ADMIN')">
+    <button onclick="window.location.href='/admin'">admin menu</button>
+    <br>
+</security:authorize>
 
 
-
-    <input type="submit" value="OK">
 <br>
-
-</form:form>
-<button onclick="window.location.href='/${freqAtt}?type=${typeAtt}'">Cancel</button>
-<br>
+<button onclick="window.location.href='admin/listOfUsers'">
+    ListOfUsers
+</button>
 </body>
 </html>

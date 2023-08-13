@@ -45,4 +45,21 @@ public class UserServiceImpl implements UserService,UserDetailsService {
     public User get(String email) {
         return userRepository.findById(email);
     }
+
+    @Override
+    public List<User> getAll() {
+        return userRepository.getAll();
+    }
+
+    @Override
+    public void banUser(User user) {
+        user.setEnabled(false);
+        userRepository.update(user);
+    }
+
+    @Override
+    public void unbanUser(User user) {
+        user.setEnabled(true);
+        userRepository.update(user);
+    }
 }

@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: serhii.ryzhkov
@@ -60,6 +61,9 @@ My home view
 </button>
 <button onclick="window.location.href='../../..'">Home</button>
 <br>
-
+<security:authorize access="hasRole('ADMIN')">
+    <button onclick="window.location.href='/admin'">admin menu</button>
+    <br>
+</security:authorize>
 </body>
 </html>

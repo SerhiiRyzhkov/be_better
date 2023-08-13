@@ -1,3 +1,4 @@
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -116,6 +117,10 @@ Statistic
 <br>
 <button onclick="window.location.href='../../..'">Home</button>
 <br>
+<security:authorize access="hasRole('ADMIN')">
+    <button onclick="window.location.href='/admin'">admin menu</button>
+    <br>
+</security:authorize>
 
 <c:url var="daysButton" value="/days">
     <c:param name="delta" value="${rangeAtt}"/>

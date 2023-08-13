@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: serhii.ryzhkov
@@ -61,6 +62,10 @@ years
 <button onclick="window.location.href='${yearsButton}'">
     Years
 </button>
+<security:authorize access="hasRole('ADMIN')">
+    <button onclick="window.location.href='/admin'">admin menu</button>
+    <br>
+</security:authorize>
 <br>
 <br>
 <c:forEach var="d" items="${datesListAtt}" varStatus="loop">

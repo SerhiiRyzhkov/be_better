@@ -1,57 +1,18 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: User
   Date: 13.08.2023
-  Time: 12:49
+  Time: 16:54
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Date Selection Form</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .container {
-      text-align: center;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-
-    input[type="date"] {
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    input[type="submit"] {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #007AFF;
-      border: none;
-      border-radius: 5px;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+    <title>Title</title>
 </head>
 <body>
-<br>
 <button onclick="window.location.href='/statistic'">
   Statistic
 </button>
@@ -104,32 +65,45 @@
   <br>
 </security:authorize>
 
-Your statistic from ${startDateAtt} to ${endDateAtt}:
-<br><br>
-Tasks: ${totalAmountAtt}
 <br>
-Finished tasks: ${finishedAtt}    ${FinishProcAtt}%
-<br>
-Failed tasks: ${failedAtt}    ${FailProcAtt}%
-<br>
-Points: ${pointsAtt}
-<br>
-${reportAtt}
-<br><br>
 
-<div class="container">
-  <form action="showStat" method="post">
-    <label for="startDate">Start Date:</label>
-    <input type="date" id="startDate" name="startDate" required>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Email</th>
+    <th>Status</th>
 
-    <label for="endDate">End Date:</label>
-    <input type="date" id="endDate" name="endDate" required>
+  </tr>
+  <c:forEach var="us" items="${allUsersAtt}" varStatus="loop">
 
-    <input type="submit" value="Submit">
-  </form>
-</div>
+    <c:url var="banButton" value="/admin/banUser">
+      <c:param name="userId" value="${loop.index}"/>
+    </c:url>
 
-<br>
+    <c:url var="ubBanButton" value="/admin/unBanUser">
+      <c:param name="userId" value="${loop.index}"/>
+    </c:url>
+
+    <tr>
+      <td>${us.name} </td>
+      <td>${us.surname}</td>
+      <td>${us.email}</td>
+      <td>
+        <c:choose>
+          <c:when test="${us.enabled}">
+            active
+            <input type="button" value="BAN" onClick="window.location.href='${banButton}'"/>
+          </c:when>
+          <c:otherwise>
+            banned
+            <input type="button" value="UNBAN" onClick="window.location.href='${ubBanButton}'"/>
+          </c:otherwise>
+        </c:choose>
+      </td>
+    </tr>
+  </c:forEach>
+</table>
 
 </body>
 </html>

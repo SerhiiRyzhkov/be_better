@@ -1,3 +1,4 @@
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -97,6 +98,10 @@
 <button onclick="window.location.href='${yearsButton}'">
     Years
 </button>
+<security:authorize access="hasRole('ADMIN')">
+    <button onclick="window.location.href='/admin'">admin menu</button>
+    <br>
+</security:authorize>
 <br>
 You do not have any tasks these period
 <br><br>
