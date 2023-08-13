@@ -30,7 +30,10 @@ My home view
 </c:url>
 <br>
 <br>
-
+<button onclick="window.location.href='/statistic'">
+    Statistic
+</button>
+<br>
 <button onclick="window.location.href='${daysButton}'">
     Days
 </button>

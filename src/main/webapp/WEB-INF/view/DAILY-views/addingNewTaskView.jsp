@@ -15,6 +15,10 @@
 <body>
 <br>
 <br>
+<button onclick="window.location.href='/statistic'">
+    Statistic
+</button>
+<br>
 <button onclick="window.location.href='/frequent?type=DAILY'">
     Configure frequently tasks
 </button>
