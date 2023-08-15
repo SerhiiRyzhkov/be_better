@@ -12,7 +12,6 @@ public class User implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -8658433907942682968L;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "email")
     private String email;
@@ -27,11 +26,24 @@ public class User implements Serializable {
     private String password;
     @Column(nullable = false, columnDefinition = "default bit 1")
     private Boolean enabled;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "authorities", joinColumns = {
             @JoinColumn(name = "email", nullable = false, updatable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "role_id", nullable = false, updatable = false)})
-    private Set<Role> roleSet = new HashSet<>(0);
+    private Set<Role> roleSet = new HashSet<>();
+
+    public User() {
+        roleSet.add(new Role(1,"ROLE_USER"));
+    }
+
+    public User(String email, String name, String surname, String password, Boolean enabled, Set<Role> roleSet) {
+        this.email = email;
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+        this.enabled = enabled;
+        this.roleSet = roleSet;
+    }
 
     public String getEmail() {
         return email;

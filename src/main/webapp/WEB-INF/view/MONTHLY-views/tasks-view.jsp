@@ -72,16 +72,16 @@ months
 
     <c:choose>
         <c:when test="${actualDateAtt==d.key}">
-            <c:if test="${loop.index == 5}">!!</c:if>
+            <c:if test="${loop.index == rangeAtt}">!!</c:if>
             <button onclick="window.location.href='${urlAtt}?delta=${loop.index}'">
                 <p class="red-text" style="color: red">${d.value}</p>
             </button>
-            <c:if test="${loop.index == 5}">!!</c:if>
+            <c:if test="${loop.index == rangeAtt}">!!</c:if>
         </c:when>
         <c:otherwise>
-            <c:if test="${loop.index == 5}">!!</c:if>
+            <c:if test="${loop.index == rangeAtt}">!!</c:if>
             <button onclick="window.location.href='${urlAtt}?delta=${loop.index}'">${d.value}</button>
-            <c:if test="${loop.index == 5}">!!</c:if>
+            <c:if test="${loop.index == rangeAtt}">!!</c:if>
         </c:otherwise>
     </c:choose>
 
@@ -99,6 +99,9 @@ List of tasks:
 <br>
 <c:forEach var="t" items="${toDoAtt}" varStatus="loop">
     <c:url var="completeButton" value="/complete${prefixAtt}">
+        <c:param name="index" value="${loop.index}"/>
+    </c:url>
+    <c:url var="deleteButton" value="/delete${prefixAtt}">
         <c:param name="index" value="${loop.index}"/>
     </c:url>
     <br>
@@ -119,7 +122,7 @@ List of tasks:
             ${t.status}
     </button>
     <br>
-
+    <button onclick="window.location.href='${deleteButton}'" value="${loop.index}">DELETE</button>
     <c:if test="${t.status == 'FAILED'}"><button onclick="window.location.href='${transferButton}'" value="${loop.index}">Transfer to next ${typeAtt}</button></c:if>
 
 

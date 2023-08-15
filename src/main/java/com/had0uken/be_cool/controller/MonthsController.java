@@ -81,11 +81,11 @@ public class MonthsController extends AbstractTimeScalesController implements Ti
 
     protected void shift(int delta){
         super.getDates().clear();
-        if(delta>5)DataClass.setDay(DataClass.getDay().plusMonths(delta-5));
-        else if(delta<5)DataClass.setDay(DataClass.getDay().minusMonths(5-delta));
+        if(delta>DataClass.getRANGE())DataClass.setDay(DataClass.getDay().plusMonths(delta-DataClass.getRANGE()));
+        else if(delta<DataClass.getRANGE())DataClass.setDay(DataClass.getDay().minusMonths(DataClass.getRANGE()-delta));
 
-        LocalDate start = DataClass.getDay().minusMonths(5);
-        LocalDate end = DataClass.getDay().plusMonths(6);
+        LocalDate start = DataClass.getDay().minusMonths(DataClass.getRANGE());
+        LocalDate end = DataClass.getDay().plusMonths(DataClass.getRANGE()+1);
         while (start.isBefore(end)){
             super.getDates().put(start,start.getMonth().toString() + " " + start.getYear());
             start=start.plusMonths(1);

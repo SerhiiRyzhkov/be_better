@@ -88,11 +88,11 @@ public class WeekController extends AbstractTimeScalesController implements Time
 
     protected void shift(int delta){
         super.getDates().clear();
-        if(delta>5) DataClass.setDay(DataClass.getDay().plusWeeks(delta-5));
-        else if(delta<5)DataClass.setDay(DataClass.getDay().minusWeeks(5-delta));
+        if(delta>DataClass.getRANGE()) DataClass.setDay(DataClass.getDay().plusWeeks(delta-DataClass.getRANGE()));
+        else if(delta<DataClass.getRANGE())DataClass.setDay(DataClass.getDay().minusWeeks(DataClass.getRANGE()-delta));
 
-        LocalDate start = DataClass.getDay().minusWeeks(5);
-        LocalDate end = DataClass.getDay().plusWeeks(6);
+        LocalDate start = DataClass.getDay().minusWeeks(DataClass.getRANGE());
+        LocalDate end = DataClass.getDay().plusWeeks(DataClass.getRANGE()+1);
         while (start.isBefore(end)){
             super.getDates().put(start,start.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY)).toString().substring(8)+
                     "-"+start.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)).toString().substring(8)+" " +start.getMonth());

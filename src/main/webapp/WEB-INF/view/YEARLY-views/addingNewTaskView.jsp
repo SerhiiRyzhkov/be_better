@@ -70,7 +70,7 @@
 Fill the Task:
 <br>
 <br>
-<form:form action="saveTask?id=${idAtt}" modelAttribute="taskAtt">
+<form:form action="saveTask${prefixAtt}" modelAttribute="taskAtt">
     Title <form:input path="title"/>
     <br><br>
     Description <form:input path="description"/>

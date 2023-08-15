@@ -85,11 +85,11 @@ public class YearController extends AbstractTimeScalesController implements Time
 
     protected void shift(int delta){
         super.getDates().clear();
-        if(delta>5) DataClass.setDay(DataClass.getDay().plusYears(delta-5));
-        else if(delta<5)DataClass.setDay(DataClass.getDay().minusYears(5-delta));
+        if(delta>DataClass.getRANGE()) DataClass.setDay(DataClass.getDay().plusYears(delta-DataClass.getRANGE()));
+        else if(delta<DataClass.getRANGE())DataClass.setDay(DataClass.getDay().minusYears(DataClass.getRANGE()-delta));
 
-        LocalDate start = DataClass.getDay().minusYears(5);
-        LocalDate end = DataClass.getDay().plusYears(6);
+        LocalDate start = DataClass.getDay().minusYears(DataClass.getRANGE());
+        LocalDate end = DataClass.getDay().plusYears(DataClass.getRANGE()+1);
         while (start.isBefore(end)){
             super.getDates().put(start, String.valueOf(start.getYear()));
             start=start.plusYears(1);

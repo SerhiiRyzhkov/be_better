@@ -23,7 +23,7 @@ public class Role implements Serializable {
     @Column(name = "role_name")
     private String roleName;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "authorities", joinColumns = {
             @JoinColumn(name = "role_id", nullable = false, updatable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "email", nullable = false, updatable = false)})

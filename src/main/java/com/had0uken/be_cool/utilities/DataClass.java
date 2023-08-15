@@ -15,8 +15,7 @@ import java.time.temporal.TemporalAdjusters;
 @Component
 public class DataClass {
     private final static String separator= File.separator;
-    private final static int RANGE = 5;
-
+    private final static int RANGE = 3;
     private final static String TERM="2999-12-01";
     private final static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static LocalDate day;

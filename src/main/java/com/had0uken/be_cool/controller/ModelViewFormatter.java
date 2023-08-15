@@ -40,7 +40,7 @@ public class ModelViewFormatter {
     public ModelAndView postRange(Authentication authentication,Integer task_index, Integer sliderValue, Type type){
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         taskService.updateTaskScore(toDo.get(task_index),sliderValue);
-        modelAndView.setViewName("redirect: "+  DataClass.getUrl(type)+ "?delta=5");
+        modelAndView.setViewName("redirect: "+  DataClass.getUrl(type)+ "?delta="+DataClass.getRANGE());
         return modelAndView;
     }
 
@@ -53,6 +53,7 @@ public class ModelViewFormatter {
         modelAndView.addObject("frequentlyAtt", frequently);
         modelAndView.addObject("actualDateAtt", LocalDate.now());
         modelAndView.addObject("toDoAtt", toDo);
+        modelAndView.addObject("rangeAtt",DataClass.getRANGE());
         modelAndView.addObject("datesListAtt",dates);
         modelAndView.addObject("typeAtt",DataClass.getScale(type));
         modelAndView.addObject("pointsAtt",pointCounter.getCount(userService.get(authentication.getName()),DataClass.getDay(),type));
@@ -63,7 +64,7 @@ public class ModelViewFormatter {
     public ModelAndView setTodayMethod(Authentication authentication, Type type){
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         DataClass.setDay(LocalDate.now());
-        modelAndView.setViewName("redirect: "+DataClass.getUrl(type)+ "?delta=5");
+        modelAndView.setViewName("redirect: "+DataClass.getUrl(type)+ "?delta="+DataClass.getRANGE());
         return modelAndView;
     }
 
@@ -77,7 +78,7 @@ public class ModelViewFormatter {
             case IN_PLAN -> task.setStatus(Status.FAILED);
             case FAILED -> task.setStatus(Status.IN_PROCESS);
         }
-        taskService.save(task);
+        taskService.update(task);
         modelAndView.setViewName("redirect: "+DataClass.getUrl(type)+"?delta="+DataClass.getRANGE());
 
         return modelAndView;
@@ -105,6 +106,7 @@ public class ModelViewFormatter {
     public ModelAndView addingNewTask(Authentication authentication, Type type){
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         modelAndView.addObject("taskAtt", new Task());
+        modelAndView.addObject("period",!type.equals(Type.DAILY));
         modelAndView.addObject("prefixAtt",DataClass.getPrefix(type));
         modelAndView.setViewName(type+"-views"+ DataClass.getSeparator() + "addingNewTaskView");
         return modelAndView;

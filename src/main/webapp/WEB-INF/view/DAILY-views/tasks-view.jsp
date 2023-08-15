@@ -74,16 +74,16 @@ days
 
     <c:choose>
         <c:when test="${actualDateAtt==d.key}">
-            <c:if test="${loop.index == 5}">!!</c:if>
+            <c:if test="${loop.index == rangeAtt}">!!</c:if>
             <button onclick="window.location.href='${urlAtt}?delta=${loop.index}'">
                 <p class="red-text" style="color: red">${d.value}</p>
             </button>
-            <c:if test="${loop.index == 5}">!!</c:if>
+            <c:if test="${loop.index == rangeAtt}">!!</c:if>
         </c:when>
         <c:otherwise>
-            <c:if test="${loop.index == 5}">!!</c:if>
+            <c:if test="${loop.index == rangeAtt}">!!</c:if>
             <button onclick="window.location.href='${urlAtt}?delta=${loop.index}'">${d.value}</button>
-            <c:if test="${loop.index == 5}">!!</c:if>
+            <c:if test="${loop.index == rangeAtt}">!!</c:if>
         </c:otherwise>
     </c:choose>
 

@@ -20,4 +20,9 @@ public class UserRepositoryImpl extends AbstractRepository<User> implements User
     public List<User> getAll() {
         return getSession().createQuery("from User").list();
     }
+
+    @Override
+    public void save(User entity) {
+        getSession().save(entity);
+    }
 }

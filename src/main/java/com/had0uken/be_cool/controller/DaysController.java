@@ -81,10 +81,10 @@ public class DaysController extends AbstractTimeScalesController implements Time
 
     protected void shift(int delta){
         super.getDates().clear();
-        if(delta>5) DataClass.setDay(DataClass.getDay().plusDays(delta-5));
-        else if(delta<5) DataClass.setDay(DataClass.getDay().minusDays(5-delta));
-        LocalDate start = DataClass.getDay().minusDays(5);
-        LocalDate end = DataClass.getDay().plusDays(6);
+        if(delta>DataClass.getRANGE()) DataClass.setDay(DataClass.getDay().plusDays(delta-DataClass.getRANGE()));
+        else if(delta<DataClass.getRANGE()) DataClass.setDay(DataClass.getDay().minusDays(DataClass.getRANGE()-delta));
+        LocalDate start = DataClass.getDay().minusDays(DataClass.getRANGE());
+        LocalDate end = DataClass.getDay().plusDays(DataClass.getRANGE()+1);
         while (!start.equals(end))
         {
             super.getDates().put(start,start+" "+ start.getDayOfWeek().toString());
