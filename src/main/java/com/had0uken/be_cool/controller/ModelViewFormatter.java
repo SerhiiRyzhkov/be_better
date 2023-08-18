@@ -49,6 +49,7 @@ public class ModelViewFormatter {
         toDo = taskService.getTasksByUserAndDateAndType(userService.get(authentication.getName()), DataClass.getDeadLine(type),type);
         frequently= taskService.getTasksByUserAndTypeAndFrequency(userService.get(authentication.getName()), type, Frequency.FREQUENT);
         modelAndView.addObject("urlAtt", DataClass.getUrl(type));
+        modelAndView.addObject("scaleAtt", DataClass.getUrl(type).toUpperCase());
         modelAndView.addObject("prefixAtt",DataClass.getPrefix(type));
         modelAndView.addObject("frequentlyAtt", frequently);
         modelAndView.addObject("actualDateAtt", LocalDate.now());

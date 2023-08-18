@@ -167,7 +167,7 @@
                                style="cursor: pointer" onclick="window.location.href='/frequent?type=DAILY'">configure
                                 frequent</a>
                             <h2 class="u-text u-text-default u-text-palette-2-dark-1 u-text-1"><p id="shape-text">
-                                DAYS</p></h2>
+                                ${scaleAtt}</p></h2>
                         </div>
                     </div>
                     <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-3">
@@ -525,7 +525,7 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
 
 
 <script>
-    var defaultText = "DAYS";
+    var defaultText = "${scaleAtt}";
 
     function changeText(shape) {
         document.getElementById('shape-text').textContent = shape;
