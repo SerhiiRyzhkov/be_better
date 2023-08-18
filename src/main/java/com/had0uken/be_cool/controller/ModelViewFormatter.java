@@ -58,7 +58,8 @@ public class ModelViewFormatter {
         modelAndView.addObject("datesListAtt",dates);
         modelAndView.addObject("typeAtt",DataClass.getScale(type));
         modelAndView.addObject("pointsAtt",pointCounter.getCount(userService.get(authentication.getName()),DataClass.getDay(),type));
-        modelAndView.setViewName(type+"-views" + DataClass.getSeparator() + "tasks-view");
+        modelAndView.addObject("showRangeAtt",!type.equals(Type.DAILY));
+        modelAndView.setViewName("scale-views"+DataClass.getSeparator()+"tasks-view");
         return modelAndView;
     }
 
@@ -107,9 +108,13 @@ public class ModelViewFormatter {
     public ModelAndView addingNewTask(Authentication authentication, Type type){
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         modelAndView.addObject("taskAtt", new Task());
+        modelAndView.addObject("scaleAtt", DataClass.getUrl(type).toUpperCase());
         modelAndView.addObject("period",!type.equals(Type.DAILY));
         modelAndView.addObject("prefixAtt",DataClass.getPrefix(type));
-        modelAndView.setViewName(type+"-views"+ DataClass.getSeparator() + "addingNewTaskView");
+        modelAndView.addObject("pointsAtt",pointCounter.getCount(userService.get(authentication.getName()),DataClass.getDay(),type));
+        modelAndView.addObject("urlAtt", DataClass.getUrl(type));
+        modelAndView.addObject("rangeAtt",DataClass.getRANGE());
+        modelAndView.setViewName("scale-views"+ DataClass.getSeparator() + "addingNewTaskView");
         return modelAndView;
     }
 

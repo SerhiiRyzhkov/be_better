@@ -20,12 +20,12 @@
           content="Transform Yourself, Classes&nbsp;for all levels, Formats, See more, follow us on, Contact Us">
     <meta name="description" content="">
     <title>BE BETTER</title>
-    <link rel="stylesheet" href="<c:url value="/resources/style/DAILY-views/tasks-view/nicepage.css"/>" media="screen">
-    <link rel="stylesheet" href="<c:url value="/resources/style/DAILY-views/tasks-view/Main.css"/>" media="screen">
+    <link rel="stylesheet" href="<c:url value="/resources/style/scale-views/tasks-view/nicepage.css"/>" media="screen">
+    <link rel="stylesheet" href="<c:url value="/resources/style/scale-views/tasks-view/Main.css"/>" media="screen">
     <script class="u-script" type="text/javascript"
-            src="<c:url value="/resources/style/DAILY-views/tasks-view/jquery.js"/>" defer=""></script>
+            src="<c:url value="/resources/style/scale-views/tasks-view/jquery.js"/>" defer=""></script>
     <script class="u-script" type="text/javascript"
-            src="<c:url value="/resources/style/DAILY-views/tasks-view/nicepage.js"/>" defer=""></script>
+            src="<c:url value="/resources/style/scale-views/tasks-view/nicepage.js"/>" defer=""></script>
     <meta name="generator" content="Nicepage 5.0.7, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
@@ -51,7 +51,7 @@
             <img src="<c:url value="/resources/style/img/kisspng-whiskers-cat-logo-brand-product-design-animals-wall-decals-cat-wall-decal-ambiance-stic-5b6d5105d1a0b2.3383387515338908218586.png"/>"
                  class="u-logo-image u-logo-image-1" style="cursor: pointer" onclick="window.location.href='../../..'">
         </a>
-        <h1 class="u-align-center u-text u-text-1" data-lang-en="Transform Yourself&amp;nbsp;<br>">BE BETTER!<br>
+        <h1 class="u-align-center u-text u-text-1" style="cursor: pointer"  onclick="window.location.href='/${urlAtt}?delta=${rangeAtt}'" data-lang-en="Transform Yourself&amp;nbsp;<br>">BE BETTER!<br>
         </h1>
 
 
@@ -97,7 +97,7 @@
                             class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
                             style="padding: 10px 2px; cursor: pointer" onclick="window.location.href='/statistic'">statistic</a>
                     </li>
-                    <li class="u-nav-item"><a id="aboutShowButton"
+                    <li class="u-nav-item"><a
                                               class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
                                               style="padding: 10px 2px; cursor: pointer;">about app</a>
                     </li>
@@ -185,35 +185,6 @@
 
 
 
-        <div id="ABOUT" style="display: none">
-            <div class="u-container-style u-group u-palette-4-base u-radius-12 u-shape-round u-group-1">
-                <div class="u-container-layout u-container-layout-30"><span
-                        class="u-file-icon u-icon u-icon-rectangle u-text-white u-icon-2"><img
-                        id="closeAbout" style="cursor: pointer;"
-                        src="<c:url value="/resources/style/img/10335950-65ad2489.png"/>" alt=""></span>
-                    <p class="u-text u-text-22"> The website provides a platform for users to set and track
-                        their goals on various time scales: daily, weekly, monthly, or yearly. Users can
-                        monitor their progress by earning points for completing tasks or incurring penalties
-                        for task failures. The site also features additional user-friendly functionalities
-                        such as "frequent tasks" and "routine tasks." <br>
-                        <br>"Frequent tasks" are activities that should be performed regularly, such as
-                        evening runs or apartment cleaning. Users can effortlessly add these tasks to their
-                        schedule with just a single click on the corresponding task in the "Frequent tasks"
-                        list. The user has the flexibility to customize this list by utilizing the
-                        "Configure frequent" button. <br>
-                        <br>The website also introduces a "Routine tasks" view, which encompasses tasks that
-                        need to be completed every day, week, month, or year. Simplifying the process, users
-                        can instantly add the entire list of routine tasks for a specific time frame with
-                        the click of a single button. These routine tasks are habitual actions that users
-                        consistently perform, like drinking a glass of water upon waking up or walking the
-                        dog. <br>
-                        <br>In essence, the website offers users a comprehensive platform to establish,
-                        manage, and track their goals, promoting efficiency and routine in both short-term
-                        and long-term aspirations.
-                    </p>
-                </div>
-            </div>
-        </div>
 
 
         <div class="u-expanded-width u-layout-horizontal u-list u-list-1">
@@ -309,143 +280,160 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
 
 
         <c:forEach var="t" items="${toDoAtt}" varStatus="loop">
-                 <c:url var="completeButton" value="/complete${prefixAtt}">
-            <c:param name="index" value="${loop.index}"/>
-                </c:url>
-                <c:url var="deleteButton" value="/delete${prefixAtt}">
-            <c:param name="index" value="${loop.index}"/>
-        </c:url>
-        <c:url var="transferButton" value="/transfer${prefixAtt}">
-            <c:param name="index" value="${loop.index}"/>
-        </c:url>
+            <c:url var="completeButton" value="/complete${prefixAtt}">
+                <c:param name="index" value="${loop.index}"/>
+            </c:url>
+            <c:url var="deleteButton" value="/delete${prefixAtt}">
+                <c:param name="index" value="${loop.index}"/>
+            </c:url>
+            <c:url var="transferButton" value="/transfer${prefixAtt}">
+                <c:param name="index" value="${loop.index}"/>
+            </c:url>
 
-        <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-2">
-            <div class="u-layout">
-                <div class="u-layout-row">
+            <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-2">
+                <div class="u-layout">
+                    <div class="u-layout-row">
 
 
-                    <div class="u-container-style u-layout-cell u-size-15 u-layout-cell-4">
-                        <div class="u-container-layout u-valign-middle u-container-layout-11">
-                            <h6 class="u-text u-text-18"><p title="${t.description}">${t.title}</p></h6>
-                        </div>
-                    </div>
+                        <div class="u-container-style u-layout-cell u-size-15 u-layout-cell-4">
+                            <div class="u-container-layout u-valign-middle u-container-layout-11">
+                                <h6 class="u-text u-text-18"><p title="${t.description}">${t.title}</p></h6>
+                                <c:if test="${showRangeAtt}">
+                                    <form oninput="result.value = slider.value" action="/postRange${prefixAtt}" method="post" >
+                                        <div class="slidecontainer">
 
-                    <div class="u-container-style u-layout-cell u-size-15 u-layout-cell-5">
-                        <div class="u-container-layout u-container-layout-12">
-                            <a onclick="window.location.href='${completeButton}'" value="${loop.index}"
-                               style="cursor: pointer"
-                               class="u-border-active-palette-4-light-2 u-border-hover-black u-border-none u-btn u-button-style u-hover-palette-4-base u-none u-text-hover-black u-text-palette-2-base u-btn-4">
-                                <c:if test="${t.status == 'FAILED'}">
-                                    <p style="color: red"> ${t.status} </p>
+
+                                            <input type="range" min="0" max="${t.total}" value="${t.score}" id="slider" name="sliderValue">
+                                            The val: <output name="result" for="slider">${t.score}</output>
+
+
+                                        </div>
+                                        <input type="hidden" name="task_index" value="${loop.index}">
+                                        <button type="submit" class="u-border-2 u-border-active-palette-4-light-2 u-border-hover-black u-border-palette-4-base u-btn u-btn-round u-button-style u-custom-item u-hover-palette-4-base u-none u-radius-50 u-text-hover-black u-btn-16">Set progress</button>
+                                    </form>
                                 </c:if>
 
 
-                                <c:if test="${t.status == 'FINISHED'}">
-                                    <p style="color: #06e800"> ${t.status} </p>
-                                </c:if>
 
-                                <c:if test="${t.status == 'IN_PLAN'}">
-                                    <p> ${t.status} </p>
-                                </c:if>
-
-                                <c:if test="${t.status == 'IN_PROCESS'}">
-                                    <p> ${t.status} </p>
-                                </c:if>
-
-                            </a>
-                        </div>
-                    </div>
-
-
-                    <div class="u-container-style u-layout-cell u-size-15 u-layout-cell-6" style="margin-top: 15px">
-                        <div class="u-container-layout u-container-layout-13">
-                            <a onclick="window.location.href='${deleteButton}'" value="${loop.index}"
-                               value="${loop.index}" style="cursor: pointer"
-                               class="u-border-2 u-border-active-palette-4-light-2 u-border-hover-black u-border-palette-4-base u-btn u-btn-round u-button-style u-hover-palette-4-base u-none u-radius-50 u-text-hover-black u-btn-5">DELETE</a>
-                        </div>
-                    </div>
-
-
-                    <c:if test="${t.status == 'FAILED'}">
-                        <div class="u-container-style u-layout-cell u-size-15 u-layout-cell-7">
-                            <div class="u-container-layout u-container-layout-14">
-                                <a onclick="window.location.href='${transferButton}'" style="cursor: pointer"
-                                   class="u-border-2 u-border-active-palette-4-light-2 u-border-hover-black u-border-palette-4-base u-btn u-btn-round u-button-style u-hover-palette-4-base u-none u-radius-50 u-text-hover-black u-btn-6">to
-                                    the next ${typeAtt}</a>
                             </div>
                         </div>
-                    </c:if>
 
+                        <div class="u-container-style u-layout-cell u-size-15 u-layout-cell-5">
+                            <div class="u-container-layout u-container-layout-12">
+                                <a onclick="window.location.href='${completeButton}'" value="${loop.index}"
+                                   style="cursor: pointer"
+                                   class="u-border-active-palette-4-light-2 u-border-hover-black u-border-none u-btn u-button-style u-hover-palette-4-base u-none u-text-hover-black u-text-palette-2-base u-btn-4">
+                                    <c:if test="${t.status == 'FAILED'}">
+                                        <p style="color: red"> ${t.status} </p>
+                                    </c:if>
+
+
+                                    <c:if test="${t.status == 'FINISHED'}">
+                                        <p style="color: #06e800"> ${t.status} </p>
+                                    </c:if>
+
+                                    <c:if test="${t.status == 'IN_PLAN'}">
+                                        <p> ${t.status} </p>
+                                    </c:if>
+
+                                    <c:if test="${t.status == 'IN_PROCESS'}">
+                                        <p> ${t.status} </p>
+                                    </c:if>
+
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <div class="u-container-style u-layout-cell u-size-15 u-layout-cell-6" style="margin-top: 15px">
+                            <div class="u-container-layout u-container-layout-13">
+                                <a onclick="window.location.href='${deleteButton}'" value="${loop.index}"
+                                   value="${loop.index}" style="cursor: pointer"
+                                   class="u-border-2 u-border-active-palette-4-light-2 u-border-hover-black u-border-palette-4-base u-btn u-btn-round u-button-style u-hover-palette-4-base u-none u-radius-50 u-text-hover-black u-btn-5">DELETE</a>
+                            </div>
+                        </div>
+
+
+                        <c:if test="${t.status == 'FAILED'}">
+                            <div class="u-container-style u-layout-cell u-size-15 u-layout-cell-7">
+                                <div class="u-container-layout u-container-layout-14">
+                                    <a onclick="window.location.href='${transferButton}'" style="cursor: pointer"
+                                       class="u-border-2 u-border-active-palette-4-light-2 u-border-hover-black u-border-palette-4-base u-btn u-btn-round u-button-style u-hover-palette-4-base u-none u-radius-50 u-text-hover-black u-btn-6">to
+                                        the next ${typeAtt}</a>
+                                </div>
+                            </div>
+                        </c:if>
+
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+
+
+        <div class="u-repeater u-repeater-2">
+            <div class="u-container-style u-list-item u-repeater-item">
+                <div class="u-container-layout u-similar-container u-container-layout-27">
+                    <a onclick="window.location.href='addingNewTask${prefixAtt}'"
+                       class="u-border-2 u-border-active-palette-4-light-2 u-border-hover-black u-border-palette-4-base u-btn u-btn-round u-button-style u-custom-item u-hover-palette-4-base u-none u-radius-50 u-text-hover-black u-btn-16">add
+                        new task</a>
+                </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item">
+                <div class="u-container-layout u-similar-container u-container-layout-28">
+                    <a onclick="window.location.href='setRoutine${prefixAtt}'"
+                       class="u-border-2 u-border-active-palette-4-light-2 u-border-hover-black u-border-palette-4-base u-btn u-btn-round u-button-style u-custom-item u-hover-palette-4-base u-none u-radius-50 u-text-hover-black u-btn-17">set
+                        routine tasks</a>
+                </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item">
+                <div class="u-container-layout u-similar-container u-container-layout-29">
+                    <a id="freqShowButton"
+                       class="u-border-2 u-border-active-palette-4-light-2 u-border-hover-black u-border-palette-4-base u-btn u-btn-round u-button-style u-custom-item u-hover-palette-4-base u-none u-radius-50 u-text-hover-black u-btn-18">frequent
+                        tasks</a>
                 </div>
             </div>
         </div>
-                    </c:forEach>
-
-
-                    <div class="u-repeater u-repeater-2">
-                        <div class="u-container-style u-list-item u-repeater-item">
-                            <div class="u-container-layout u-similar-container u-container-layout-27">
-                                <a onclick="window.location.href='addingNewTask${prefixAtt}'"
-                                   class="u-border-2 u-border-active-palette-4-light-2 u-border-hover-black u-border-palette-4-base u-btn u-btn-round u-button-style u-custom-item u-hover-palette-4-base u-none u-radius-50 u-text-hover-black u-btn-16">add
-                                    new task</a>
-                            </div>
-                        </div>
-                        <div class="u-container-style u-list-item u-repeater-item">
-                            <div class="u-container-layout u-similar-container u-container-layout-28">
-                                <a onclick="window.location.href='setRoutine${prefixAtt}'"
-                                   class="u-border-2 u-border-active-palette-4-light-2 u-border-hover-black u-border-palette-4-base u-btn u-btn-round u-button-style u-custom-item u-hover-palette-4-base u-none u-radius-50 u-text-hover-black u-btn-17">set
-                                    routine tasks</a>
-                            </div>
-                        </div>
-                        <div class="u-container-style u-list-item u-repeater-item">
-                            <div class="u-container-layout u-similar-container u-container-layout-29">
-                                <a id="freqShowButton"
-                                   class="u-border-2 u-border-active-palette-4-light-2 u-border-hover-black u-border-palette-4-base u-btn u-btn-round u-button-style u-custom-item u-hover-palette-4-base u-none u-radius-50 u-text-hover-black u-btn-18">frequent
-                                    tasks</a>
-                            </div>
-                        </div>
-                    </div>
 
 
 
 
 
-                    <div id="FREQ" style="display: none;">
-                        <div class="u-container-style u-group u-palette-4-base u-radius-12 u-shape-round u-group-2">
-                            <div class="u-container-layout u-container-layout-31"><span
-                                    class="u-file-icon u-icon u-icon-rectangle u-text-white u-icon-3"><img
-                                    id="closeFreq" style="cursor: pointer;"
-                                    src="<c:url value="/resources/style/img/10335950-65ad2489.png"/>"
-                                    src="<c:url value="/resources/style/img/10335950-65ad2489.png"/>" alt=""></span>
-                                <ul class="u-custom-list u-text u-text-default u-text-23">
+        <div id="FREQ" style="display: none;">
+            <div class="u-container-style u-group u-palette-4-base u-radius-12 u-shape-round u-group-2">
+                <div class="u-container-layout u-container-layout-31"><span
+                        class="u-file-icon u-icon u-icon-rectangle u-text-white u-icon-3"><img
+                        id="closeFreq" style="cursor: pointer;"
+                        src="<c:url value="/resources/style/img/10335950-65ad2489.png"/>"
+                        src="<c:url value="/resources/style/img/10335950-65ad2489.png"/>" alt=""></span>
+                    <ul class="u-custom-list u-text u-text-default u-text-23">
 
 
-                                    <c:forEach var="t" items="${frequentlyAtt}" varStatus="loop">
-                                        <c:url var="addFreqButton" value="/addFrequentlyToday${prefixAtt}">
-                                            <c:param name="index" value="${loop.index}"/>
-                                        </c:url>
+                        <c:forEach var="t" items="${frequentlyAtt}" varStatus="loop">
+                            <c:url var="addFreqButton" value="/addFrequentlyToday${prefixAtt}">
+                                <c:param name="index" value="${loop.index}"/>
+                            </c:url>
 
 
-                                        <li onclick="window.location.href='${addFreqButton}'" value="${loop.index}" style="cursor: pointer">
-                                            <div class="u-list-icon u-text-palette-2-base" >
-                                                <svg class="u-svg-content" viewBox="0 0 512.019 512.019" x="0px" y="0px"
-                                                     id="svg-dd96" style="enable-background:new 0 0 512.019 512.019;">
-                                                    <path fill="currentColor"
-                                                          d="M362.676,0H149.343C119.888,0,96.01,23.878,96.01,53.333v448 c-0.011,5.891,4.757,10.675,10.648,10.686c2.84,0.005,5.565-1.123,7.571-3.134L256.01,367.083l141.781,141.781 c4.16,4.171,10.914,4.179,15.085,0.019c2.006-2.001,3.133-4.717,3.134-7.55v-448C416.01,23.878,392.131,0,362.676,0z"></path>
-                                                </svg>
-                                            </div>
-                                                ${t.title}
-                                        </li>
-                                    </c:forEach>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-
+                            <li onclick="window.location.href='${addFreqButton}'" value="${loop.index}" style="cursor: pointer">
+                                <div class="u-list-icon u-text-palette-2-base" >
+                                    <svg class="u-svg-content" viewBox="0 0 512.019 512.019" x="0px" y="0px"
+                                         id="svg-dd96" style="enable-background:new 0 0 512.019 512.019;">
+                                        <path fill="currentColor"
+                                              d="M362.676,0H149.343C119.888,0,96.01,23.878,96.01,53.333v448 c-0.011,5.891,4.757,10.675,10.648,10.686c2.84,0.005,5.565-1.123,7.571-3.134L256.01,367.083l141.781,141.781 c4.16,4.171,10.914,4.179,15.085,0.019c2.006-2.001,3.133-4.717,3.134-7.55v-448C416.01,23.878,392.131,0,362.676,0z"></path>
+                                    </svg>
+                                </div>
+                                    ${t.title}
+                            </li>
+                        </c:forEach>
+                    </ul>
                 </div>
             </div>
         </div>
+
+
+    </div>
+    </div>
+    </div>
     </div>
 </section>
 <section class="skrollable skrollable-between u-align-center u-black u-clearfix u-section-2" src="" id="sec-c8b7">
@@ -487,19 +475,7 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
     });
 </script>
 
-<script>
-    const showButtonA = document.getElementById("aboutShowButton");
-    const hideButtonA = document.getElementById("closeAbout");
-    const hiddenDivA = document.getElementById("ABOUT");
 
-    showButtonA.addEventListener("click", () => {
-        hiddenDivA.style.display = "block";
-    });
-
-    hideButtonA.addEventListener("click", () => {
-        hiddenDivA.style.display = "none";
-    });
-</script>
 
 
 <script>

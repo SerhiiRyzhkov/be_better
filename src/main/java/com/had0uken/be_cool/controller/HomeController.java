@@ -20,7 +20,16 @@ public class HomeController {
     public ModelAndView home(Authentication authentication) {
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         DataClass.setDay(LocalDate.now());
-        modelAndView.setViewName("home-views" + DataClass.getSeparator() + "home");
+        modelAndView.setViewName("redirect: " + "days" + "?delta=" + DataClass.getRANGE());
         return modelAndView;
     }
+
+    @RequestMapping(value = {"/about"}, method = RequestMethod.GET)
+    public ModelAndView about(Authentication authentication) {
+        ModelAndView modelAndView = DataClass.getModelAndView(authentication);
+        DataClass.setDay(LocalDate.now());
+        modelAndView.setViewName("home-views" + DataClass.getSeparator() + "statistic");
+        return modelAndView;
+    }
+
 }
