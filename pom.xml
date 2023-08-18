@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.had0uken</groupId>
-  <artifactId>be_cool</artifactId>
+  <artifactId>be_better</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>be_cool Maven Webapp</name>
+  <name>be_better Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -236,7 +236,7 @@
           <deployables>
             <deployable>
               <groupId>com.had0uken</groupId>
-              <artifactId>be_cool</artifactId>
+              <artifactId>be_better</artifactId>
               <type>war</type>
               <properties>
                 <context>/</context>

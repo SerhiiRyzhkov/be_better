@@ -87,7 +87,7 @@ public class DaysController extends AbstractTimeScalesController implements Time
         LocalDate end = DataClass.getDay().plusDays(DataClass.getRANGE()+1);
         while (!start.equals(end))
         {
-            super.getDates().put(start,start+" "+ start.getDayOfWeek().toString());
+            super.getDates().put(start,start.getMonthValue()+"-"+start.getDayOfMonth()+"\n"+ start.getDayOfWeek().toString());
             start=start.plusDays(1);
         }
     }

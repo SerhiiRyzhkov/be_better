@@ -5,7 +5,6 @@ import com.had0uken.be_cool.enums.Type;
 import com.had0uken.be_cool.model.Task;
 import com.had0uken.be_cool.model.User;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface TaskRepository extends EntityRepository<Task> {
