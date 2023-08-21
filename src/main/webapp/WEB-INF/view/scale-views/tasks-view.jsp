@@ -127,12 +127,24 @@
                 <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
             </div>
         </nav>
-        <span class="u-custom-item u-file-icon u-icon u-icon-1"><img
-                src="<c:url value="/resources/style/img/5968764.png"/>" alt=""></span><span
-            class="u-custom-item u-file-icon u-icon u-icon-2"><img
-            src="<c:url value="/resources/style/img/145807.png"/>" alt=""></span><span
-            class="u-custom-item u-file-icon u-icon u-icon-3"><img
-            src="<c:url value="/resources/style/img/8862178.png"/>" alt=""></span>
+        <span class="u-custom-item u-file-icon u-icon u-icon-1">
+    <a href="https://www.facebook.com/had0uken1992" target="_blank">
+        <img src="/resources/style/img/5968764.png" alt="">
+    </a>
+</span>
+
+        <span class="u-custom-item u-file-icon u-icon u-icon-2">
+        <a href="https://www.linkedin.com/in/sryzhkov/" target="_blank">
+        <img src="<c:url value="/resources/style/img/145807.png"/>" alt="">
+    </a>
+    </span>
+
+
+        <span class="u-custom-item u-file-icon u-icon u-icon-3">
+        <a href="mailto:had0uken@ukr.net" target="_blank">
+        <img src="<c:url value="/resources/style/img/8862178.png"/>" alt="">
+    </a>
+    </span>
     </div>
 </header>
 <section class="u-align-center u-black u-clearfix u-section-1" id="sec-89cd">

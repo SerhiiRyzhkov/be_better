@@ -44,12 +44,16 @@
     <meta property="og:type" content="website">
 </head>
 
-<body data-home-page="Главная.html" data-home-page-title="Главная" class="u-body u-stick-footer u-xl-mode" data-lang="ru"><header class="u-clearfix u-header u-header" id="sec-cdb9"><div class="u-clearfix u-sheet u-sheet-1">
-    <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="1200" data-image-height="1200">
-        <img src="<c:url value="/resources/style/img/kisspng-whiskers-cat-logo-brand-product-design-animals-wall-decals-cat-wall-decal-ambiance-stic-5b6d5105d1a0b2.3383387515338908218586.png"/>" class="u-logo-image u-logo-image-1">
-    </a>
-    <h1 class="u-align-center u-text u-text-1" data-lang-en="Transform Yourself&amp;nbsp;<br>">BE BETTER!<br>
-    </h1>
+<body data-home-page="Main.html" data-home-page-title="Main" class="u-body u-stick-footer u-xl-mode" data-lang="ru">
+<header class="u-clearfix u-header u-header" id="sec-cdb9">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="1200"
+           data-image-height="1200">
+            <img src="<c:url value="/resources/style/img/kisspng-whiskers-cat-logo-brand-product-design-animals-wall-decals-cat-wall-decal-ambiance-stic-5b6d5105d1a0b2.3383387515338908218586.png"/>"
+                 class="u-logo-image u-logo-image-1" style="cursor: pointer" onclick="window.location.href='../../..'">
+        </a>
+        <h1 class="u-align-center u-text u-text-1" style="cursor: pointer"  onclick="window.location.href='/${urlAtt}?delta=${rangeAtt}'" data-lang-en="Transform Yourself&amp;nbsp;<br>">BE BETTER!<br>
+        </h1>
     <nav class="u-menu u-menu-one-level u-menu-1" data-responsive-from="MD" data-position="">
         <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700;">
             <a class="u-button-style u-custom-border u-custom-border-color u-custom-borders u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" data-lang-en="{&quot;content&quot;:&quot;<svg class=\&quot;u-svg-link\&quot; viewBox=\&quot;0 0 24 24\&quot;><use xmlns:xlink=\&quot;http://www.w3.org/1999/xlink\&quot; xlink:href=\&quot;#menu-hamburger\&quot;></use></svg><svg class=\&quot;u-svg-content\&quot; version=\&quot;1.1\&quot; id=\&quot;menu-hamburger\&quot; viewBox=\&quot;0 0 16 16\&quot; x=\&quot;0px\&quot; y=\&quot;0px\&quot; xmlns:xlink=\&quot;http://www.w3.org/1999/xlink\&quot; xmlns=\&quot;http://www.w3.org/2000/svg\&quot;>    <g>        <rect y=\&quot;1\&quot; width=\&quot;16\&quot; height=\&quot;2\&quot;></rect>        <rect y=\&quot;7\&quot; width=\&quot;16\&quot; height=\&quot;2\&quot;></rect>        <rect y=\&quot;13\&quot; width=\&quot;16\&quot; height=\&quot;2\&quot;></rect>    </g></svg>&quot;,&quot;href&quot;:&quot;#&quot;}">
@@ -60,9 +64,9 @@
         </div>
         <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-spacing-20 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base" style="padding: 10px 2px;">user@ukr.net</a>
-            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base" style="padding: 10px 2px;">statistic</a>
-            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base" style="padding: 10px 2px;">about app</a>
-            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base" style="padding: 10px 2px;">logout</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base" style="padding: 10px 2px; cursor: pointer">statistic</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base" style="padding: 10px 2px; cursor: pointer">about app</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base" style="padding: 10px 2px; cursor: pointer">logout</a>
             </li></ul>
         </div>
         <div class="u-custom-menu u-nav-container-collapse">
@@ -78,8 +82,44 @@
             </div>
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
         </div>
-    </nav><span class="u-custom-item u-file-icon u-icon u-icon-1"><img src="<c:url value="/resources/style/img/5968764.png"/>" alt=""></span><span class="u-custom-item u-file-icon u-icon u-icon-2"><img src="<c:url value="/resources/style/img/145807.png"/>" alt=""></span><span class="u-custom-item u-file-icon u-icon u-icon-3"><img src="<c:url value="/resources/style/img/8862178.png"/>" alt=""></span>
-</div></header>
+    </nav>
+
+
+    <span class="u-custom-item u-file-icon u-icon u-icon-1">
+    <a href="https://www.facebook.com/had0uken1992" target="_blank">
+        <img src="/resources/style/img/5968764.png" alt="">
+    </a>
+</span>
+
+    <span class="u-custom-item u-file-icon u-icon u-icon-2">
+        <a href="https://www.linkedin.com/in/sryzhkov/" target="_blank">
+        <img src="<c:url value="/resources/style/img/145807.png"/>" alt="">
+    </a>
+    </span>
+
+
+    <span class="u-custom-item u-file-icon u-icon u-icon-3">
+        <a href="mailto:had0uken@ukr.net" target="_blank">
+        <img src="<c:url value="/resources/style/img/8862178.png"/>" alt="">
+    </a>
+    </span>
+</div>
+
+
+    <c:url var="daysButton" value="/days">
+        <c:param name="delta" value="${rangeAtt}"/>
+    </c:url>
+    <c:url var="monthButton" value="/months">
+        <c:param name="delta" value="${rangeAtt}"/>
+    </c:url>
+    <c:url var="weekButton" value="/weeks">
+        <c:param name="delta" value="${rangeAtt}"/>
+    </c:url>
+    <c:url var="yearsButton" value="/years">
+        <c:param name="delta" value="${rangeAtt}"/>
+    </c:url>
+
+</header>
 
 
 
@@ -116,9 +156,6 @@
                             <h2 class="u-text u-text-default u-text-palette-2-dark-1 u-text-1"><p id="shape-text">
                                 ${scaleAtt}</p></h2>
                         </div>
-                    </div>
-                    <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-3">
-
                     </div>
                 </div>
             </div>

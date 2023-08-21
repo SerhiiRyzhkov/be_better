@@ -70,6 +70,7 @@ public abstract class TaskManager {
             Task task = taskService.getById(id);
             modelAndView.addObject("idAtt",task.getId());
             modelAndView.addObject("taskAtt",task);
+            modelAndView.addObject("freqAtt",frequency.toString().toLowerCase());
             modelAndView.setViewName("task-management-views"+ DataClass.getSeparator()+"add-or-update-task-view");
             return modelAndView;
         }

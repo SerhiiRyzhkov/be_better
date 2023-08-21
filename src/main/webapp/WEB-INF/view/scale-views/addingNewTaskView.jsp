@@ -37,7 +37,20 @@
     <meta name="theme-color" content="#95ccc3">
     <meta property="og:title" content="Главная">
     <meta property="og:type" content="website">
+    <c:url var="daysButton" value="/days">
+        <c:param name="delta" value="${rangeAtt}"/>
+    </c:url>
+    <c:url var="monthButton" value="/months">
+        <c:param name="delta" value="${rangeAtt}"/>
+    </c:url>
+    <c:url var="weekButton" value="/weeks">
+        <c:param name="delta" value="${rangeAtt}"/>
+    </c:url>
+    <c:url var="yearsButton" value="/years">
+        <c:param name="delta" value="${rangeAtt}"/>
+    </c:url>
 </head>
+<body data-home-page="Main.html" data-home-page-title="Main" class="u-body u-stick-footer u-xl-mode" data-lang="ru">
 <body data-home-page="Main.html" data-home-page-title="Main" class="u-body u-stick-footer u-xl-mode" data-lang="ru">
 <header class="u-clearfix u-header u-header" id="sec-cdb9">
     <div class="u-clearfix u-sheet u-sheet-1">
@@ -46,23 +59,12 @@
             <img src="<c:url value="/resources/style/img/kisspng-whiskers-cat-logo-brand-product-design-animals-wall-decals-cat-wall-decal-ambiance-stic-5b6d5105d1a0b2.3383387515338908218586.png"/>"
                  class="u-logo-image u-logo-image-1" style="cursor: pointer" onclick="window.location.href='../../..'">
         </a>
-        <h1 class="u-align-center u-text u-text-1" style="cursor: pointer" onclick="window.location.href='/${urlAtt}?delta=${rangeAtt}'" data-lang-en="Transform Yourself&amp;nbsp;<br>">BE BETTER!<br>
+        <h1 class="u-align-center u-text u-text-1" style="cursor: pointer"  onclick="window.location.href='/${urlAtt}?delta=${rangeAtt}'" data-lang-en="Transform Yourself&amp;nbsp;<br>">BE BETTER!<br>
         </h1>
 
 
 
-        <c:url var="daysButton" value="/days">
-            <c:param name="delta" value="${rangeAtt}"/>
-        </c:url>
-        <c:url var="monthButton" value="/months">
-            <c:param name="delta" value="${rangeAtt}"/>
-        </c:url>
-        <c:url var="weekButton" value="/weeks">
-            <c:param name="delta" value="${rangeAtt}"/>
-        </c:url>
-        <c:url var="yearsButton" value="/years">
-            <c:param name="delta" value="${rangeAtt}"/>
-        </c:url>
+
 
 
         <nav class="u-menu u-menu-one-level u-menu-1" data-responsive-from="MD" data-position="">
@@ -122,12 +124,24 @@
                 <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
             </div>
         </nav>
-        <span class="u-custom-item u-file-icon u-icon u-icon-1"><img
-                src="<c:url value="/resources/style/img/5968764.png"/>" alt=""></span><span
-            class="u-custom-item u-file-icon u-icon u-icon-2"><img
-            src="<c:url value="/resources/style/img/145807.png"/>" alt=""></span><span
-            class="u-custom-item u-file-icon u-icon u-icon-3"><img
-            src="<c:url value="/resources/style/img/8862178.png"/>" alt=""></span>
+        <span class="u-custom-item u-file-icon u-icon u-icon-1">
+    <a href="https://www.facebook.com/had0uken1992" target="_blank">
+        <img src="/resources/style/img/5968764.png" alt="">
+    </a>
+</span>
+
+        <span class="u-custom-item u-file-icon u-icon u-icon-2">
+        <a href="https://www.linkedin.com/in/sryzhkov/" target="_blank">
+        <img src="<c:url value="/resources/style/img/145807.png"/>" alt="">
+    </a>
+    </span>
+
+
+        <span class="u-custom-item u-file-icon u-icon u-icon-3">
+        <a href="mailto:had0uken@ukr.net" target="_blank">
+        <img src="<c:url value="/resources/style/img/8862178.png"/>" alt="">
+    </a>
+    </span>
     </div>
 </header>
 <section class="u-align-center u-black u-clearfix u-section-1" id="sec-89cd">
@@ -216,16 +230,23 @@
                     </div>
                     <div class="u-size-20">
                         <div class="u-layout-row">
+
+
+                            <c:if test="${typeAtt!='DAILY'}">
                             <div class="u-container-style u-layout-cell u-size-12 u-layout-cell-8">
                                 <div class="u-container-layout u-container-layout-8">
                                     <h6 class="u-text u-text-9">Target</h6>
                                 </div>
                             </div>
+
+
                             <div class="u-container-style u-layout-cell u-size-48 u-layout-cell-9">
                                 <div class="u-container-layout u-valign-middle u-container-layout-9" style="color: black">
                                     <form:input path="total" cssClass="u-align-left u-text u-text-10"/>
                                 </div>
                             </div>
+                            </c:if>
+
                         </div>
                     </div>
                 </div>

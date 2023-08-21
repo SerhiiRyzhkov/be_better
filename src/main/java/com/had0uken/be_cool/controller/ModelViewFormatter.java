@@ -114,6 +114,7 @@ public class ModelViewFormatter {
         modelAndView.addObject("pointsAtt",pointCounter.getCount(userService.get(authentication.getName()),DataClass.getDay(),type));
         modelAndView.addObject("urlAtt", DataClass.getUrl(type));
         modelAndView.addObject("rangeAtt",DataClass.getRANGE());
+        modelAndView.addObject("typeAtt",type);
         modelAndView.setViewName("scale-views"+ DataClass.getSeparator() + "addingNewTaskView");
         return modelAndView;
     }
