@@ -43,6 +43,7 @@
     <meta property="og:title" content="Main">
     <meta property="og:type" content="website">
 </head>
+
 <body data-home-page="Main.html" data-home-page-title="Main" class="u-body u-stick-footer u-xl-mode" data-lang="ru">
 <header class="u-clearfix u-header u-header" id="sec-cdb9">
     <div class="u-clearfix u-sheet u-sheet-1">
@@ -99,7 +100,7 @@
                     </li>
                     <li class="u-nav-item"><a
                                               class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
-                                              style="padding: 10px 2px; cursor: pointer;">about app</a>
+                                              style="padding: 10px 2px; cursor: pointer;" onclick="window.location.href='/about'" >about app</a>
                     </li>
                     <li class="u-nav-item"><a
                             class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
@@ -116,7 +117,7 @@
                             </li>
                             <li class="u-nav-item"><a class="u-button-style u-nav-link">statistic</a>
                             </li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link">about app</a>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="window.location.href='/about'" style="cursor: pointer">about app</a>
                             </li>
                             <li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="window.location.href='/logout'" style="cursor: pointer">logout</a>
                             </li>

@@ -94,7 +94,7 @@
                             style="padding: 10px 2px; cursor: pointer" onclick="window.location.href='/statistic'">statistic</a>
                     </li>
                     <li class="u-nav-item"><a
-                                              class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
+                                              class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base" onclick="window.location.href='/about'"
                                               style="padding: 10px 2px; cursor: pointer;">about app</a>
                     </li>
                     <li class="u-nav-item"><a
@@ -112,7 +112,7 @@
                             </li>
                             <li class="u-nav-item"><a class="u-button-style u-nav-link">statistic</a>
                             </li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link">about app</a>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="window.location.href='/about'" style="cursor: pointer">about app</a>
                             </li>
                             <li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="window.location.href='/logout'" style="cursor: pointer">logout</a>
                             </li>

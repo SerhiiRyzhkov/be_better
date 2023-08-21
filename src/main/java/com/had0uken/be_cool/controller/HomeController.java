@@ -28,7 +28,7 @@ public class HomeController {
     public ModelAndView about(Authentication authentication) {
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         DataClass.setDay(LocalDate.now());
-        modelAndView.setViewName("home-views" + DataClass.getSeparator() + "statistic");
+        modelAndView.setViewName("home-views" + DataClass.getSeparator() + "about-view");
         return modelAndView;
     }
 
