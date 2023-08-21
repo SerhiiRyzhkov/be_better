@@ -84,10 +84,10 @@ public class PointCounter {
     }
 
     public String getReport(int percents) {
-        if(percents==100) return "Report: Congratulations! You've successfully completed all your tasks. Your dedication and organization have paid off. Keep up the excellent work next time.";
-        else if(percents<30) return "Report: Your task completion rate is below 30%. Keep up the effort and try to accomplish more tasks next time.";
-        else if(percents<60) return "Report: You've completed less than 60% of your tasks. There's room for improvement. Focus on managing your tasks effectively to achieve better results.";
-        else return "Report: Your task completion rate is impressive, but there's still some room for improvement. Aim for even higher completion rates in the upcoming period to maximize your productivity.";
+        if(percents==100) return "Congratulations! You've successfully completed all your tasks. Your dedication and organization have paid off. Keep up the excellent work next time.";
+        else if(percents<30) return "Your task completion rate is below 30%. Keep up the effort and try to accomplish more tasks next time.";
+        else if(percents<60) return "You've completed less than 60% of your tasks. There's room for improvement. Focus on managing your tasks effectively to achieve better results.";
+        else return "Your task completion rate is impressive, but there's still some room for improvement. Aim for even higher completion rates in the upcoming period to maximize your productivity.";
     }
 
 

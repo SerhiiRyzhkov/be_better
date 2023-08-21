@@ -30,6 +30,7 @@ public class StatisticController {
     @RequestMapping("/statistic")
     public ModelAndView statistic(Authentication authentication){
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
+
         modelAndView.setViewName("statistic-views"+DataClass.getSeparator()+"statistic");
         return modelAndView;
     }
