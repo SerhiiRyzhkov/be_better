@@ -35,7 +35,7 @@
         "logo": "images/kisspng-whiskers-cat-logo-brand-product-design-animals-wall-decals-cat-wall-decal-ambiance-stic-5b6d5105d1a0b2.3383387515338908218586.png"
     }</script>
     <meta name="theme-color" content="#95ccc3">
-    <meta property="og:title" content="Главная">
+    <meta property="og:title" content="Main">
     <meta property="og:type" content="website">
     <c:url var="daysButton" value="/days">
         <c:param name="delta" value="${rangeAtt}"/>
@@ -89,7 +89,7 @@
                 <ul class="u-nav u-spacing-20 u-unstyled u-nav-1">
                     <li class="u-nav-item"><a
                             class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
-                            style="padding: 10px 2px;">user@ukr.net</a>
+                            style="padding: 10px 2px;">${emailAtt}</a>
                     </li>
                     <li class="u-nav-item"><a
                             class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
@@ -110,7 +110,7 @@
                     <div class="u-inner-container-layout u-sidenav-overflow">
                         <div class="u-menu-close"></div>
                         <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link">user@ukr.net</a>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link">${emailAtt}</a>
                             </li>
                             <li class="u-nav-item"><a class="u-button-style u-nav-link">statistic</a>
                             </li>
@@ -126,7 +126,7 @@
         </nav>
         <span class="u-custom-item u-file-icon u-icon u-icon-1">
     <a href="https://www.facebook.com/had0uken1992" target="_blank">
-        <img src="/resources/style/img/5968764.png" alt="">
+        <img src="<c:url value="/resources/style/img/5968764.png"/>" alt="">
     </a>
 </span>
 
@@ -180,15 +180,7 @@
                                 ${scaleAtt}</p></h2>
                         </div>
                     </div>
-                    <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-3">
-                        <div class="u-container-layout u-container-layout-3"><span
-                                class="u-file-icon u-icon u-icon-1"><img
-                                src="<c:url value="/resources/style/img/5629216.png"/>" alt=""></span>
-                            <h4 class="u-align-center u-text u-text-2">Your score this<br>${typeAtt}
-                            </h4>
-                            <h4 class="u-align-center u-text u-text-3">${pointsAtt}</h4>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -283,7 +275,7 @@
         </h1>
         <p class="u-align-center u-text u-text-2" data-animation-name="customAnimationIn" data-animation-duration="1000"
            data-lang-en="We recruit the smartest, most educated coaches who utilize state-of-the-art equipment and forward thinking methodologies. We coach rather than train. ">
-            No matter who you are, no matter what you did, no matter where you’ve come from, you can always change,
+            No matter who you are, no matter what you did, no matter where you have come from, you can always change,
             become a better version of yourself.&nbsp;</p>
         <img class="u-image u-image-circle u-image-1"
              src="<c:url value="/resources/style/img/imgonline-com-ua-Compressed-ZBXfdMoPdP.jpg"/>" alt=""

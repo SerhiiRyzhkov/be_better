@@ -35,7 +35,7 @@
         "logo": "images/kisspng-whiskers-cat-logo-brand-product-design-animals-wall-decals-cat-wall-decal-ambiance-stic-5b6d5105d1a0b2.3383387515338908218586.png"
     }</script>
     <meta name="theme-color" content="#95ccc3">
-    <meta property="og:title" content="Главная">
+    <meta property="og:title" content="Main">
     <meta property="og:type" content="website">
     <c:url var="daysButton" value="/days">
         <c:param name="delta" value="${rangeAtt}"/>
@@ -50,7 +50,6 @@
         <c:param name="delta" value="${rangeAtt}"/>
     </c:url>
 </head>
-<body data-home-page="Main.html" data-home-page-title="Main" class="u-body u-stick-footer u-xl-mode" data-lang="ru">
 <body data-home-page="Main.html" data-home-page-title="Main" class="u-body u-stick-footer u-xl-mode" data-lang="ru">
 <header class="u-clearfix u-header u-header" id="sec-cdb9">
     <div class="u-clearfix u-sheet u-sheet-1">
@@ -89,7 +88,7 @@
                 <ul class="u-nav u-spacing-20 u-unstyled u-nav-1">
                     <li class="u-nav-item"><a
                             class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
-                            style="padding: 10px 2px;">user@ukr.net</a>
+                            style="padding: 10px 2px;">${emailAtt}</a>
                     </li>
                     <li class="u-nav-item"><a
                             class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
@@ -101,7 +100,7 @@
                     </li>
                     <li class="u-nav-item"><a
                             class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
-                            style="padding: 10px 2px;" onclick="window.location.href='/logout'">logout</a>
+                            style="padding: 10px 2px; cursor: pointer" onclick="window.location.href='/logout'">logout</a>
                     </li>
                 </ul>
             </div>
@@ -126,7 +125,7 @@
         </nav>
         <span class="u-custom-item u-file-icon u-icon u-icon-1">
     <a href="https://www.facebook.com/had0uken1992" target="_blank">
-        <img src="/resources/style/img/5968764.png" alt="">
+        <img src="<c:url value="/resources/style/img/5968764.png"/>" alt="">
     </a>
 </span>
 
@@ -176,17 +175,8 @@
                             <a class="u-border-2 u-border-active-palette-4-light-2 u-border-hover-black u-border-palette-4-base u-btn u-btn-round u-button-style u-hover-palette-4-base u-none u-radius-50 u-text-hover-black u-btn-2"
                                style="cursor: pointer" onclick="window.location.href='/frequent?type=DAILY'">configure
                                 frequent</a>
-                            <h2 class="u-text u-text-default u-text-palette-2-dark-1 u-text-1"><p id="shape-text">
+                            <h2 class="u-text u-text-default u-text-palette-2-dark-1 u-text-1" style="margin-top: 10px"><p id="shape-text">
                                 ${scaleAtt}</p></h2>
-                        </div>
-                    </div>
-                    <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-3">
-                        <div class="u-container-layout u-container-layout-3"><span
-                                class="u-file-icon u-icon u-icon-1"><img
-                                src="<c:url value="/resources/style/img/5629216.png"/>" alt=""></span>
-                            <h4 class="u-align-center u-text u-text-2">Your score this<br>${typeAtt}
-                            </h4>
-                            <h4 class="u-align-center u-text u-text-3">${pointsAtt}</h4>
                         </div>
                     </div>
                 </div>
@@ -283,7 +273,7 @@
         </h1>
         <p class="u-align-center u-text u-text-2" data-animation-name="customAnimationIn" data-animation-duration="1000"
            data-lang-en="We recruit the smartest, most educated coaches who utilize state-of-the-art equipment and forward thinking methodologies. We coach rather than train. ">
-            No matter who you are, no matter what you did, no matter where you’ve come from, you can always change,
+            No matter who you are, no matter what you did, no matter where you have come from, you can always change,
             become a better version of yourself.&nbsp;</p>
         <img class="u-image u-image-circle u-image-1"
              src="<c:url value="/resources/style/img/imgonline-com-ua-Compressed-ZBXfdMoPdP.jpg"/>" alt=""

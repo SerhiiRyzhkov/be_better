@@ -92,7 +92,7 @@
                 <ul class="u-nav u-spacing-20 u-unstyled u-nav-1">
                     <li class="u-nav-item"><a
                             class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
-                            style="padding: 10px 2px;">user@ukr.net</a>
+                            style="padding: 10px 2px;">${emailAtt}</a>
                     </li>
                     <li class="u-nav-item"><a
                             class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
@@ -104,7 +104,7 @@
                     </li>
                     <li class="u-nav-item"><a
                             class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
-                            style="padding: 10px 2px;" onclick="window.location.href='/logout'">logout</a>
+                            style="padding: 10px 2px; cursor: pointer" onclick="window.location.href='/logout'">logout</a>
                     </li>
                 </ul>
             </div>
@@ -113,7 +113,7 @@
                     <div class="u-inner-container-layout u-sidenav-overflow">
                         <div class="u-menu-close"></div>
                         <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link">user@ukr.net</a>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link">${emailAtt}</a>
                             </li>
                             <li class="u-nav-item"><a class="u-button-style u-nav-link">statistic</a>
                             </li>
@@ -129,7 +129,7 @@
         </nav>
         <span class="u-custom-item u-file-icon u-icon u-icon-1">
     <a href="https://www.facebook.com/had0uken1992" target="_blank">
-        <img src="/resources/style/img/5968764.png" alt="">
+        <img src="<c:url value="/resources/style/img/5968764.png"/>" alt="">
     </a>
 </span>
 
@@ -313,7 +313,7 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
                                 <h6 class="u-text u-text-18"><p title="${t.description}">${t.title}</p></h6>
                                 <c:if test="${showRangeAtt}">
                                     <form oninput="result.value = slider.value" action="/postRange${prefixAtt}" method="post" >
-                                        <div class="slidecontainer">
+                                        <div  class="slidecontainer">
 
 
                                             <input type="range" min="0" max="${t.total}" value="${t.score}" id="slider" name="sliderValue">
@@ -457,7 +457,7 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
         </h1>
         <p class="u-align-center u-text u-text-2" data-animation-name="customAnimationIn" data-animation-duration="1000"
            data-lang-en="We recruit the smartest, most educated coaches who utilize state-of-the-art equipment and forward thinking methodologies. We coach rather than train. ">
-            No matter who you are, no matter what you did, no matter where you’ve come from, you can always change,
+            No matter who you are, no matter what you did, no matter where you have come from, you can always change,
             become a better version of yourself.&nbsp;</p>
         <img class="u-image u-image-circle u-image-1"
              src="<c:url value="/resources/style/img/imgonline-com-ua-Compressed-ZBXfdMoPdP.jpg"/>" alt=""

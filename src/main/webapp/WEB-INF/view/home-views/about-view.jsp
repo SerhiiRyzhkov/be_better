@@ -63,7 +63,7 @@
             </a>
         </div>
         <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-spacing-20 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base" style="padding: 10px 2px;">user@ukr.net</a>
+            <ul class="u-nav u-spacing-20 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base" style="padding: 10px 2px;">${emailAtt}</a>
             </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base" style="padding: 10px 2px; cursor: pointer">statistic</a>
             </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base" style="padding: 10px 2px; cursor: pointer">about app</a>
             </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base" style="padding: 10px 2px; cursor: pointer">logout</a>
@@ -73,7 +73,7 @@
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
                 <div class="u-inner-container-layout u-sidenav-overflow">
                     <div class="u-menu-close"></div>
-                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link">user@ukr.net</a>
+                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link">${emailAtt}</a>
                     </li><li class="u-nav-item"><a class="u-button-style u-nav-link">statistic</a>
                     </li><li class="u-nav-item"><a class="u-button-style u-nav-link">about app</a>
                     </li><li class="u-nav-item"><a class="u-button-style u-nav-link">logout</a>
@@ -87,7 +87,7 @@
 
     <span class="u-custom-item u-file-icon u-icon u-icon-1">
     <a href="https://www.facebook.com/had0uken1992" target="_blank">
-        <img src="/resources/style/img/5968764.png" alt="">
+        <img src="<c:url value="/resources/style/img/5968764.png"/>" alt="">
     </a>
 </span>
 
@@ -197,7 +197,7 @@
     <div class="u-clearfix u-sheet u-valign-middle-sm u-valign-middle-xs u-sheet-1">
         <h1 class="u-align-center u-text u-text-1" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-delay="500" data-lang-en="Transform Yourself&amp;nbsp;<br>">BE BETTER!<br>
         </h1>
-        <p class="u-align-center u-text u-text-2" data-animation-name="customAnimationIn" data-animation-duration="1000" data-lang-en="​We recruit the smartest, most educated coaches who utilize state-of-the-art equipment and forward thinking methodologies. We coach rather than train. "> No matter who you are, no matter what you did, no matter where you’ve come from, you can always change, become a better version of yourself.&nbsp;</p>
+        <p class="u-align-center u-text u-text-2" data-animation-name="customAnimationIn" data-animation-duration="1000" data-lang-en="​We recruit the smartest, most educated coaches who utilize state-of-the-art equipment and forward thinking methodologies. We coach rather than train. "> No matter who you are, no matter what you did, no matter where you havve come from, you can always change, become a better version of yourself.&nbsp;</p>
         <img class="u-image u-image-circle u-image-1"
              src="<c:url value="/resources/style/img/imgonline-com-ua-Compressed-ZBXfdMoPdP.jpg"/>" alt=""
              data-image-width="1825" data-image-height="2738" data-animation-name="flipIn"
