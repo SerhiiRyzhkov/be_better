@@ -19,19 +19,10 @@ public class TaskServiceImpl implements TaskService {
     private TaskRepository taskRepository;
 
     @Override
-    public List<Task> getTasksByDate(String date) {
-        return taskRepository.getTasksByDate(date);
-    }
-
-    @Override
     public List<Task> getTasksByUser(User user) {
         return taskRepository.getTasksByUser(user);
     }
 
-    @Override
-    public List<Task> getTasksByUserAndDate(User user, String date) {
-        return taskRepository.getTasksByUserAndDate(user, date);
-    }
 
     @Override
     public void save(Task task) {
@@ -39,18 +30,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getTasksByUserAndType(User user, Type type) {
-        return taskRepository.getTasksByUserAndType(user, type);
-    }
-
-    @Override
     public List<Task> getTasksByUserAndDateAndType(User user, String date, Type type) {
         return taskRepository.getTasksByUserAndDateAndType(user, date, type);
-    }
-
-    @Override
-    public List<Task> getTasksByUserAndDateAndFrequency(User user, String date, Frequency frequency) {
-        return taskRepository.getTasksByUserAndDateAndFrequency(user, date, frequency);
     }
 
     @Override
