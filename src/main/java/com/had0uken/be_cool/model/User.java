@@ -1,5 +1,6 @@
 package com.had0uken.be_cool.model;
 
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;

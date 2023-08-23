@@ -62,4 +62,11 @@ public class UserServiceImpl implements UserService,UserDetailsService {
         user.setEnabled(true);
         userRepository.update(user);
     }
+
+    @Override
+    public boolean isPresent(String s) {
+        return userRepository.isPresent(s);
+    }
+
+
 }

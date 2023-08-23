@@ -7,6 +7,7 @@ import com.had0uken.be_cool.repository.UserRepository;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Repository
@@ -24,5 +25,11 @@ public class UserRepositoryImpl extends AbstractRepository<User> implements User
     @Override
     public void save(User entity) {
         getSession().save(entity);
+    }
+
+
+    @Override
+    public boolean isPresent(Serializable id) {
+        return (getSession().get(User.class, id)) != null;
     }
 }

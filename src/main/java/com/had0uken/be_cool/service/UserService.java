@@ -10,6 +10,5 @@ public interface UserService {
     List<User> getAll();
     void banUser(User user);
     void unbanUser(User user);
-
-
+    boolean isPresent(String s);
 }

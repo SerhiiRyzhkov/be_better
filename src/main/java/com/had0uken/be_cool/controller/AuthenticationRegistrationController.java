@@ -12,11 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,45 +36,44 @@ public class AuthenticationRegistrationController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private final String separator;
-    public AuthenticationRegistrationController() {
-        this.separator= File.separator;
-    }
-
+    private String message="";
+    private ModelAndView modelAndView = new ModelAndView();
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView loginPage() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("auth_and_reg-views" + separator + "login");
+    public ModelAndView login(){
+        modelAndView.addObject("newUserAtt",new User());
+        modelAndView.setViewName("auth_and_reg-views" + DataClass.getSeparator() + "signInUp");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public ModelAndView registration() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("newUserAtt", new User());
-        modelAndView.setViewName("auth_and_reg-views" + separator + "registration-view");
-        return modelAndView;
-    }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public ModelAndView registration(@ModelAttribute("newUserAtt") User user
-            , @ModelAttribute("pass1Att") String pas1
+    public ModelAndView registration(@ModelAttribute("newUserAtt") User user, @ModelAttribute("pass1Att") String pas1
             , @ModelAttribute("pass2Att") String pas2) {
-        ModelAndView modelAndView = new ModelAndView();
-            if (!pas1.equals(pas2)) {
-                modelAndView.setViewName("auth_and_reg-views" + separator + "registration-view");
-                modelAndView.addObject("messageAtt", "Passwords do not match!");
-            } else {
-                modelAndView.setViewName("auth_and_reg-views" + separator + "succes-registation-view");
-                user.setPassword(bCryptPasswordEncoder.encode(pas1));
-                user.setEnabled(true);
-                System.out.println("here123!");
-                System.out.println(user);
-                userService.save(user);
+        modelAndView.setViewName("redirect: /login");
+        if(userService.isPresent(user.getEmail())){
+            message="A user is already registered with this e-mail address";
         }
-        return modelAndView;
+        else if(!user.getEmail().matches("\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*\\.\\w{2,4}")){
+            message="You should use a valid email";
+        }
+        else if(!pas1.equals(pas2)){
+            message="Password do not match";
+        }
+        else
+        {
+            message="Registration successful";
+            user.setPassword(bCryptPasswordEncoder.encode(pas1));
+            user.setEnabled(true);
+            userService.save(user);
+        }
+        modelAndView.addObject("messageAtt",message);
+        message="";
+    return modelAndView;
     }
+
+
+
 
 //String userEmail, String title, String description, Integer score, Integer total, Status status, Type type, String deadline, Frequency frequency
     private void setStartPackOfTasks(User user){
