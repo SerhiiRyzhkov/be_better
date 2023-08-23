@@ -16,7 +16,7 @@ import java.time.temporal.TemporalAdjusters;
 
 @EnableTransactionManagement
 @Controller
-public class WeekController extends AbstractTimeScalesController implements TimeScales{
+public class WeekController extends AbstractTimeScalesController implements TimeScales {
     private final Type type = Type.WEEKLY;
 
 
@@ -51,21 +51,21 @@ public class WeekController extends AbstractTimeScalesController implements Time
     }
 
 
-
     @RequestMapping(value = {"/delete_W"}, method = RequestMethod.GET)
     @Override
     public ModelAndView deleteTask(Integer index, Authentication authentication) {
         return super.deleteTask(index, authentication);
     }
+
     @RequestMapping("/addingNewTask_W")
     @Override
     public ModelAndView addingNewTask(Authentication authentication) {
         return super.addingNewTask(authentication);
     }
+
     @RequestMapping("/setRoutine_W")
     @Override
-    public ModelAndView setRoutine(Authentication authentication)
-    {
+    public ModelAndView setRoutine(Authentication authentication) {
         return super.setRoutine(authentication);
     }
 
@@ -74,6 +74,7 @@ public class WeekController extends AbstractTimeScalesController implements Time
     public ModelAndView saveTask(Task task, Authentication authentication) {
         return super.saveTask(task, authentication);
     }
+
     @RequestMapping("/addFrequentlyToday_W")
     @Override
     public ModelAndView addFreqToday(Integer index, Authentication authentication) {
@@ -86,17 +87,18 @@ public class WeekController extends AbstractTimeScalesController implements Time
         return super.postRange(task_index, sliderValue, authentication);
     }
 
-    protected void shift(int delta){
+    protected void shift(int delta) {
         super.getDates().clear();
-        if(delta>DataClass.getRANGE()) DataClass.setDay(DataClass.getDay().plusWeeks(delta-DataClass.getRANGE()));
-        else if(delta<DataClass.getRANGE())DataClass.setDay(DataClass.getDay().minusWeeks(DataClass.getRANGE()-delta));
+        if (delta > DataClass.getRANGE()) DataClass.setDay(DataClass.getDay().plusWeeks(delta - DataClass.getRANGE()));
+        else if (delta < DataClass.getRANGE())
+            DataClass.setDay(DataClass.getDay().minusWeeks(DataClass.getRANGE() - delta));
 
         LocalDate start = DataClass.getDay().minusWeeks(DataClass.getRANGE());
-        LocalDate end = DataClass.getDay().plusWeeks(DataClass.getRANGE()+1);
-        while (start.isBefore(end)){
-            super.getDates().put(start,start.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY)).toString().substring(8)+
-                    "-"+start.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)).toString().substring(8)+" " +start.getMonth());
-            start=start.plusWeeks(1);
+        LocalDate end = DataClass.getDay().plusWeeks(DataClass.getRANGE() + 1);
+        while (start.isBefore(end)) {
+            super.getDates().put(start, start.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY)).toString().substring(8) +
+                    "-" + start.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)).toString().substring(8) + " " + start.getMonth());
+            start = start.plusWeeks(1);
         }
     }
 }

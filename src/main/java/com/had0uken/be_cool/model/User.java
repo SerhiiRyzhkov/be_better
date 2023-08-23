@@ -34,7 +34,7 @@ public class User implements Serializable {
     private Set<Role> roleSet = new HashSet<>();
 
     public User() {
-        roleSet.add(new Role(1,"ROLE_USER"));
+        roleSet.add(new Role(1, "ROLE_USER"));
     }
 
     public User(String email, String name, String surname, String password, Boolean enabled, Set<Role> roleSet) {
@@ -85,6 +85,7 @@ public class User implements Serializable {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
+
     public Set<Role> getRoleSet() {
         return roleSet;
     }

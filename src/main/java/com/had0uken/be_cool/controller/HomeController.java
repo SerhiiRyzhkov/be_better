@@ -15,7 +15,6 @@ import java.time.LocalDate;
 public class HomeController {
 
 
-
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public ModelAndView home(Authentication authentication) {
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);

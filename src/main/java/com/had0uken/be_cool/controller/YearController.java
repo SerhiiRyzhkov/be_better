@@ -17,7 +17,7 @@ import java.time.temporal.TemporalAdjusters;
 
 @EnableTransactionManagement
 @Controller
-public class YearController extends AbstractTimeScalesController implements TimeScales{
+public class YearController extends AbstractTimeScalesController implements TimeScales {
     private final Type type = Type.YEARLY;
 
 
@@ -44,25 +44,28 @@ public class YearController extends AbstractTimeScalesController implements Time
     public ModelAndView completeTask(Integer index, Authentication authentication) {
         return super.completeTask(index, authentication);
     }
+
     @RequestMapping(value = {"/transfer_Y"}, method = RequestMethod.GET)
     @Override
     public ModelAndView transferTask(Integer index, Authentication authentication) {
         return super.transferTask(index, authentication);
     }
+
     @RequestMapping(value = {"/delete_Y"}, method = RequestMethod.GET)
     @Override
     public ModelAndView deleteTask(Integer index, Authentication authentication) {
         return super.deleteTask(index, authentication);
     }
+
     @RequestMapping("/addingNewTask_Y")
     @Override
     public ModelAndView addingNewTask(Authentication authentication) {
         return super.addingNewTask(authentication);
     }
+
     @RequestMapping("/setRoutine_Y")
     @Override
-    public ModelAndView setRoutine(Authentication authentication)
-    {
+    public ModelAndView setRoutine(Authentication authentication) {
         return super.setRoutine(authentication);
     }
 
@@ -71,6 +74,7 @@ public class YearController extends AbstractTimeScalesController implements Time
     public ModelAndView saveTask(Task task, Authentication authentication) {
         return super.saveTask(task, authentication);
     }
+
     @RequestMapping("/addFrequentlyToday_Y")
     @Override
     public ModelAndView addFreqToday(Integer index, Authentication authentication) {
@@ -83,16 +87,17 @@ public class YearController extends AbstractTimeScalesController implements Time
         return super.postRange(task_index, sliderValue, authentication);
     }
 
-    protected void shift(int delta){
+    protected void shift(int delta) {
         super.getDates().clear();
-        if(delta>DataClass.getRANGE()) DataClass.setDay(DataClass.getDay().plusYears(delta-DataClass.getRANGE()));
-        else if(delta<DataClass.getRANGE())DataClass.setDay(DataClass.getDay().minusYears(DataClass.getRANGE()-delta));
+        if (delta > DataClass.getRANGE()) DataClass.setDay(DataClass.getDay().plusYears(delta - DataClass.getRANGE()));
+        else if (delta < DataClass.getRANGE())
+            DataClass.setDay(DataClass.getDay().minusYears(DataClass.getRANGE() - delta));
 
         LocalDate start = DataClass.getDay().minusYears(DataClass.getRANGE());
-        LocalDate end = DataClass.getDay().plusYears(DataClass.getRANGE()+1);
-        while (start.isBefore(end)){
+        LocalDate end = DataClass.getDay().plusYears(DataClass.getRANGE() + 1);
+        while (start.isBefore(end)) {
             super.getDates().put(start, String.valueOf(start.getYear()));
-            start=start.plusYears(1);
+            start = start.plusYears(1);
         }
     }
 }

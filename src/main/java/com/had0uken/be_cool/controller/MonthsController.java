@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
+
 @EnableTransactionManagement
 @Controller
-public class MonthsController extends AbstractTimeScalesController implements TimeScales{
+public class MonthsController extends AbstractTimeScalesController implements TimeScales {
     private final Type type = Type.MONTHLY;
 
 
@@ -40,25 +41,28 @@ public class MonthsController extends AbstractTimeScalesController implements Ti
     public ModelAndView completeTask(Integer index, Authentication authentication) {
         return super.completeTask(index, authentication);
     }
+
     @RequestMapping(value = {"/transfer_M"}, method = RequestMethod.GET)
     @Override
     public ModelAndView transferTask(Integer index, Authentication authentication) {
         return super.transferTask(index, authentication);
     }
+
     @RequestMapping(value = {"/delete_M"}, method = RequestMethod.GET)
     @Override
     public ModelAndView deleteTask(Integer index, Authentication authentication) {
         return super.deleteTask(index, authentication);
     }
+
     @RequestMapping("/addingNewTask_M")
     @Override
     public ModelAndView addingNewTask(Authentication authentication) {
         return super.addingNewTask(authentication);
     }
+
     @RequestMapping("/setRoutine_M")
     @Override
-    public ModelAndView setRoutine(Authentication authentication)
-    {
+    public ModelAndView setRoutine(Authentication authentication) {
         return super.setRoutine(authentication);
     }
 
@@ -67,6 +71,7 @@ public class MonthsController extends AbstractTimeScalesController implements Ti
     public ModelAndView saveTask(Task task, Authentication authentication) {
         return super.saveTask(task, authentication);
     }
+
     @RequestMapping("/addFrequentlyToday_M")
     @Override
     public ModelAndView addFreqToday(Integer index, Authentication authentication) {
@@ -79,16 +84,17 @@ public class MonthsController extends AbstractTimeScalesController implements Ti
         return super.postRange(task_index, sliderValue, authentication);
     }
 
-    protected void shift(int delta){
+    protected void shift(int delta) {
         super.getDates().clear();
-        if(delta>DataClass.getRANGE())DataClass.setDay(DataClass.getDay().plusMonths(delta-DataClass.getRANGE()));
-        else if(delta<DataClass.getRANGE())DataClass.setDay(DataClass.getDay().minusMonths(DataClass.getRANGE()-delta));
+        if (delta > DataClass.getRANGE()) DataClass.setDay(DataClass.getDay().plusMonths(delta - DataClass.getRANGE()));
+        else if (delta < DataClass.getRANGE())
+            DataClass.setDay(DataClass.getDay().minusMonths(DataClass.getRANGE() - delta));
 
         LocalDate start = DataClass.getDay().minusMonths(DataClass.getRANGE());
-        LocalDate end = DataClass.getDay().plusMonths(DataClass.getRANGE()+1);
-        while (start.isBefore(end)){
-            super.getDates().put(start,start.getMonth().toString() + " " + start.getYear());
-            start=start.plusMonths(1);
+        LocalDate end = DataClass.getDay().plusMonths(DataClass.getRANGE() + 1);
+        while (start.isBefore(end)) {
+            super.getDates().put(start, start.getMonth().toString() + " " + start.getYear());
+            start = start.plusMonths(1);
         }
     }
 }

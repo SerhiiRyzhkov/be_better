@@ -14,13 +14,14 @@ import java.time.temporal.TemporalAdjusters;
 
 @Component
 public class DataClass {
-    private final static String separator= File.separator;
+    private final static String separator = File.separator;
     private final static int RANGE = 3;
-    private final static String TERM="2999-12-01";
+    private final static String TERM = "2999-12-01";
     private final static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static LocalDate day;
+
     public DataClass() {
-        day=LocalDate.now();
+        day = LocalDate.now();
     }
 
     public static String getSeparator() {
@@ -54,8 +55,8 @@ public class DataClass {
         return modelAndView;
     }
 
-    public static String getUrl(Type type){
-        switch (type){
+    public static String getUrl(Type type) {
+        switch (type) {
             case DAILY -> {
                 return "days";
             }
@@ -72,8 +73,8 @@ public class DataClass {
         return null;
     }
 
-    public static String getPrefix(Type type){
-        switch (type){
+    public static String getPrefix(Type type) {
+        switch (type) {
             case DAILY -> {
                 return "_D";
             }
@@ -90,8 +91,8 @@ public class DataClass {
         return null;
     }
 
-    public static String getDeadLine(Type type){
-        switch (type){
+    public static String getDeadLine(Type type) {
+        switch (type) {
             case DAILY -> {
                 return DataClass.getDay().toString();
             }
@@ -108,17 +109,25 @@ public class DataClass {
         return null;
     }
 
-    public static String getScale(Type type){
-        switch (type){
-            case DAILY -> {return "Day";}
-            case WEEKLY -> {return "Week";}
-            case MONTHLY -> {return "Month";}
-            case YEARLY -> {return "Year";}
+    public static String getScale(Type type) {
+        switch (type) {
+            case DAILY -> {
+                return "Day";
+            }
+            case WEEKLY -> {
+                return "Week";
+            }
+            case MONTHLY -> {
+                return "Month";
+            }
+            case YEARLY -> {
+                return "Year";
+            }
         }
         return null;
     }
 
-    public static LocalDate getLocalDate(String date){
+    public static LocalDate getLocalDate(String date) {
         return LocalDate.parse(date, DataClass.getFormatter());
     }
 

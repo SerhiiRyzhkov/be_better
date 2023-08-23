@@ -22,12 +22,12 @@ import java.util.Map;
 
 @EnableTransactionManagement
 @Controller
-public abstract class AbstractTimeScalesController implements TimeScales{
+public abstract class AbstractTimeScalesController implements TimeScales {
     @Autowired
     private ModelViewFormatter modelViewFormatter;
     private Type type;
-    private Map<LocalDate,String> dates = new LinkedHashMap<>();
-    private List<Task> dateTasks=new ArrayList<>();
+    private final Map<LocalDate, String> dates = new LinkedHashMap<>();
+    private List<Task> dateTasks = new ArrayList<>();
 
 
     protected void setType(Type type) {
@@ -42,53 +42,58 @@ public abstract class AbstractTimeScalesController implements TimeScales{
     @Override
     public ModelAndView showTypeView(@RequestParam("delta") Integer delta, Authentication authentication) {
         shift(delta);
-        ModelAndView modelAndView = modelViewFormatter.showTypeView(authentication,dates,type);
-        dateTasks= modelViewFormatter.getToDo();
+        ModelAndView modelAndView = modelViewFormatter.showTypeView(authentication, dates, type);
+        dateTasks = modelViewFormatter.getToDo();
         return modelAndView;
     }
+
     @Override
-    public ModelAndView setToday(Authentication authentication){
-        return modelViewFormatter.setTodayMethod(authentication,type);
+    public ModelAndView setToday(Authentication authentication) {
+        return modelViewFormatter.setTodayMethod(authentication, type);
     }
 
     @Override
     public ModelAndView completeTask(@RequestParam("index") Integer index, Authentication authentication) {
-        return modelViewFormatter.complete(dateTasks.get(index), type,authentication);
+        return modelViewFormatter.complete(dateTasks.get(index), type, authentication);
     }
+
     @Override
-    public  ModelAndView transferTask(Integer index, Authentication authentication){
-        return modelViewFormatter.transfer(dateTasks.get(index), type,authentication);
+    public ModelAndView transferTask(Integer index, Authentication authentication) {
+        return modelViewFormatter.transfer(dateTasks.get(index), type, authentication);
     }
 
     @Override
     public ModelAndView deleteTask(Integer index, Authentication authentication) {
-        return modelViewFormatter.delete(dateTasks.get(index),type,authentication);
+        return modelViewFormatter.delete(dateTasks.get(index), type, authentication);
     }
 
     @Override
-    public ModelAndView addingNewTask(Authentication authentication){
-        return modelViewFormatter.addingNewTask(authentication,type);
+    public ModelAndView addingNewTask(Authentication authentication) {
+        return modelViewFormatter.addingNewTask(authentication, type);
     }
 
     @Override
     public ModelAndView setRoutine(Authentication authentication) {
-        return modelViewFormatter.setRoutine(authentication,type);
+        return modelViewFormatter.setRoutine(authentication, type);
     }
 
     @Override
-    public ModelAndView saveTask(@ModelAttribute("taskAtt") Task task,Authentication authentication){
-        return modelViewFormatter.saveTask(task,authentication,type);
+    public ModelAndView saveTask(@ModelAttribute("taskAtt") Task task, Authentication authentication) {
+        return modelViewFormatter.saveTask(task, authentication, type);
     }
+
     @Override
-    public ModelAndView addFreqToday(@RequestParam("index") Integer index, Authentication authentication){
-        return modelViewFormatter.addFreqToday(index,authentication,type);
+    public ModelAndView addFreqToday(@RequestParam("index") Integer index, Authentication authentication) {
+        return modelViewFormatter.addFreqToday(index, authentication, type);
     }
+
     @Override
     public ModelAndView postRange(@RequestParam("task_index") Integer task_index,
-                                    @RequestParam("sliderValue") Integer sliderValue,
-                                  Authentication authentication){
-        return modelViewFormatter.postRange(authentication, task_index,sliderValue,type);
+                                  @RequestParam("sliderValue") Integer sliderValue,
+                                  Authentication authentication) {
+        return modelViewFormatter.postRange(authentication, task_index, sliderValue, type);
     }
+
     abstract protected void shift(int delta);
 
 

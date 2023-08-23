@@ -19,7 +19,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService,UserDetailsService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService,UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user =  userRepository.findById(s);
+        User user = userRepository.findById(s);
         if (user == null) throw new UsernameNotFoundException("Invalid email or password");
         List<GrantedAuthority> authorityList = new ArrayList<>();
 

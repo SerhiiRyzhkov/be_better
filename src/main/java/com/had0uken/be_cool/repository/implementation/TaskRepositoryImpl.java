@@ -24,49 +24,49 @@ public class TaskRepositoryImpl extends AbstractRepository<Task> implements Task
     @Override
     public List<Task> getTasksByDate(String date) {
         return getSession().createQuery("from Task where deadline=:deadlineParam").
-                setParameter("deadlineParam",date).getResultList();
+                setParameter("deadlineParam", date).getResultList();
     }
 
     @Override
     public List<Task> getTasksByUser(User user) {
         return getSession().createQuery("from Task where user_email=:emailParam").
-                setParameter("emailParam",user.getEmail()).getResultList();
+                setParameter("emailParam", user.getEmail()).getResultList();
     }
 
     @Override
     public List<Task> getTasksByUserAndDate(User user, String date) {
         return getSession().createQuery("from Task where user_email=:emailParam and deadline=:dateParam").
-                setParameter("emailParam",user.getEmail()).setParameter("dateParam",date).getResultList();
+                setParameter("emailParam", user.getEmail()).setParameter("dateParam", date).getResultList();
     }
 
     @Override
     public List<Task> getTasksByUserAndType(User user, Type type) {
         return getSession().createQuery("from Task where user_email=:emailParam and type=:typeParam").
-                setParameter("emailParam",user.getEmail()).setParameter("typeParam",type).getResultList();
+                setParameter("emailParam", user.getEmail()).setParameter("typeParam", type).getResultList();
     }
 
     @Override
     public List<Task> getTasksByUserAndDateAndType(User user, String date, Type type) {
         return getSession().createQuery("from Task where user_email=:emailParam and type=:typeParam and deadline=:dateParam").
-                setParameter("emailParam",user.getEmail()).setParameter("typeParam",type).setParameter("dateParam",date).getResultList();
+                setParameter("emailParam", user.getEmail()).setParameter("typeParam", type).setParameter("dateParam", date).getResultList();
     }
 
     @Override
     public List<Task> getTasksByUserAndFrequency(User user, Frequency frequency) {
         return getSession().createQuery("from Task where user_email=:emailParam and frequency=:frequencyParam").
-                setParameter("emailParam",user.getEmail()).setParameter("frequencyParam",frequency).getResultList();
+                setParameter("emailParam", user.getEmail()).setParameter("frequencyParam", frequency).getResultList();
     }
 
     @Override
     public List<Task> getTasksByUserAndDateAndFrequency(User user, String date, Frequency frequency) {
         return getSession().createQuery("from Task where user_email=:emailParam and frequency=:frequencyParam and deadline=:dateParam").
-                setParameter("emailParam",user.getEmail()).setParameter("frequencyParam",frequency).setParameter("dateParam",date).getResultList();
+                setParameter("emailParam", user.getEmail()).setParameter("frequencyParam", frequency).setParameter("dateParam", date).getResultList();
     }
 
     @Override
     public List<Task> getTasksByUserAndTypeAndFrequency(User user, Type type, Frequency frequency) {
         return getSession().createQuery("from Task where user_email=:emailParam and frequency=:frequencyParam and type=:typeParam").
-                setParameter("emailParam",user.getEmail()).setParameter("frequencyParam",frequency).setParameter("typeParam",type).getResultList();
+                setParameter("emailParam", user.getEmail()).setParameter("frequencyParam", frequency).setParameter("typeParam", type).getResultList();
     }
 
     @Override

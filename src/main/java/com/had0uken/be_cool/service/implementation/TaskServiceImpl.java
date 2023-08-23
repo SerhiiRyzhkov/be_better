@@ -17,6 +17,7 @@ import java.util.List;
 public class TaskServiceImpl implements TaskService {
     @Autowired
     private TaskRepository taskRepository;
+
     @Override
     public List<Task> getTasksByDate(String date) {
         return taskRepository.getTasksByDate(date);
@@ -29,7 +30,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Task> getTasksByUserAndDate(User user, String date) {
-        return taskRepository.getTasksByUserAndDate(user,date);
+        return taskRepository.getTasksByUserAndDate(user, date);
     }
 
     @Override
@@ -39,32 +40,32 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Task> getTasksByUserAndType(User user, Type type) {
-        return taskRepository.getTasksByUserAndType(user,type);
+        return taskRepository.getTasksByUserAndType(user, type);
     }
 
     @Override
     public List<Task> getTasksByUserAndDateAndType(User user, String date, Type type) {
-        return taskRepository.getTasksByUserAndDateAndType(user,date,type);
+        return taskRepository.getTasksByUserAndDateAndType(user, date, type);
     }
 
     @Override
     public List<Task> getTasksByUserAndDateAndFrequency(User user, String date, Frequency frequency) {
-        return taskRepository.getTasksByUserAndDateAndFrequency(user,date,frequency);
+        return taskRepository.getTasksByUserAndDateAndFrequency(user, date, frequency);
     }
 
     @Override
     public List<Task> getTasksByUserAndFrequency(User user, Frequency frequency) {
-        return taskRepository.getTasksByUserAndFrequency(user,frequency);
+        return taskRepository.getTasksByUserAndFrequency(user, frequency);
     }
 
     @Override
     public List<Task> getTasksByUserAndTypeAndFrequency(User user, Type type, Frequency frequency) {
-        return taskRepository.getTasksByUserAndTypeAndFrequency(user,type,frequency);
+        return taskRepository.getTasksByUserAndTypeAndFrequency(user, type, frequency);
     }
 
     @Override
     public void updateTaskScore(Task task, int score) {
-        taskRepository.updateTaskScore(task,score);
+        taskRepository.updateTaskScore(task, score);
     }
 
     @Override

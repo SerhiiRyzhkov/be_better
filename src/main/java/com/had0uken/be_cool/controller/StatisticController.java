@@ -25,53 +25,53 @@ public class StatisticController {
     @Autowired
     private UserService userService;
     @Autowired
-    private final PointCounter pointCounter=new PointCounter();
+    private final PointCounter pointCounter = new PointCounter();
 
     @RequestMapping("/statistic")
-    public ModelAndView statistic(Authentication authentication){
+    public ModelAndView statistic(Authentication authentication) {
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
 
-        modelAndView.setViewName("statistic-views"+DataClass.getSeparator()+"statistic");
+        modelAndView.setViewName("statistic-views" + DataClass.getSeparator() + "statistic");
         return modelAndView;
     }
+
     @RequestMapping("/showStat")
-    public ModelAndView showStat(String startDate, String endDate, Authentication authentication){
+    public ModelAndView showStat(String startDate, String endDate, Authentication authentication) {
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         List<Task> taskList = taskService.getTasksByUserAndFrequency(userService.get(authentication.getName())
-                , Frequency.INFREQUENT).stream().filter(el->
-                (DataClass.getLocalDate(el.getDeadline()).isBefore(DataClass.getLocalDate(endDate))&&
-                        DataClass.getLocalDate(el.getDeadline()).isAfter(DataClass.getLocalDate(startDate))||
-                        DataClass.getLocalDate(el.getDeadline()).isEqual(DataClass.getLocalDate(startDate))||
-                        DataClass.getLocalDate(el.getDeadline()).isEqual(DataClass.getLocalDate(endDate)))).
+                        , Frequency.INFREQUENT).stream().filter(el ->
+                        (DataClass.getLocalDate(el.getDeadline()).isBefore(DataClass.getLocalDate(endDate)) &&
+                                DataClass.getLocalDate(el.getDeadline()).isAfter(DataClass.getLocalDate(startDate)) ||
+                                DataClass.getLocalDate(el.getDeadline()).isEqual(DataClass.getLocalDate(startDate)) ||
+                                DataClass.getLocalDate(el.getDeadline()).isEqual(DataClass.getLocalDate(endDate)))).
                 collect(Collectors.toList());
 
 
-        if(taskList.size()==0)
-        {
-            modelAndView.setViewName("statistic-views"+DataClass.getSeparator()+"empty-stat");
+        if (taskList.size() == 0) {
+            modelAndView.setViewName("statistic-views" + DataClass.getSeparator() + "empty-stat");
             return modelAndView;
         }
 
         int failed = 0;
         int finished = 0;
         int points = 0;
-        for(Task t: taskList){
-            if(t.getStatus().equals(Status.FAILED))failed++;
-            if(t.getStatus().equals(Status.FINISHED))finished++;
-            points+=pointCounter.getPoints(t.getType(),t.getStatus());
+        for (Task t : taskList) {
+            if (t.getStatus().equals(Status.FAILED)) failed++;
+            if (t.getStatus().equals(Status.FINISHED)) finished++;
+            points += pointCounter.getPoints(t.getType(), t.getStatus());
         }
 
 
-        modelAndView.addObject("reportAtt",pointCounter.getReport(finished*100/taskList.size()));
-        modelAndView.addObject("FailProcAtt", failed*100/taskList.size());
-        modelAndView.addObject("FinishProcAtt", finished*100/taskList.size());
-        modelAndView.addObject("pointsAtt",points);
-        modelAndView.addObject("finishedAtt",finished);
-        modelAndView.addObject("failedAtt",failed);
-        modelAndView.addObject("totalAmountAtt",taskList.size());
-        modelAndView.addObject("startDateAtt",startDate);
-        modelAndView.addObject("endDateAtt",endDate);
-        modelAndView.setViewName("statistic-views"+DataClass.getSeparator()+"show-statistic");
+        modelAndView.addObject("reportAtt", pointCounter.getReport(finished * 100 / taskList.size()));
+        modelAndView.addObject("FailProcAtt", failed * 100 / taskList.size());
+        modelAndView.addObject("FinishProcAtt", finished * 100 / taskList.size());
+        modelAndView.addObject("pointsAtt", points);
+        modelAndView.addObject("finishedAtt", finished);
+        modelAndView.addObject("failedAtt", failed);
+        modelAndView.addObject("totalAmountAtt", taskList.size());
+        modelAndView.addObject("startDateAtt", startDate);
+        modelAndView.addObject("endDateAtt", endDate);
+        modelAndView.setViewName("statistic-views" + DataClass.getSeparator() + "show-statistic");
         return modelAndView;
     }
 }

@@ -25,11 +25,11 @@ public abstract class AbstractRepository<T extends Serializable> implements Enti
 
     @Override
     public T findById(Serializable id) {
-        return (T)getSession().get(entityClass,id);
+        return (T) getSession().get(entityClass, id);
     }
 
     @Override
-    public void save(T entity){
+    public void save(T entity) {
         getSession().save(entity);
     }
 

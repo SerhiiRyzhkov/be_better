@@ -15,7 +15,7 @@ import java.time.LocalDate;
 
 @EnableTransactionManagement
 @Controller
-public class DaysController extends AbstractTimeScalesController implements TimeScales{
+public class DaysController extends AbstractTimeScalesController implements TimeScales {
     private final Type type = Type.DAILY;
 
 
@@ -42,6 +42,7 @@ public class DaysController extends AbstractTimeScalesController implements Time
     public ModelAndView completeTask(Integer index, Authentication authentication) {
         return super.completeTask(index, authentication);
     }
+
     @RequestMapping(value = {"/transfer_D"}, method = RequestMethod.GET)
     @Override
     public ModelAndView transferTask(Integer index, Authentication authentication) {
@@ -62,8 +63,7 @@ public class DaysController extends AbstractTimeScalesController implements Time
 
     @RequestMapping("/setRoutine_D")
     @Override
-    public ModelAndView setRoutine(Authentication authentication)
-    {
+    public ModelAndView setRoutine(Authentication authentication) {
         return super.setRoutine(authentication);
     }
 
@@ -73,22 +73,23 @@ public class DaysController extends AbstractTimeScalesController implements Time
     public ModelAndView saveTask(Task task, Authentication authentication) {
         return super.saveTask(task, authentication);
     }
+
     @RequestMapping("/addFrequentlyToday_D")
     @Override
     public ModelAndView addFreqToday(Integer index, Authentication authentication) {
         return super.addFreqToday(index, authentication);
     }
 
-    protected void shift(int delta){
+    protected void shift(int delta) {
         super.getDates().clear();
-        if(delta>DataClass.getRANGE()) DataClass.setDay(DataClass.getDay().plusDays(delta-DataClass.getRANGE()));
-        else if(delta<DataClass.getRANGE()) DataClass.setDay(DataClass.getDay().minusDays(DataClass.getRANGE()-delta));
+        if (delta > DataClass.getRANGE()) DataClass.setDay(DataClass.getDay().plusDays(delta - DataClass.getRANGE()));
+        else if (delta < DataClass.getRANGE())
+            DataClass.setDay(DataClass.getDay().minusDays(DataClass.getRANGE() - delta));
         LocalDate start = DataClass.getDay().minusDays(DataClass.getRANGE());
-        LocalDate end = DataClass.getDay().plusDays(DataClass.getRANGE()+1);
-        while (!start.equals(end))
-        {
-            super.getDates().put(start,start.getMonthValue()+"-"+start.getDayOfMonth()+"\n"+ start.getDayOfWeek().toString());
-            start=start.plusDays(1);
+        LocalDate end = DataClass.getDay().plusDays(DataClass.getRANGE() + 1);
+        while (!start.equals(end)) {
+            super.getDates().put(start, start.getMonthValue() + "-" + start.getDayOfMonth() + "\n" + start.getDayOfWeek().toString());
+            start = start.plusDays(1);
         }
     }
 

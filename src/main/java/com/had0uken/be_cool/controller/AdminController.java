@@ -19,23 +19,25 @@ public class AdminController {
     private UserService userService;
 
     @RequestMapping("/admin")
-    public ModelAndView adminMenu(Authentication authentication){
-        ModelAndView modelAndView= DataClass.getModelAndView(authentication);
-        modelAndView.setViewName("admin-views"+DataClass.getSeparator()+"admin-view");
-        return modelAndView;
-    }
-    @RequestMapping("/admin/listOfUsers")
-    public ModelAndView modelAndView(Authentication authentication){
+    public ModelAndView adminMenu(Authentication authentication) {
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
-        modelAndView.addObject("allUsersAtt",userService.getAll());
-        modelAndView.setViewName("admin-views"+DataClass.getSeparator()+"listOfUsers");
+        modelAndView.setViewName("admin-views" + DataClass.getSeparator() + "admin-view");
         return modelAndView;
     }
+
+    @RequestMapping("/admin/listOfUsers")
+    public ModelAndView modelAndView(Authentication authentication) {
+        ModelAndView modelAndView = DataClass.getModelAndView(authentication);
+        modelAndView.addObject("allUsersAtt", userService.getAll());
+        modelAndView.setViewName("admin-views" + DataClass.getSeparator() + "listOfUsers");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/admin/banUser")
     public ModelAndView banUser(@RequestParam("userId") int index) {
         ModelAndView model = new ModelAndView();
         userService.banUser(userService.getAll().get(index));
-        model.setViewName("redirect:"+DataClass.getSeparator()+ "admin"+DataClass.getSeparator()+"listOfUsers");
+        model.setViewName("redirect:" + DataClass.getSeparator() + "admin" + DataClass.getSeparator() + "listOfUsers");
 
         return model;
     }
@@ -44,7 +46,7 @@ public class AdminController {
     public ModelAndView unBanUser(@RequestParam("userId") int index) {
         ModelAndView model = new ModelAndView();
         userService.unbanUser(userService.getAll().get(index));
-        model.setViewName("redirect:"+DataClass.getSeparator()+ "admin"+DataClass.getSeparator()+"listOfUsers");
+        model.setViewName("redirect:" + DataClass.getSeparator() + "admin" + DataClass.getSeparator() + "listOfUsers");
         return model;
     }
 

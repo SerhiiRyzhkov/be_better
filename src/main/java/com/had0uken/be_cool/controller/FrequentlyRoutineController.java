@@ -18,32 +18,32 @@ public class FrequentlyRoutineController extends TaskManager {
 
 
     @RequestMapping("/frequent")
-    public ModelAndView showListsF(@RequestParam("type") String scale, Authentication authentication){
-        return super.showLists(authentication, Type.valueOf(scale),Frequency.FREQUENT);
+    public ModelAndView showListsF(@RequestParam("type") String scale, Authentication authentication) {
+        return super.showLists(authentication, Type.valueOf(scale), Frequency.FREQUENT);
     }
 
     @RequestMapping("/routine")
-    public ModelAndView showListsR(@RequestParam("type") String scale, Authentication authentication){
-        return super.showLists(authentication, Type.valueOf(scale),Frequency.ROUTINE);
+    public ModelAndView showListsR(@RequestParam("type") String scale, Authentication authentication) {
+        return super.showLists(authentication, Type.valueOf(scale), Frequency.ROUTINE);
     }
 
     @RequestMapping("/deleteTask")
-    public ModelAndView deleteTask(Authentication authentication, @RequestParam("id") int id){
-        return super.deleteTask(authentication,id);
+    public ModelAndView deleteTask(Authentication authentication, @RequestParam("id") int id) {
+        return super.deleteTask(authentication, id);
     }
 
     @RequestMapping("/updateTask")
-    public ModelAndView updateTask(Authentication authentication, @RequestParam("id") int id){
-        return super.updateTask(authentication,id);
+    public ModelAndView updateTask(Authentication authentication, @RequestParam("id") int id) {
+        return super.updateTask(authentication, id);
     }
 
     @RequestMapping("/saveTask")
-    public ModelAndView saveOrUpdate(Authentication authentication, @ModelAttribute("taskAtt") Task task, @RequestParam("id") long id){
-        return super.saveOrUpdateTask(authentication,task,id);
+    public ModelAndView saveOrUpdate(Authentication authentication, @ModelAttribute("taskAtt") Task task, @RequestParam("id") long id) {
+        return super.saveOrUpdateTask(authentication, task, id);
     }
 
     @RequestMapping("addNewTask")
-    public ModelAndView addNewTask(Authentication authentication){
+    public ModelAndView addNewTask(Authentication authentication) {
         return super.addNewTask(authentication);
     }
 

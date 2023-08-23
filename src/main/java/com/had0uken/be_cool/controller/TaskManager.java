@@ -25,7 +25,7 @@ public abstract class TaskManager {
 
 
 
-    private List<Task> getList(Authentication authentication,Type type){
+    private List<Task> getList(Authentication authentication){
         return taskService.getTasksByUserAndTypeAndFrequency(userService.get(authentication.getName()),this.type,this.frequency);
     }
 
@@ -51,7 +51,7 @@ public abstract class TaskManager {
             setFrequency(frequency);
             ModelAndView modelAndView = DataClass.getModelAndView(authentication);
             modelAndView.addObject("typesAtt",Type.values());
-            modelAndView.addObject("listAtt", getList(authentication,getType()));
+            modelAndView.addObject("listAtt", getList(authentication));
             modelAndView.addObject("typeAtt",type);
             modelAndView.addObject("frequencyAtt",frequency.toString().toLowerCase());
             modelAndView.setViewName("task-management-views"+ DataClass.getSeparator()+"show-tasks-view");

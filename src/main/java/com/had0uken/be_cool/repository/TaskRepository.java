@@ -9,13 +9,22 @@ import java.util.List;
 
 public interface TaskRepository extends EntityRepository<Task> {
     List<Task> getTasksByDate(String date);
+
     List<Task> getTasksByUser(User user);
+
     List<Task> getTasksByUserAndDate(User user, String date);
+
     List<Task> getTasksByUserAndType(User user, Type type);
+
     List<Task> getTasksByUserAndDateAndType(User user, String date, Type type);
+
     List<Task> getTasksByUserAndFrequency(User user, Frequency frequency);
+
     List<Task> getTasksByUserAndDateAndFrequency(User user, String date, Frequency frequency);
+
     List<Task> getTasksByUserAndTypeAndFrequency(User user, Type type, Frequency frequency);
+
     void updateTaskScore(Task task, int score);
+
     Task getCopy(Task task);
 }

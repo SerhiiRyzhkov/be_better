@@ -76,7 +76,9 @@
                     <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link">${emailAtt}</a>
                     </li><li class="u-nav-item"><a class="u-button-style u-nav-link">statistic</a>
                     </li><li class="u-nav-item"><a class="u-button-style u-nav-link">about app</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link">logout</a>
+                    </li> <li class="u-nav-item"><a
+                            class="u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
+                            style="padding: 10px 2px; cursor: pointer" onclick="window.location.href='/logoutApp'">logout</a>
                     </li></ul>
                 </div>
             </div>

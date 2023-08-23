@@ -39,7 +39,7 @@
 </c:if>
 <c:if test="${param.logout != null}">
 
-    <h2 style="color: whitesmoke">You have been logged out successfully.</h2>
+    <h2 style="color: whitesmoke">You have been logged out successfully</h2>
 
 </c:if>
 <div class="container" id="container">
