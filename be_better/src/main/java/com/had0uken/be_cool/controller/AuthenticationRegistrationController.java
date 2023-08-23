@@ -70,13 +70,13 @@ public class AuthenticationRegistrationController {
             user.setPassword(bCryptPasswordEncoder.encode(pas1));
             user.setEnabled(true);
             userService.save(user);
+            setStartPackOfTasks(user);
         }
         modelAndView.addObject("messageAtt", message);
         return modelAndView;
     }
 
 
-    //String userEmail, String title, String description, Integer score, Integer total, Status status, Type type, String deadline, Frequency frequency
     private void setStartPackOfTasks(User user) {
         List<Task> starterPack = new ArrayList<>();
         //Infrequent
@@ -130,6 +130,7 @@ public class AuthenticationRegistrationController {
         starterPack.add(new Task(user.getEmail(), "Check job site", "Check what new vacancies have been opened this week", 0, 1, Status.IN_PLAN, Type.DAILY, DataClass.getDeadLine(Type.DAILY), Frequency.ROUTINE));
         starterPack.add(new Task(user.getEmail(), "Clear out trash in the attic", "I've been hoarding junk in the attic for years. Time to deal with it!", 0, 1, Status.IN_PLAN, Type.DAILY, DataClass.getDeadLine(Type.DAILY), Frequency.ROUTINE));
 
+        for (Task t : starterPack) taskService.save(t);
     }
 
 
