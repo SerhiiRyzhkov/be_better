@@ -37,6 +37,11 @@ public class ModelViewFormatter {
     public List<Task> getToDo() {
         return toDo;
     }
+    private int scroll =-1;
+
+    public void scrollReset(){
+        scroll=-1;
+    }
 
     public ModelAndView postRange(Authentication authentication, Integer task_index, Integer sliderValue, Type type) {
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
@@ -60,6 +65,7 @@ public class ModelViewFormatter {
         modelAndView.addObject("typeAtt", DataClass.getScale(type));
         modelAndView.addObject("pointsAtt", pointCounter.getCount(userService.get(authentication.getName()), DataClass.getDay(), type));
         modelAndView.addObject("showRangeAtt", !type.equals(Type.DAILY));
+        modelAndView.addObject("scrollAtt",scroll);
         modelAndView.setViewName("scale-views" + DataClass.getSeparator() + "tasks-view");
         return modelAndView;
     }
@@ -72,7 +78,7 @@ public class ModelViewFormatter {
     }
 
 
-    public ModelAndView complete(Task task, Type type, Authentication authentication) {
+    public ModelAndView complete(Task task, Type type, Authentication authentication, Integer index) {
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         switch (task.getStatus()) {
             case IN_PROCESS -> task.setStatus(Status.FINISHED);
@@ -82,7 +88,7 @@ public class ModelViewFormatter {
         }
         taskService.update(task);
         modelAndView.setViewName("redirect: " + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
-
+        scroll=index;
         return modelAndView;
     }
 

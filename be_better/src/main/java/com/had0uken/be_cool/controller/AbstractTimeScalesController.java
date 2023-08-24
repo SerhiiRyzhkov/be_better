@@ -54,7 +54,7 @@ public abstract class AbstractTimeScalesController implements TimeScales {
 
     @Override
     public ModelAndView completeTask(@RequestParam("index") Integer index, Authentication authentication) {
-        return modelViewFormatter.complete(dateTasks.get(index), type, authentication);
+        return modelViewFormatter.complete(dateTasks.get(index), type, authentication, index);
     }
 
     @Override

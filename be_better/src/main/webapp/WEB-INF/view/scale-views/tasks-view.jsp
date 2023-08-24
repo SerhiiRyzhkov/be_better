@@ -49,7 +49,7 @@
     <div class="u-clearfix u-sheet u-sheet-1">
         <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="1200"
            data-image-height="1200">
-            <img src="<c:url value="/resources/style/img/kisspng-whiskers-cat-logo-brand-product-design-animals-wall-decals-cat-wall-decal-ambiance-stic-5b6d5105d1a0b2.3383387515338908218586.png"/>"
+            <img id="scroll_-1"  src="<c:url value="/resources/style/img/kisspng-whiskers-cat-logo-brand-product-design-animals-wall-decals-cat-wall-decal-ambiance-stic-5b6d5105d1a0b2.3383387515338908218586.png"/>"
                  class="u-logo-image u-logo-image-1" style="cursor: pointer" onclick="window.location.href='../../..'">
         </a>
         <h1 class="u-align-center u-text u-text-1" style="cursor: pointer"  onclick="window.location.href='/${urlAtt}?delta=${rangeAtt}'" data-lang-en="Transform Yourself&amp;nbsp;<br>">BE BETTER!<br>
@@ -310,7 +310,7 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
 
                         <div class="u-container-style u-layout-cell u-size-15 u-layout-cell-4">
                             <div class="u-container-layout u-valign-middle u-container-layout-11">
-                                <h6 class="u-text u-text-18"><p title="${t.description}">${t.title}</p></h6>
+                                <h6 id="scroll_${loop.index}" class="u-text u-text-18"><p title="${t.description}">${t.title}</p></h6>
                                 <c:if test="${showRangeAtt}">
                                     <form oninput="result.value = slider.value" action="/postRange${prefixAtt}" method="post" >
                                         <div  class="slidecontainer">
@@ -525,6 +525,17 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
     }
 
 </script>
+<script>
+    // Wait for the page to finish loading
+    window.addEventListener("load", function() {
+        // Get a reference to the target element
+        const targetElement = document.getElementById("scroll_${scrollAtt}");
 
+        // Scroll to the target element
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+    });
+</script>
 </body>
 </html>

@@ -38,13 +38,25 @@
     <meta name="theme-color" content="#95ccc3">
     <meta property="og:title" content="Main">
     <meta property="og:type" content="website">
+    <c:url var="daysButton" value="/days">
+        <c:param name="delta" value="${rangeAtt}"/>
+    </c:url>
+    <c:url var="monthButton" value="/months">
+        <c:param name="delta" value="${rangeAtt}"/>
+    </c:url>
+    <c:url var="weekButton" value="/weeks">
+        <c:param name="delta" value="${rangeAtt}"/>
+    </c:url>
+    <c:url var="yearsButton" value="/years">
+        <c:param name="delta" value="${rangeAtt}"/>
+    </c:url>
 </head>
 <body data-home-page="Main.html" data-home-page-title="Main" class="u-body u-stick-footer u-xl-mode" data-lang="ru">
 <header class="u-clearfix u-header u-header" id="sec-cdb9">
     <div class="u-clearfix u-sheet u-sheet-1">
         <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="1200"
            data-image-height="1200">
-            <img src="<c:url value="/resources/style/img/kisspng-whiskers-cat-logo-brand-product-design-animals-wall-decals-cat-wall-decal-ambiance-stic-5b6d5105d1a0b2.3383387515338908218586.png"/>"
+            <img id="scroll_-1" src="<c:url value="/resources/style/img/kisspng-whiskers-cat-logo-brand-product-design-animals-wall-decals-cat-wall-decal-ambiance-stic-5b6d5105d1a0b2.3383387515338908218586.png"/>"
                  class="u-logo-image u-logo-image-1" style="cursor: pointer" onclick="window.location.href='../../..'">
         </a>
         <h1 class="u-align-center u-text u-text-1" style="cursor: pointer"  onclick="window.location.href='/${urlAtt}?delta=${rangeAtt}'" data-lang-en="Transform Yourself&amp;nbsp;<br>">BE BETTER!<br>
@@ -217,10 +229,10 @@
 
                     <c:forEach var="t" items="${listAtt}" varStatus="loop">
                         <div class="u-size-30">
-                            <div class="u-layout-row">
+                            <div class="u-layout-row" id="scroll_${loop.index}">
                                 <div class="u-container-style u-layout-cell u-size-24-md u-size-24-sm u-size-24-xs u-size-30-lg u-size-30-xl u-layout-cell-4">
                                     <div class="u-container-layout u-valign-middle u-container-layout-8">
-                                        <h3 class="u-text u-text-9"><p title="${t.description}">${t.title}</p></h3>
+                                        <h3  class="u-text u-text-9"><p title="${t.description}">${t.title}</p></h3>
                                     </div>
                                 </div>
                                 <div class="u-container-style u-layout-cell u-size-30-lg u-size-30-xl u-size-36-md u-size-36-sm u-size-36-xs u-layout-cell-5">
@@ -323,4 +335,18 @@
     });
 
 </script>
+
+<script>
+    // Wait for the page to finish loading
+    window.addEventListener("load", function() {
+        // Get a reference to the target element
+        const targetElement = document.getElementById("scroll_${scrollAtt}");
+
+        // Scroll to the target element
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+    });
+</script>
+
 </body></html>
