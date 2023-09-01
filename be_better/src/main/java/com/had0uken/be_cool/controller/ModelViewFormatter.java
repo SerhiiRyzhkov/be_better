@@ -167,7 +167,7 @@ public class ModelViewFormatter {
         task.setStatus(Status.IN_PLAN);
         task.setType(type);
         task.setFrequency(Frequency.INFREQUENT);
-        task.setDeadline(DataClass.getDay().toString());
+        task.setDeadline(DataClass.getDeadLine(type));
         taskService.save(task);
         frequently = taskService.getTasksByUserAndFrequency(userService.get(authentication.getName()), Frequency.FREQUENT);
         modelAndView.addObject("frequentlyAtt", frequently);
