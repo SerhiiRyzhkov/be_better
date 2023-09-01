@@ -2,11 +2,8 @@
 
 This is a Spring Web Application which supposed to help users to set goals for themselves and achieve them.
 
-https://ryzhkov.website/
+https://bebetter.fun/
 
-Registrate or use existing user:
-Login		user@ukr.net
-Password	user
 
 ## Table of Contents
 
@@ -62,4 +59,4 @@ There are several ways to run the application
 7. Open http://localhost:8080/ in your browser
 
 ### Using the installed application
-1. Open 185.185.126.239:2245 in your browser
+1. Open https://bebetter.fun/ in your browser
