@@ -31,7 +31,7 @@ public class PointCounter {
     public int getPoints(Type type, Status status) {
         int k = 0;
         if (status.equals(Status.FINISHED)) k = 1;
-        if (status.equals(Status.FAILED)) k = -1;
+        if (status.equals(Status.FAILED)) k = -3;
 
         switch (type) {
             case DAILY -> {
