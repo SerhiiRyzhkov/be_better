@@ -19,7 +19,7 @@ public class HomeController {
     public ModelAndView home(Authentication authentication) {
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         DataClass.setDay(LocalDate.now());
-        modelAndView.setViewName("redirect: " + "days" + "?delta=" + DataClass.getRANGE());
+        modelAndView.setViewName("redirect:" + "days" + "?delta=" + DataClass.getRANGE());
         return modelAndView;
     }
 

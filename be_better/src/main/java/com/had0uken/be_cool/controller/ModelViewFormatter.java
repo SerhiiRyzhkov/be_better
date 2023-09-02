@@ -46,7 +46,7 @@ public class ModelViewFormatter {
     public ModelAndView postRange(Authentication authentication, Integer task_index, Integer sliderValue, Type type) {
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         taskService.updateTaskScore(toDo.get(task_index), sliderValue);
-        modelAndView.setViewName("redirect: " + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
+        modelAndView.setViewName("redirect:" + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
         return modelAndView;
     }
 
@@ -73,7 +73,7 @@ public class ModelViewFormatter {
     public ModelAndView setTodayMethod(Authentication authentication, Type type) {
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         DataClass.setDay(LocalDate.now());
-        modelAndView.setViewName("redirect: " + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
+        modelAndView.setViewName("redirect:" + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
         return modelAndView;
     }
 
@@ -87,7 +87,7 @@ public class ModelViewFormatter {
             case FAILED -> task.setStatus(Status.IN_PROCESS);
         }
         taskService.update(task);
-        modelAndView.setViewName("redirect: " + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
+        modelAndView.setViewName("redirect:" + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
         scroll=index;
         return modelAndView;
     }
@@ -98,14 +98,14 @@ public class ModelViewFormatter {
         copy.setDeadline(DataClass.getLocalDate(task.getDeadline()).plusDays(1).toString());
         copy.setStatus(Status.IN_PLAN);
         taskService.save(copy);
-        modelAndView.setViewName("redirect: " + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
+        modelAndView.setViewName("redirect:" + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
         return modelAndView;
     }
 
     public ModelAndView delete(Task task, Type type, Authentication authentication) {
         ModelAndView modelAndView = DataClass.getModelAndView(authentication);
         taskService.delete(task);
-        modelAndView.setViewName("redirect: " + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
+        modelAndView.setViewName("redirect:" + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
 
         return modelAndView;
     }
@@ -138,7 +138,7 @@ public class ModelViewFormatter {
                     return task;
                 })
                 .forEach(taskService::save);
-        modelAndView.setViewName("redirect: " + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
+        modelAndView.setViewName("redirect:" + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
         return modelAndView;
     }
 
@@ -152,7 +152,7 @@ public class ModelViewFormatter {
         task.setType(type);
         task.setFrequency(Frequency.INFREQUENT);
         taskService.save(task);
-        modelAndView.setViewName("redirect: " + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
+        modelAndView.setViewName("redirect:" + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
         return modelAndView;
     }
 
@@ -171,7 +171,7 @@ public class ModelViewFormatter {
         taskService.save(task);
         frequently = taskService.getTasksByUserAndFrequency(userService.get(authentication.getName()), Frequency.FREQUENT);
         modelAndView.addObject("frequentlyAtt", frequently);
-        modelAndView.setViewName("redirect: " + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
+        modelAndView.setViewName("redirect:" + DataClass.getUrl(type) + "?delta=" + DataClass.getRANGE());
         return modelAndView;
     }
 

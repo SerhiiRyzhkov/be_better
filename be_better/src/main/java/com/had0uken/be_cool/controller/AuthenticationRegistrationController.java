@@ -64,13 +64,13 @@ public class AuthenticationRegistrationController {
         } else if (!user.getEmail().matches("\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*\\.\\w{2,4}")) {
             message = "You should use a valid email";
         } else if (!pas1.equals(pas2)) {
-            message = "Password do not match";
+            message = "Passwords do not match";
         } else {
             message = "Registration successful";
             user.setPassword(bCryptPasswordEncoder.encode(pas1));
             user.setEnabled(true);
             userService.save(user);
-            setStartPackOfTasks(user);
+            //setStartPackOfTasks(user);
         }
         modelAndView.addObject("messageAtt", message);
         return modelAndView;
