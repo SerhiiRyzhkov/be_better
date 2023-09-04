@@ -61,7 +61,7 @@ public abstract class TaskManager {
         protected ModelAndView deleteTask(Authentication authentication, long id){
             ModelAndView modelAndView = DataClass.getModelAndView(authentication);
             taskService.delete(taskService.getById(id));
-            modelAndView.setViewName("redirect: /"+frequency.toString().toLowerCase()+"?type="+type);
+            modelAndView.setViewName("redirect:/"+frequency.toString().toLowerCase()+"?type="+type);
             return modelAndView;
         }
 
@@ -85,7 +85,7 @@ public abstract class TaskManager {
             task.setScore(0);
             if(task.getTotal()==null)task.setTotal(1);
             taskService.saveOrUpdate(task);
-            modelAndView.setViewName("redirect: /"+frequency.toString().toLowerCase()+"?type="+type);
+            modelAndView.setViewName("redirect:/"+frequency.toString().toLowerCase()+"?type="+type);
             return modelAndView;
         }
 
