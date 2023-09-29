@@ -645,7 +645,7 @@
 
   .u-section-1 .u-text-1 {
     font-size: 2.25rem;
-    margin-top: -163px;
+    margin-top: -183px;
   }
 
   .u-section-1 .u-layout-cell-3 {
@@ -1187,3 +1187,16 @@
     width: 340px;
   }
 }
+
+
+ @media (max-width: 768px) {
+   /* Styles for mobile screens */
+   .u-repeater-item {
+     flex-direction: column; /* Stack buttons vertically */
+     align-items: center; /* Center buttons horizontally */
+   }
+
+   .u-btn {
+     margin-bottom: 10px; /* Add spacing between buttons */
+   }
+ }

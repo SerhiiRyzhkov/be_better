@@ -10,9 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.Year;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
@@ -20,7 +18,6 @@ import java.util.List;
 public class PointCounter {
     @Autowired
     private TaskService taskService;
-
 
     private final int DAILY_POINTS = 3;
     private final int WEAKLY_POINTS = 5;

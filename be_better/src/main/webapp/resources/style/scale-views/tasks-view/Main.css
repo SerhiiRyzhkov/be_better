@@ -1707,7 +1707,7 @@
   }
 
   .u-section-1 .u-repeater-2 {
-    min-height: 191px;
+    min-height: 381px;
   }
 
   .u-section-1 .u-container-layout-27 {
@@ -1823,5 +1823,17 @@
 @media (max-width: 575px) {
   .u-section-2 .u-text-2 {
     width: 340px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Styles for mobile screens */
+  .u-repeater-2 {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons horizontally */
+  }
+
+  .u-btn {
+    margin-bottom: 10px; /* Add spacing between buttons */
   }
 }

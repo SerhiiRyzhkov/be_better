@@ -56,7 +56,7 @@
     <div class="u-clearfix u-sheet u-sheet-1">
         <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="1200"
            data-image-height="1200">
-            <img id="scroll_-1" src="<c:url value="/resources/style/img/kisspng-whiskers-cat-logo-brand-product-design-animals-wall-decals-cat-wall-decal-ambiance-stic-5b6d5105d1a0b2.3383387515338908218586.png"/>"
+            <img src="<c:url value="/resources/style/img/kisspng-whiskers-cat-logo-brand-product-design-animals-wall-decals-cat-wall-decal-ambiance-stic-5b6d5105d1a0b2.3383387515338908218586.png"/>"
                  class="u-logo-image u-logo-image-1" style="cursor: pointer" onclick="window.location.href='../../..'">
         </a>
         <h1 class="u-align-center u-text u-text-1" style="cursor: pointer"  onclick="window.location.href='/${urlAtt}?delta=${rangeAtt}'" data-lang-en="Transform Yourself&amp;nbsp;<br>">BE BETTER!<br>
@@ -67,7 +67,7 @@
 
 
 
-        <nav class="u-menu u-menu-one-level u-menu-1" style="opacity: 1" data-responsive-from="MD" data-position="">
+        <nav class="u-menu u-menu-one-level u-menu-1" data-responsive-from="MD" data-position="">
             <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700;">
                 <a class="u-button-style u-custom-border u-custom-border-color u-custom-borders u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
                    href="#"
@@ -110,7 +110,7 @@
                     <div class="u-inner-container-layout u-sidenav-overflow">
                         <div class="u-menu-close"></div>
                         <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link">${emailAtt}</a>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link">user@ukr.net</a>
                             </li>
                             <li class="u-nav-item"><a class="u-button-style u-nav-link">statistic</a>
                             </li>
@@ -144,7 +144,6 @@
     </span>
     </div>
 </header>
-
 
 
 <section class="u-align-center u-black u-clearfix u-section-1" id="sec-89cd">
