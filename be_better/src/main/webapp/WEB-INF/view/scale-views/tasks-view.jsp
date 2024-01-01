@@ -52,20 +52,20 @@
             <img id="scroll_-1"  src="<c:url value="/resources/style/img/kisspng-whiskers-cat-logo-brand-product-design-animals-wall-decals-cat-wall-decal-ambiance-stic-5b6d5105d1a0b2.3383387515338908218586.png"/>"
                  class="u-logo-image u-logo-image-1" style="cursor: pointer" onclick="window.location.href='../../..'">
         </a>
-        <h1 class="u-align-center u-text u-text-1" style="cursor: pointer"  onclick="window.location.href='/${urlAtt}?delta=${rangeAtt}'" data-lang-en="Transform Yourself&amp;nbsp;<br>">BE BETTER!<br>
+        <h1 class="u-align-center u-text u-text-1" style="cursor: pointer"  onclick="window.location.href='${prefixAtt}${urlAtt}?delta=${rangeAtt}'" data-lang-en="Transform Yourself&amp;nbsp;<br>">BE BETTER!<br>
         </h1>
 
 
-        <c:url var="daysButton" value="/days">
+        <c:url var="daysButton" value="/D/days">
             <c:param name="delta" value="${rangeAtt}"/>
         </c:url>
-        <c:url var="monthButton" value="/months">
+        <c:url var="monthButton" value="/M/months">
             <c:param name="delta" value="${rangeAtt}"/>
         </c:url>
-        <c:url var="weekButton" value="/weeks">
+        <c:url var="weekButton" value="/W/weeks">
             <c:param name="delta" value="${rangeAtt}"/>
         </c:url>
-        <c:url var="yearsButton" value="/years">
+        <c:url var="yearsButton" value="/Y/years">
             <c:param name="delta" value="${rangeAtt}"/>
         </c:url>
 
@@ -289,17 +289,17 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
 
 
         <a class="u-border-2 u-border-active-palette-4-light-2 u-border-hover-black u-border-palette-4-base u-btn u-btn-round u-button-style u-custom-item u-hover-palette-4-base u-none u-radius-50 u-text-hover-black u-btn-3"
-           onclick="window.location.href='setToday${prefixAtt}'">set today</a>
+           onclick="window.location.href='${prefixAtt}setToday'">set today</a>
 
 
         <c:forEach var="t" items="${toDoAtt}" varStatus="loop">
-            <c:url var="completeButton" value="/complete${prefixAtt}">
+            <c:url var="completeButton" value="${prefixAtt}complete">
                 <c:param name="index" value="${loop.index}"/>
             </c:url>
-            <c:url var="deleteButton" value="/delete${prefixAtt}">
+            <c:url var="deleteButton" value="${prefixAtt}delete">
                 <c:param name="index" value="${loop.index}"/>
             </c:url>
-            <c:url var="transferButton" value="/transfer${prefixAtt}">
+            <c:url var="transferButton" value="${prefixAtt}transfer">
                 <c:param name="index" value="${loop.index}"/>
             </c:url>
 
@@ -312,7 +312,7 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
                             <div class="u-container-layout u-valign-middle u-container-layout-11">
                                 <h6 id="scroll_${loop.index}" class="u-text u-text-18"><p title="${t.description}">${t.title}</p></h6>
                                 <c:if test="${showRangeAtt}">
-                                    <form oninput="result.value = slider.value" action="/postRange${prefixAtt}" method="post" >
+                                    <form oninput="result.value = slider.value" action="${prefixAtt}postRange" method="post" >
                                         <div  class="slidecontainer">
 
 
@@ -386,14 +386,14 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
         <div class="u-repeater u-repeater-2">
             <div class="u-container-style u-list-item u-repeater-item">
                 <div class="u-container-layout u-similar-container u-container-layout-27">
-                    <a onclick="window.location.href='addingNewTask${prefixAtt}'"
+                    <a onclick="window.location.href='${prefixAtt}addingNewTask'"
                        class="u-border-2 u-border-active-palette-4-light-2 u-border-hover-black u-border-palette-4-base u-btn u-btn-round u-button-style u-custom-item u-hover-palette-4-base u-none u-radius-50 u-text-hover-black u-btn-16">add
                         new task</a>
                 </div>
             </div>
             <div class="u-container-style u-list-item u-repeater-item">
                 <div class="u-container-layout u-similar-container u-container-layout-28">
-                    <a onclick="window.location.href='setRoutine${prefixAtt}'"
+                    <a onclick="window.location.href='${prefixAtt}setRoutine'"
                        class="u-border-2 u-border-active-palette-4-light-2 u-border-hover-black u-border-palette-4-base u-btn u-btn-round u-button-style u-custom-item u-hover-palette-4-base u-none u-radius-50 u-text-hover-black u-btn-17">set
                         routine tasks</a>
                 </div>
@@ -422,7 +422,7 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
 
 
                         <c:forEach var="t" items="${frequentlyAtt}" varStatus="loop">
-                            <c:url var="addFreqButton" value="/addFrequentlyToday${prefixAtt}">
+                            <c:url var="addFreqButton" value="${prefixAtt}addFrequentlyToday">
                                 <c:param name="index" value="${loop.index}"/>
                             </c:url>
 

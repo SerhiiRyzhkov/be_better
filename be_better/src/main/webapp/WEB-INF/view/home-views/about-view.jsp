@@ -45,20 +45,20 @@
             <img id="scroll_-1"  src="<c:url value="/resources/style/img/kisspng-whiskers-cat-logo-brand-product-design-animals-wall-decals-cat-wall-decal-ambiance-stic-5b6d5105d1a0b2.3383387515338908218586.png"/>"
                  class="u-logo-image u-logo-image-1" style="cursor: pointer" onclick="window.location.href='../../..'">
         </a>
-        <h1 class="u-align-center u-text u-text-1" style="cursor: pointer"  onclick="window.location.href='/${urlAtt}?delta=${rangeAtt}'" data-lang-en="Transform Yourself&amp;nbsp;<br>">BE BETTER!<br>
+        <h1 class="u-align-center u-text u-text-1" style="cursor: pointer"  onclick="window.location.href='${prefixAtt}${urlAtt}?delta=${rangeAtt}'" data-lang-en="Transform Yourself&amp;nbsp;<br>">BE BETTER!<br>
         </h1>
 
 
-        <c:url var="daysButton" value="/days">
+        <c:url var="daysButton" value="/D/days">
             <c:param name="delta" value="${rangeAtt}"/>
         </c:url>
-        <c:url var="monthButton" value="/months">
+        <c:url var="monthButton" value="/M/months">
             <c:param name="delta" value="${rangeAtt}"/>
         </c:url>
-        <c:url var="weekButton" value="/weeks">
+        <c:url var="weekButton" value="/W/weeks">
             <c:param name="delta" value="${rangeAtt}"/>
         </c:url>
-        <c:url var="yearsButton" value="/years">
+        <c:url var="yearsButton" value="/Y/years">
             <c:param name="delta" value="${rangeAtt}"/>
         </c:url>
 

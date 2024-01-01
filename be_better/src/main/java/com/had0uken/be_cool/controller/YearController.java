@@ -17,6 +17,7 @@ import java.time.temporal.TemporalAdjusters;
 
 @EnableTransactionManagement
 @Controller
+@RequestMapping("/Y")
 public class YearController extends AbstractTimeScalesController implements TimeScales {
     private final Type type = Type.YEARLY;
 
@@ -33,55 +34,55 @@ public class YearController extends AbstractTimeScalesController implements Time
         return super.showTypeView(delta, authentication);
     }
 
-    @RequestMapping(value = "setToday_Y")
+    @RequestMapping(value = "setToday")
     @Override
     public ModelAndView setToday(Authentication authentication) {
         return super.setToday(authentication);
     }
 
-    @RequestMapping(value = {"/complete_Y"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/complete"}, method = RequestMethod.GET)
     @Override
     public ModelAndView completeTask(Integer index, Authentication authentication) {
         return super.completeTask(index, authentication);
     }
 
-    @RequestMapping(value = {"/transfer_Y"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/transfer"}, method = RequestMethod.GET)
     @Override
     public ModelAndView transferTask(Integer index, Authentication authentication) {
         return super.transferTask(index, authentication);
     }
 
-    @RequestMapping(value = {"/delete_Y"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/delete"}, method = RequestMethod.GET)
     @Override
     public ModelAndView deleteTask(Integer index, Authentication authentication) {
         return super.deleteTask(index, authentication);
     }
 
-    @RequestMapping("/addingNewTask_Y")
+    @RequestMapping("/addingNewTask")
     @Override
     public ModelAndView addingNewTask(Authentication authentication) {
         return super.addingNewTask(authentication);
     }
 
-    @RequestMapping("/setRoutine_Y")
+    @RequestMapping("/setRoutine")
     @Override
     public ModelAndView setRoutine(Authentication authentication) {
         return super.setRoutine(authentication);
     }
 
-    @RequestMapping("/saveTask_Y")
+    @RequestMapping("/saveTask")
     @Override
     public ModelAndView saveTask(Task task, Authentication authentication) {
         return super.saveTask(task, authentication);
     }
 
-    @RequestMapping("/addFrequentlyToday_Y")
+    @RequestMapping("/addFrequentlyToday")
     @Override
     public ModelAndView addFreqToday(Integer index, Authentication authentication) {
         return super.addFreqToday(index, authentication);
     }
 
-    @RequestMapping("/postRange_Y")
+    @RequestMapping("/postRange")
     @Override
     public ModelAndView postRange(Integer task_index, Integer sliderValue, Authentication authentication) {
         return super.postRange(task_index, sliderValue, authentication);

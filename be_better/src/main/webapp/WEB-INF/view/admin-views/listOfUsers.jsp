@@ -29,16 +29,16 @@
 <button onclick="window.location.href='../../..'">Home</button>
 <br>
 
-<c:url var="daysButton" value="/days">
+<c:url var="daysButton" value="/D/days">
   <c:param name="delta" value="${rangeAtt}"/>
 </c:url>
-<c:url var="monthButton" value="/months">
+<c:url var="monthButton" value="/M/months">
   <c:param name="delta" value="${rangeAtt}"/>
 </c:url>
-<c:url var="weekButton" value="/weeks">
+<c:url var="weekButton" value="/W/weeks">
   <c:param name="delta" value="${rangeAtt}"/>
 </c:url>
-<c:url var="yearsButton" value="/years">
+<c:url var="yearsButton" value="/Y/years">
   <c:param name="delta" value="${rangeAtt}"/>
 </c:url>
 <br>

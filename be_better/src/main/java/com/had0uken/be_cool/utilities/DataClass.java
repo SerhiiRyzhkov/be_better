@@ -76,16 +76,16 @@ public class DataClass {
     public static String getPrefix(Type type) {
         switch (type) {
             case DAILY -> {
-                return "_D";
+                return "/D/";
             }
             case WEEKLY -> {
-                return "_W";
+                return "/W/";
             }
             case MONTHLY -> {
-                return "_M";
+                return "/M/";
             }
             case YEARLY -> {
-                return "_Y";
+                return "/Y/";
             }
         }
         return null;
