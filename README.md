@@ -2,8 +2,6 @@
 
 This is a Spring Web Application which supposed to help users to set goals for themselves and achieve them.
 
-https://bebetter.fun/
-
 
 ## Table of Contents
 
